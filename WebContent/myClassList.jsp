@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="vo.PageInfo"%>
-<%@ page import="vo.ClassBean"%>
+    <%@page import="vo.PageInfo"%>
+<%@page import="vo.ClassBean"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.text.SimpleDateFormat"%>
-<%@ page import="vo.User"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ page import = "vo.User"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 User user = new User("id1","");
 session.setAttribute("authUser", user);
@@ -108,6 +108,8 @@ else
     <li class="page-item"><a class="page-link" href="">이전</a></li>
     <li class="page-item"><a class="page-link" href="">1</a></li>
     <li class="page-item"><a class="page-link" href="">2</a></li>
+    <li class="page-item"><a class="page-link" href="">3</a></li>
+    <li class="page-item"><a class="page-link" href="">3</a></li>
     <li class="page-item"><a class="page-link" href="">3</a></li>
     <li><a class="page-link" href="">다음</a></li>
 </ul>

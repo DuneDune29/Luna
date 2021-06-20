@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
    
        <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -44,10 +45,25 @@
           </div>
           <div class="col-md-6">
             <ul class="social-media">
+              <c:if test="${empty authUser}">
+              <li><a href="login.do" style= "font-weight : bold;"><span>Login</span></a></li>
+              <li><span> </span></li>
+              <li><a href="Join.do" style= "font-weight : bold;"><span>Joinin</span></a></li>
+              </c:if>
+              <c:if test="${!empty authUser}">
+              <c:if test="${authUser.id!='admin'}">
+              <li><a href="#" style= "font-weight : bold;"><span>${authUser.name}님</span></a></li>
+              <li><span>  </span></li>
+              <li><a href="logout.do" style= "font-weight : bold;"><span>Logout</span></a></li>
+              </c:if>
               
-              <li><a href="Login.jsp" style= "font-weight : bold;"><span>login</span></a></li>
-              <li><a href="#" style= "font-weight : bold;"><span> </span></a></li>
-              <li><a href="Join.jsp" style= "font-weight : bold;"><span>Join</span></a></li>
+              <c:if test="${authUser.id=='admin'}">
+              <li><a href="Manager.jsp" style= "font-weight : bold;"><span>${authUser.name}님</span></a></li>
+              <li><span>  </span></li>
+              <li><a href="logout.do" style= "font-weight : bold;"><span>Logout</span></a></li>
+              </c:if>
+                 </c:if>
+              
             </ul>
           </div>
         </div>
@@ -82,10 +98,12 @@
                   </ul>
                   
                 <li class="has-children">
-                  <a href="#about-section" class="nav-link">QnA</a>
+                  <a href="CC_notice.jsp" class="nav-link">고객센터</a>
                   <ul class="dropdown">
-                    <li><a href="#about-section">자주 묻는 질문</a></li>
-                    <li><a href="#team-section">질문하기</a></li>
+                    <li><a href="CC_guide.jsp">이용가이드</a></li>
+                    <li><a href="CC_notice.jsp">공지사항</a></li>
+                    <li><a href="CC_OftenQnA.jsp">자주묻는질문</a></li>
+                    <li><a href="CC_QnA.jsp">질문하기</a></li>
                    
                   </ul>
               

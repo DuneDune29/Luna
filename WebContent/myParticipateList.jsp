@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="vo.PageInfo"%>
-<%@ page import="vo.ClassBean"%>
+    <%@page import="vo.PageInfo"%>
+<%@page import="vo.ClassBean"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.text.SimpleDateFormat"%>
+
+
 <%
 	ArrayList<ClassBean> myParticipateList=(ArrayList<ClassBean>)request.getAttribute("myClassList");
     PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
