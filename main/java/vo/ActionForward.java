@@ -12,11 +12,12 @@ public class ActionForward {
 		return path;
 	}
 
+	public void setPath(String string) {
+		path = string;
+	}
+
 	public void setRedirect(boolean b) {
 		isRedirect = b;
 	}
 
-	public void setPath(String string) {
-		path = string;
-	}
 }

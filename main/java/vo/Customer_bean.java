@@ -10,6 +10,9 @@ public class Customer_bean {
 	private String CUS_TEL;
 	private Date CUS_REGDATE;
 	
+	
+	
+	
 	public Customer_bean(String cUS_ID, String cUS_PWD, String cUS_NAME, String cUS_ADDR, String cUS_TEL,
 			Date cUS_REGDATE) {
 		CUS_ID = cUS_ID;
@@ -27,6 +30,8 @@ public class Customer_bean {
 		CUS_ADDR = cUS_ADDR;
 		CUS_TEL = cUS_TEL;
 	}
+	
+	
 	public String getCUS_ID() {
 		return CUS_ID;
 	}
@@ -63,5 +68,12 @@ public class Customer_bean {
 	public void setCUS_REGDATE(Date cUS_REGDATE) {
 		CUS_REGDATE = cUS_REGDATE;
 	}
+	
+	public boolean matchPassword(String pwd) {
+		return CUS_PWD.equals(pwd);
+		
+	}
+	
+	
 	
 }
