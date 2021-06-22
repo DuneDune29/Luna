@@ -6,16 +6,16 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import svc.LoginService;
+import svc.MagQnAInsertService;
 import vo.ActionForward;
-import vo.User;
 
 
-public class LoginAction implements Action{
+public class MagQnAInsertAction implements Action{
    
-   private static final String FORM_VIEW = "login.jsp";
-   private LoginService loginService = new LoginService();
+   private static final String FORM_VIEW = "MagQnAlist.do";
+   private MagQnAInsertService magQnAInsertService = new MagQnAInsertService();
    ActionForward forward = new ActionForward();
+  
    
    
    
@@ -23,7 +23,7 @@ public class LoginAction implements Action{
    @Override
 public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 	   
-	 
+	  
 	      if (req.getMethod().equalsIgnoreCase("GET")) {
 		         return processForm(req, res);
 		      } else if (req.getMethod().equalsIgnoreCase("POST")) {
@@ -44,29 +44,24 @@ private ActionForward processForm(HttpServletRequest req, HttpServletResponse re
    }
    
    private ActionForward processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
-      String id = trim(req.getParameter("id"));
-      String password = trim(req.getParameter("password"));
+      String mag_content = trim(req.getParameter("mag_content"));
+      int qa_id = Integer.parseInt(trim(req.getParameter("qa_id")));
+      String nowPage = req.getParameter("page");
+     
+    
+    
       
       Map<String, Boolean> errors = new HashMap<>();
       req.setAttribute("errors", errors);
       
-      if (id == null || id.isEmpty())
-         errors.put("id", Boolean.TRUE);
-      if (password == null || password.isEmpty())
-         errors.put("password", Boolean.TRUE);
-      
-      if (!errors.isEmpty()) {
-    	  forward.setPath(FORM_VIEW);
-    		return forward;
-      }
       
       try {
-         User user = loginService.login(id, password);
-         req.getSession().setAttribute("authUser", user);
-         res.sendRedirect(req.getContextPath() + "/index.jsp");
-         return null;
+         magQnAInsertService.insertQnA(mag_content,qa_id);
+         forward.setPath("MagQnAlist.do?page=" + nowPage);
+         
+         return forward;
       } catch (Exception e) {
-         errors.put("idOrPwNotMatch", Boolean.TRUE);
+         
          forward.setPath(FORM_VIEW);
      	return forward;
       }
