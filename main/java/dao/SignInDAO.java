@@ -1,5 +1,4 @@
 package dao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,56 +13,56 @@ import vo.Customer_bean;
 import vo.Join_bean;
 
 public class SignInDAO {
-
 	DataSource ds;
-	   Connection con;
+	Connection con;
 
-	   private static SignInDAO signinDAO;
+	private static SignInDAO signinDAO;
 
-	   private SignInDAO() {
-	   }
+	private SignInDAO() {
+	}
 
-	   public static SignInDAO getInstance() {
-	      if (signinDAO == null) {
-	         signinDAO = new SignInDAO();
-	      }
-	      return signinDAO;
-	   }
+	public static SignInDAO getInstance() {
+		if (signinDAO == null) {
+			signinDAO = new SignInDAO();
+		}
+		return signinDAO;
+	}
 
-	   public void setConnection(Connection con) {
-	      this.con = con;
-	   }
-	      
-	   public Customer_bean selectById(Connection con, String id) throws SQLException {
-	      
-	       PreparedStatement pstmt = null;
-	         ResultSet rs = null;
-	         try {
-	            pstmt = con.prepareStatement(
-	                  "select * from CUSTOMER where CUS_ID = ?");
-	            pstmt.setString(1, id);
-	            rs = pstmt.executeQuery();
-	            Customer_bean member = null;
-	            if (rs.next()) {
-	               member = new Customer_bean(
-	                     rs.getString("CUS_ID"),
-	                     rs.getString("CUS_PWD"),
-	                     rs.getString("CUS_NAME"),
-	                     rs.getString("CUS_ADDR"),
-	                     rs.getString("CUS_TEL"),
-	                     toDate(rs.getTimestamp("CUS_REGDATE")));
-	            }
-	            return member;
-	         } finally {
-	            JdbcUtil.close(rs);
-	            JdbcUtil.close(pstmt);
-	         }      
-	   }
-	      
-	   private Date toDate(Timestamp date) {
-	      return date == null ? null : new Date(date.getTime());
-	   }
-	public void insert(Connection con, Join_bean CusBean) throws SQLException {
+	public void setConnection(Connection con) {
+		this.con = con;
+	}
+		
+	public Customer_bean selectById(String id) throws SQLException {
+		
+		 PreparedStatement pstmt = null;
+	      ResultSet rs = null;
+	      try {
+	         pstmt = con.prepareStatement(
+	               "select * from CUSTOMER where CUS_ID = ?");
+	         pstmt.setString(1, id);
+	         rs = pstmt.executeQuery();
+	         Customer_bean member = null;
+	         if (rs.next()) {
+	            member = new Customer_bean(
+	                  rs.getString("CUS_ID"),
+	                  rs.getString("CUS_PWD"),
+	                  rs.getString("CUS_NAME"),
+	                  rs.getString("CUS_ADDR"),
+	                  rs.getString("CUS_TEL"),
+	                  toDate(rs.getTimestamp("CUS_REGDATE")));
+	         }
+	         return member;
+	      } finally {
+	         JdbcUtil.close(rs);
+	         JdbcUtil.close(pstmt);
+	      }		
+	}
+	   
+   private Date toDate(Timestamp date) {
+      return date == null ? null : new Date(date.getTime());
+   }
+   
+   public void insert(Connection con, Join_bean CusBean) throws SQLException {
 		try (PreparedStatement pstmt =
 				con.prepareStatement("insert into customer (CUS_ID, CUS_PWD, CUS_NAME, CUS_ADDR, CUS_TEL) values(?,?,?,?,?)")) {
 			pstmt.setString(1, CusBean.getCUS_ID());

@@ -2,6 +2,7 @@ package dao;
 
 import static db.JdbcUtil.close;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,6 +32,16 @@ public class CustomerDAO {
 	public void setConnection(Connection con) {
 		this.con = con;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	public int selectClassListCount(User authUser) {
 		int listCount = 0;
