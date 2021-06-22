@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="css/aos.css">
 
     <link rel="stylesheet" href="css/style.css">
+    
    
    
     <div class="site-mobile-menu site-navbar-target">
@@ -45,7 +46,7 @@
           </div>
           <div class="col-md-6">
             <ul class="social-media">
-              <c:if test="${empty authUser}">
+             <c:if test="${empty authUser}">
               <li><a href="login.do" style= "font-weight : bold;"><span>Login</span></a></li>
               <li><span> </span></li>
               <li><a href="Join.do" style= "font-weight : bold;"><span>Joinin</span></a></li>
@@ -98,21 +99,23 @@
                   </ul>
                   
                 <li class="has-children">
-                  <a href="CC_notice.jsp" class="nav-link">고객센터</a>
+                  <a href="Notice_List.do" class="nav-link">고객센터</a>
                   <ul class="dropdown">
-                    <li><a href="CC_guide.jsp">이용가이드</a></li>
-                    <li><a href="CC_notice.jsp">공지사항</a></li>
-                    <li><a href="CC_OftenQnA.jsp">자주묻는질문</a></li>
-                    <li><a href="CC_QnA.jsp">질문하기</a></li>
-                   
+                    <li><a href="CC_guide.jsp">이용 가이드</a></li>
+                    <li><a href="Notice_List.do">공지사항</a></li>
+                    <li><a href="CC_OftenQnA.jsp">자주 묻는 질문</a></li>
+                    <li><a href="QnAlist.do">질문하기</a></li>
                   </ul>
-              
               </ul>
             </nav>
           </div>
 
 
-          <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black"><span class="icon-menu h3"></span></a></div>
+          <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black">
+          
+        
+    
+          <span class="icon-menu h3"></span></a></div>
 
         </div>
       </div>

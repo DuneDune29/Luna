@@ -35,13 +35,13 @@
 								class="bi me-2" width="16" height="16">
 								<use xlink:href="CC_OftenQnA.jsp"></use></svg> 댓글 관리
 					</a></li>
-					<li><a href="CC_QnA.jsp" class="nav-link link-dark"> <svg
+					<li><a href="MagQnAlist.do" class="nav-link link-dark"> <svg
 								class="bi me-2" width="16" height="16">
-								<use xlink:href="CC_QnA.jsp"></use></svg> QnA 관리
+								<use xlink:href="MagQnAlist.do"></use></svg> QnA 관리
 					</a></li>
-					<li><a href="CC_QnA.jsp" class="nav-link link-dark"> <svg
+					<li><a href="MagNoticeList.do" class="nav-link link-dark"> <svg
 								class="bi me-2" width="16" height="16">
-								<use xlink:href="CC_QnA.jsp"></use></svg> 공지 관리
+								<use xlink:href="CC_QnA.jsp"></use></svg> 공지사항 관리
 					</a></li>
 					<li><a href="CC_QnA.jsp" class="nav-link link-dark"> <svg
 								class="bi me-2" width="16" height="16">

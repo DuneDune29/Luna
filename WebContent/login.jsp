@@ -15,14 +15,8 @@
 	<link rel="stylesheet" href="login/css/style.css">
 	 <link rel="stylesheet" href="css/style.css">
 
-	<script type="text/javascript">
-	if(request.getParameter("idOrPwNotMatch")){
-		alert('비밀번호가 일치하지 않습니다!');
-	}
-	</script>
 	</head>
 	<body class="img js-fullheight" style="background-image: url(login/images/hero_1.jpg);">
-	
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -36,7 +30,7 @@
 		      	<h3 class="mb-4 text-center">Have an account?</h3>
 		      	<form action="login.do" class="signin-form" method="post">
 		      		<div class="form-group">
-		      			<input type="text" class="form-control" placeholder="Username" name="id" required autofocus>
+		      			<input type="text" class="form-control" placeholder="Username" name="id" required>
 		      		</div>
 	            <div class="form-group">
 	              <input id="password-field" type="password" class="form-control" placeholder="Password" name="password" required>

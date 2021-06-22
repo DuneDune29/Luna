@@ -26,7 +26,6 @@
             <div class="col-md-6 col-lg-4">
                <div class="login-wrap p-0">
                <h3 class="mb-4 text-center">회원가입</h3>
-               
                <form action="Join.do" class="signin-form" method="post">
                   <div class="form-group">
                      <input type="text" class="form-control" placeholder="ID" name="id" required>
@@ -42,22 +41,19 @@
                 <div class="form-group">
                      <input type="text" class="form-control" placeholder="Name" name="name" required>
                   </div>
-               
-                  <hr>
-                   <div class="form-group">
-                     <input type="text" class="form-control" placeholder="Tel" name="tel" required>
+                <div class="form-group">
+                     <input type="text" class="form-control" placeholder="Address" name="addr" required>
                   </div>
-									<div class="col">
-									<div class="row">
-									<input type="text" id="sample4_postcode" class="form-control col-md-6" placeholder="우편번호" name="addr5"><br>
-									<div  style="text-align: right" class="col-md-6">
-									<button  class="form-control btn btn-primary submit px-3" type="button" onclick="sample4_execDaumPostcode()"
-										value="우편번호 찾기">우편번호 찾기</button></div></div></div><br> <input type="text"
-										id="sample4_roadAddress" class="form-control" placeholder="도로명주소" name="addr1"><br>
-										<input type="text" id="sample4_jibunAddress" class="form-control" placeholder="지번주소" name="addr2">
-									<span id="guide" style="color: #999; display: none"></span> <br>
-									<input type="text" id="sample4_extraAddress" class="form-control" placeholder="참고항목" name="addr3"><br>
-									<input type="text" id="sample4_detailAddress" class="form-control" placeholder="상세주소" name="addr4"><br>
+              
+               
+               <input type="text" id="sample4_postcode" placeholder="우편번호" name="addr5">
+									<input type="button" onclick="sample4_execDaumPostcode()"
+										value="우편번호 찾기"><br> <input type="text"
+										id="sample4_roadAddress" placeholder="도로명주소" name="addr1"> <input
+										type="text" id="sample4_jibunAddress" placeholder="지번주소" name="addr2">
+									<span id="guide" style="color: #999; display: none"></span> <br><input
+										type="text" id="sample4_detailAddress" placeholder="상세주소" name="addr4">
+									<input type="text" id="sample4_extraAddress" placeholder="참고항목" name="addr3">
 
 									<script
 										src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -91,7 +87,7 @@
 															document
 																	.getElementById('sample4_postcode').value = data.zonecode;
 															document
-																	.getElementById('sample4_roadAddress').value = roadAddr;
+																	.getElementById("sample4_roadAddress").value = roadAddr;
 															document
 																	.getElementById("sample4_jibunAddress").value = data.jibunAddress;
 
@@ -119,7 +115,7 @@
 																guideTextBox.innerHTML = '(예상 지번 주소 : '
 																		+ expJibunAddr
 																		+ ')';
-																
+																guideTextBox.style.display = 'block';
 															} else {
 																guideTextBox.innerHTML = '';
 																guideTextBox.style.display = 'none';
@@ -128,13 +124,17 @@
 													}).open();
 										}
 									</script>
-
                
+                 <div class="form-group">
+                     <input type="text" class="form-control" placeholder="Tel" name="tel" required>
+                  </div>
                <div class="form-group">
-                  <button type="submit" class="form-control btn btn-primary submit px-3" >SignIn</button>
+                  <button type="submit" class="form-control btn btn-primary submit px-3" >LogIn</button>
                </div>
-        
+               
+               
              </form>
+        
              
 
 

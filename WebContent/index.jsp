@@ -1,14 +1,47 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.sql.*"%>
+                  <%@ page import="java.sql.*"%>
 <%@ page import="javax.sql.*"%>
 <%@ page import="javax.naming.*"%>
 <%@ page import="static db.JdbcUtil.*"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  
+   <%
+					Connection con = null;
+					PreparedStatement pstmt = null;
+					ResultSet rs = null;
+					
+					int i=0;
+					String[] contents=new String[4];
+					String[] ids=new String[4];
+					
+					try {
+						con = getConnection();
+				
+						pstmt = con.prepareStatement("select RV_CONTENT, RV_WRITER_ID from review");
+						rs = pstmt.executeQuery();
+						while(rs.next()){
+							String content=rs.getString("RV_CONTENT");
+							System.out.println(content);
+							contents[i]=content;
+							String id=rs.getString("RV_WRITER_ID");
+							ids[i]=id;
+							i++;
+							System.out.println(contents[i]);
+							System.out.println(ids[i]);
+							if(i==4) break;
+						
+						}			
+					} catch (Exception e) {
+						e.printStackTrace();
+					} finally {
+						close(rs);
+						close(pstmt);
+						close(con);
+					}
+				%>
  
     <title>LunaClass</title>
 
@@ -32,6 +65,7 @@
                   <span class="typed-words" style="font-size: 50px;"></span></h1>
                 <p class="lead mb-5">Team <a href="#" target="_blank">Luna</a></p>
                 <div><a data-fancybox data-ratio="2" href="video.mp4" class="btn btn-primary btn-md">Watch Video</a></div>
+                
               </div>
             </div>
           </div>
@@ -223,10 +257,13 @@
             <div class="testimonial">
               
               <blockquote class="mb-5">
+                <p>&ldquo;<%=contents[0]%>&ldquo;
+                </p>
               </blockquote>
 
               <figure class="mb-4 d-flex align-items-center justify-content-center">
                 <div><img src="images/person_3.jpg" alt="Image" class="w-50 img-fluid mb-3"></div>
+                <p><%=ids[0]%></p>
               </figure>
             </div>
           </div>
@@ -234,9 +271,11 @@
             <div class="testimonial">
 
               <blockquote class="mb-5">
+                <p>&ldquo;<%=contents[1] %>&rdquo;</p>
               </blockquote>
               <figure class="mb-4 d-flex align-items-center justify-content-center">
                 <div><img src="images/person_2.jpg" alt="Image" class="w-50 img-fluid mb-3"></div>
+                <p><%=ids[1] %></p>
               </figure>
               
             </div>
@@ -246,9 +285,11 @@
             <div class="testimonial">
 
               <blockquote class="mb-5">
+                <p>&ldquo;<%=contents[2] %>&rdquo;</p>
               </blockquote>
               <figure class="mb-4 d-flex align-items-center justify-content-center">
                 <div><img src="images/person_4.jpg" alt="Image" width="20px"></div>
+                <p><%=ids[2] %></p>
               </figure>
 
               
@@ -259,9 +300,11 @@
             <div class="testimonial">
 
               <blockquote class="mb-5">
+                <p>&ldquo;<%=contents[3] %>&rdquo;</p>
               </blockquote>
               <figure class="mb-4 d-flex align-items-center justify-content-center">
                 <div><img src="images/person_5.jpg" alt="Image" class="w-50 img-fluid mb-3"></div>
+                <p><%=ids[3] %></p>
               </figure>
 
             </div>

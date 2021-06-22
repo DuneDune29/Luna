@@ -1,5 +1,6 @@
 
 
+
 <%@page import="vo.PageInfo"%>
 <%@page import="vo.QNA_bean"%>
 <%@page import="java.util.ArrayList"%>
@@ -21,23 +22,12 @@
 	ArrayList<QNA_bean> qnalist= new ArrayList<>();
 	PageInfo pageinfo = new PageInfo();
 	qnalist=(ArrayList<QNA_bean>)request.getAttribute("qnaList");
-	pageinfo=(PageInfo)request.getAttribute("pageInfo");
-	
-	System.out.println(pageinfo.getPage());
-	System.out.println("ㅎ헿");
-	for(int i=0;i<qnalist.size();i++){
-	qnalist.get(i);
-	System.out.println(qnalist.get(i).getQA_ID());
-	System.out.println(qnalist.get(i).getQA_WRITER_ID());
-	System.out.println(qnalist.get(i).getQA_TITLE());
-	System.out.println(qnalist.get(i).getQA_CONTENT());
-	System.out.println(qnalist.get(i).getQA_REGDATE());
-	System.out.println(qnalist.get(i).getQA_MAG_CONTENT());
-	System.out.println(qnalist.get(i).getQA_ANSWER());
+	pageinfo=(PageInfo)request.getAttribute("pageinfo");
 	
 	
+
 	
-	}
+	
 		int listCount=pageinfo.getListCount();
 		int nowPage=pageinfo.getPage();
 		int maxPage=pageinfo.getMaxPage();
@@ -57,7 +47,7 @@
 		<div class="row">
 			<div class="d-flex flex-column flex-shrink-0 p-3 bg-light"
 				style="width: 280px;">
-				<br> <br> <a href="Notice_List.do"
+				<br> <br> <a href="/"
 					class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
 					<svg class="bi me-2" width="40" height="32">
 						<use xlink:href="CC_notice.jsp"></use></svg> <span class="fs-4">고객센터</span>
@@ -69,7 +59,7 @@
 								height="16">
 								<use xlink:href="#home"></use></svg> 이용가이드
 					</a></li>
-					<li><a href="Notice_List.do" class="nav-link link-dark"> <svg
+					<li><a href="MagNoticeList.do" class="nav-link link-dark"> <svg
 								class="bi me-2" width="16" height="16">
 								<use xlink:href="#speedometer2"></use></svg> 공지사항
 					</a></li>
@@ -77,7 +67,7 @@
 								class="bi me-2" width="16" height="16">
 								<use xlink:href="#table"></use></svg> 자주묻는질문
 					</a></li>
-					<li><a href="QnAlist.do" class="nav-link active"> <svg
+					<li><a href="MagQnAlist.do" class="nav-link active"> <svg
 								class="bi me-2" width="16" height="16">
 								<use xlink:href="CC_QnA.jsp"></use></svg> QnA
 					</a></li>
@@ -161,6 +151,7 @@ if(qnalist != null && listCount > 0){
 			
 		for(int i=0;i<qnalist.size();i++){
 			String n = null;
+			
 	%>
 			
 				<a class="list-group-item list-group-item-action">
@@ -180,20 +171,15 @@ if(qnalist != null && listCount > 0){
 	String answer;
 	String mag_content;
 	String today = sdf.format(date);
-		System.out.println(today);
-		System.out.println(qnalist.get(i).getQA_REGDATE());
+		
 		
 	if(today.equals(qnalist.get(i).getQA_REGDATE().toString())){
 		n = "N";
-		
-		
-		System.out.println("여기꺼ㅏ지");
-		System.out.println(n);%>
+		%>
 		 <span style="background-color: #FF5A37; font-size:13px; color : white; font-weight: bold; padding:1px 4px; border-radius: 50%">N</span>
 		
 	<%} else {
-		n=null;
-		System.out.println(n);%>
+		n=null;%>
 		 <span></span><%
 	}
 	
@@ -209,10 +195,7 @@ if(qnalist != null && listCount > 0){
 	}else{
 		mag_content=qnalist.get(i).getQA_MAG_CONTENT();
 	}
-	
-	
-	
-	
+
 	%>
      </span>
           
@@ -228,7 +211,27 @@ if(qnalist != null && listCount > 0){
   <div id="content<%=i %>" class="collapse col-md-6">
   <div>
   <%=qnalist.get(i).getQA_CONTENT()%></div>
-  <div><%=mag_content %></div>
+  <div>
+  
+  
+  <form action="mag_QA_Insert.do?page<%=nowPage %>" class="signin-form" method="post">
+                  <div class="form-group">
+                  <input type="hidden" class="form-control" placeholder="QA_ID" name="qa_id" value=<%=qnalist.get(i).getQA_ID()%> />
+                  <input type = "hidden" name = "page" value = "<%=nowPage %>"/>
+                
+                     <input type="text" class="form-control" placeholder="답글을 입력하세요" value="<%=mag_content %>" name="mag_content" required>
+                    
+                  </div>
+
+                    <div class="form-group">
+                  <button type="submit" class="form-control btn btn-primary submit px-3" >답변 등록하기</button>
+                  
+               </div>
+               
+               
+             </form>
+
+  </div>
   </div>
   
   </div>
@@ -240,19 +243,20 @@ if(qnalist != null && listCount > 0){
 		
 		</div>
 	<br>
+	</section>
 	
 	<section id="pageList" style="text-align : center">
 		<%if(nowPage<=1){ %>
 		<span style="color : darkgray; padding:8px 14px 6px; border-radius: 10px 10px 10px 10px">[이전]</span>&nbsp;
 		<%}else{ %>
-		<a href="QnAlist.do?page=<%=nowPage-1 %>" style="color : darkgray; padding:8px 14px 6px; border-radius: 10px 10px 10px 10px">[이전]</a>&nbsp;
+		<a href="MagQnAlist.do?page=<%=nowPage-1 %>" style="color : darkgray; padding:8px 14px 6px; border-radius: 10px 10px 10px 10px">[이전]</a>&nbsp;
 		<%} %>
 
 		<%for(int a=startPage;a<=endPage;a++){
 				if(a==nowPage){%>
 		<span style="background-color: #32DBC6; color : white; font-weight: bold; padding:8px 14px 6px; border-radius: 10px 10px 10px 10px"><%=a %></span>&nbsp;
 		<%}else{ %>
-		<a href="QnAlist.do?page=<%=a %>" style="color : darkgray; padding:8px 14px 6px; border-radius: 10px 10px 10px 10px"><%=a %>
+		<a href="MagQnAlist.do?page=<%=a %>" style="color : darkgray; padding:8px 14px 6px; border-radius: 10px 10px 10px 10px"><%=a %>
 		</a>&nbsp;
 		<%} %>
 		<%} %>
@@ -260,7 +264,7 @@ if(qnalist != null && listCount > 0){
 		<%if(nowPage>=maxPage){ %>
 		<span style="color : darkgray; padding:8px 14px 6px; border-radius: 10px 10px 10px 10px">[다음]</span>
 		<%}else{ %>
-		<a href="QnAlist.do?page=<%=nowPage+1 %>" style="color : darkgray; padding:8px 14px 6px; border-radius: 10px 10px 10px 10px">[다음]</a>
+		<a href="MagQnAlist.do?page=<%=nowPage+1 %>" style="color : darkgray; padding:8px 14px 6px; border-radius: 10px 10px 10px 10px">[다음]</a>
 		<%} %>
 	</section>
 	<%
@@ -285,9 +289,6 @@ if(qnalist != null && listCount > 0){
 			
 		</div>
 	<br><br><br><br><br><br><br>
-
-
-
 
 	<jsp:include page="footer.jsp" />
 </body>
