@@ -9,19 +9,19 @@ import vo.Customer_bean;
 import vo.Join_bean;
 
 public class JoinService {
-	private SignInDAO signInDao = SignInDAO.getInstance();
+	private SignInDAO signinDao = SignInDAO.getInstance();
 	public void join(Join_bean cusbean) {
 		Connection con = null;
 		try {
 			con = JdbcUtil.getConnection();
 			con.setAutoCommit(false);
-			
-			Customer_bean cusmo = signInDao.selectById(con, cusbean.getCUS_ID());
+			signinDao.setConnection(con);
+			Customer_bean cusmo = signinDao.selectById(cusbean.getCUS_ID());
 			if (cusmo != null) {
 				JdbcUtil.rollback(con);
 			}
 			
-			signInDao.insert(con, cusbean);
+			signinDao.insert(con, cusbean);
 			con.commit();
 		} catch (SQLException e) {
 			JdbcUtil.rollback(con);
