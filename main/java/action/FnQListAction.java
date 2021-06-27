@@ -5,16 +5,16 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import svc.NoticeListService;
+import svc.FnQListService;
 import vo.ActionForward;
-import vo.Notice_bean;
+import vo.FNQ_bean;
 import vo.PageInfo;
 
-public class NoticeListAction implements Action{
+public class FnQListAction implements Action{
 	
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		ArrayList<Notice_bean> noticeList = new ArrayList<Notice_bean>();
+		ArrayList<FNQ_bean> fnqList = new ArrayList<FNQ_bean>();
 		int page = 1;
 		int limit = 5;
 
@@ -22,11 +22,11 @@ public class NoticeListAction implements Action{
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 
-		NoticeListService noticeListService = new NoticeListService();
-		int listCount = noticeListService.getNoticeListCount();
+		FnQListService fnqListService = new FnQListService();
+		int listCount = fnqListService.getFnQListCount();
 		System.out.println(listCount);
-		noticeList = noticeListService.getNoticeList(page, limit);
-		System.out.println(noticeList);
+		fnqList = fnqListService.getFnQList(page, limit);
+		System.out.println(fnqList);
 		int maxPage = (int) ((double) listCount / limit + 0.9);
 		int startPage = (((int) ((double) page / 5 + 0.8)) - 1) * 5 + 1;
 		int endPage = startPage + 5 - 1;
@@ -41,9 +41,10 @@ public class NoticeListAction implements Action{
 		pageInfo.setPage(page);
 		pageInfo.setStartPage(startPage);
 		request.setAttribute("pageInfo", pageInfo);
-		request.setAttribute("noticeList", noticeList);
+		request.setAttribute("fnqList", fnqList);
 		ActionForward forward = new ActionForward();
-		forward.setPath("/Notice_List.jsp");
+		forward.setPath("/CC_FnQ.jsp");
 		return forward;
+
 	}
 }

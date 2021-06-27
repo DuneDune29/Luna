@@ -5,35 +5,36 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import svc.NoticeListService;
+import svc.CustomerListService;
 import vo.ActionForward;
-import vo.Notice_bean;
+import vo.Customer_bean;
 import vo.PageInfo;
 
-public class NoticeListAction implements Action{
-	
-	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+public class CustomerListAction implements Action {
+
+public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		ArrayList<Notice_bean> noticeList = new ArrayList<Notice_bean>();
+		ArrayList<Customer_bean> customerList = new ArrayList<Customer_bean>();
 		int page = 1;
 		int limit = 5;
-
-		if (request.getParameter("page") != null) {
+		
+		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
-
-		NoticeListService noticeListService = new NoticeListService();
-		int listCount = noticeListService.getNoticeListCount();
+		
+		System.out.println(page);
+		CustomerListService customerListService = new CustomerListService();
+		int listCount = customerListService.getCustomerListCount();
 		System.out.println(listCount);
-		noticeList = noticeListService.getNoticeList(page, limit);
-		System.out.println(noticeList);
+		customerList = customerListService.getCustomerList(page, limit);
+		System.out.println(customerList);
 		int maxPage = (int) ((double) listCount / limit + 0.9);
-		int startPage = (((int) ((double) page / 5 + 0.8)) - 1) * 5 + 1;
+		int startPage = (((int) ((double) page / 5 + 0.8)) -1) * 5 + 1;
 		int endPage = startPage + 5 - 1;
-
+		
 		if (endPage > maxPage)
 			endPage = maxPage;
-
+		
 		PageInfo pageInfo = new PageInfo();
 		pageInfo.setEndPage(endPage);
 		pageInfo.setListCount(listCount);
@@ -41,9 +42,10 @@ public class NoticeListAction implements Action{
 		pageInfo.setPage(page);
 		pageInfo.setStartPage(startPage);
 		request.setAttribute("pageInfo", pageInfo);
-		request.setAttribute("noticeList", noticeList);
+
+		request.setAttribute("customerList", customerList);
 		ActionForward forward = new ActionForward();
-		forward.setPath("/Notice_List.jsp");
+		forward.setPath("/CustomerList.jsp");
 		return forward;
 	}
 }

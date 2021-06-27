@@ -1,5 +1,6 @@
 package action;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,19 +57,44 @@ private ActionForward processForm(HttpServletRequest req, HttpServletResponse re
          errors.put("password", Boolean.TRUE);
       
       if (!errors.isEmpty()) {
-    	  forward.setPath(FORM_VIEW);
-    		return forward;
+    	  res.setContentType("text/html; charset=UTF-8");
+    	  
+    	  PrintWriter out = res.getWriter();
+    	   
+    	  out.println("<script>alert('아이디와 비밀번호를 확인해 주세요'); location.href='login.do';</script>");
+    	   
+    	  out.flush();
+
+  
+    		return null;
       }
       
       try {
          User user = loginService.login(id, password);
          req.getSession().setAttribute("authUser", user);
+         if(id.equals("admin")) {
+        	 res.sendRedirect(req.getContextPath() + "/MagQnAlist.do");
+             return null;
+         }else {
+        	 
+        	 if(req.getSession().getAttribute("path")==null) {
+        	 
          res.sendRedirect(req.getContextPath() + "/index.jsp");
-         return null;
+        	 }else {
+        		 res.sendRedirect(req.getContextPath() + "/"+req.getSession().getAttribute("path"));
+        	 }
+         return null;}
       } catch (Exception e) {
          errors.put("idOrPwNotMatch", Boolean.TRUE);
-         forward.setPath(FORM_VIEW);
-     	return forward;
+         res.setContentType("text/html; charset=UTF-8");
+   	  
+   	  PrintWriter out = res.getWriter();
+   	   
+   	  out.println("<script>alert('아이디와 비밀번호를 확인해 주세요'); location.href='login.do';</script>");
+   	   
+   	  out.flush();
+     
+     	return null;
       }
    }
    

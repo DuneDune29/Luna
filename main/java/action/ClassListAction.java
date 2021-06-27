@@ -5,29 +5,26 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import svc.NoticeListService;
+import svc.ClassListService;
 import vo.ActionForward;
-import vo.Notice_bean;
+import vo.ClassBean;
 import vo.PageInfo;
 
-public class NoticeListAction implements Action{
-	
+public class ClassListAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		ArrayList<Notice_bean> noticeList = new ArrayList<Notice_bean>();
+		//User authUser = (User) request.getSession().getAttribute("authUser");
+		ArrayList<ClassBean> classList = new ArrayList<ClassBean>();
 		int page = 1;
-		int limit = 5;
+		int limit = 6;
 
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 
-		NoticeListService noticeListService = new NoticeListService();
-		int listCount = noticeListService.getNoticeListCount();
-		System.out.println(listCount);
-		noticeList = noticeListService.getNoticeList(page, limit);
-		System.out.println(noticeList);
-		int maxPage = (int) ((double) listCount / limit + 0.9);
+		ClassListService classListService = new ClassListService();
+		int listCount = classListService.getClassListCount();
+		classList = classListService.getClassList(page, limit);
+		int maxPage = (int) ((double) listCount/limit + 0.9);
 		int startPage = (((int) ((double) page / 5 + 0.8)) - 1) * 5 + 1;
 		int endPage = startPage + 5 - 1;
 
@@ -41,9 +38,9 @@ public class NoticeListAction implements Action{
 		pageInfo.setPage(page);
 		pageInfo.setStartPage(startPage);
 		request.setAttribute("pageInfo", pageInfo);
-		request.setAttribute("noticeList", noticeList);
+		request.setAttribute("classList", classList);
 		ActionForward forward = new ActionForward();
-		forward.setPath("/Notice_List.jsp");
+		forward.setPath("/classList.jsp");
 		return forward;
 	}
 }

@@ -41,7 +41,7 @@ public class JoinAction implements Action {
 			jobean.setCUS_ID(request.getParameter("id"));
 			jobean.setCUS_PWD(request.getParameter("password"));
 			jobean.setCUS_NAME(request.getParameter("name"));
-			jobean.setCUS_ADDR(request.getParameter("addr"));
+			jobean.setCUS_ADDR(request.getParameter("addr1")+"("+request.getParameter("addr2")+")"+request.getParameter("addr4")+"("+request.getParameter("addr5")+")");
 			jobean.setCUS_TEL(request.getParameter("tel"));
 			jobean.setCUS_CONFIRMPASSWORD(request.getParameter("confirmPassword"));
 			

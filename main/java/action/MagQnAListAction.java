@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import svc.QnAListService;
 import vo.ActionForward;
+import vo.ClassBean;
 import vo.PageInfo;
 import vo.QNA_bean;
+import vo.User;
 
 public class MagQnAListAction implements Action{
 	

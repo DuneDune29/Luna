@@ -5,16 +5,16 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import svc.NoticeListService;
+import svc.CusResListService;
 import vo.ActionForward;
-import vo.Notice_bean;
+import vo.CusRes_bean;
 import vo.PageInfo;
 
-public class NoticeListAction implements Action{
-	
-	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+public class CusResListAction implements Action {
+
+public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		ArrayList<Notice_bean> noticeList = new ArrayList<Notice_bean>();
+		ArrayList<CusRes_bean> cusResList = new ArrayList<CusRes_bean>();
 		int page = 1;
 		int limit = 5;
 
@@ -22,11 +22,11 @@ public class NoticeListAction implements Action{
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 
-		NoticeListService noticeListService = new NoticeListService();
-		int listCount = noticeListService.getNoticeListCount();
-		System.out.println(listCount);
-		noticeList = noticeListService.getNoticeList(page, limit);
-		System.out.println(noticeList);
+		CusResListService cusResListService = new CusResListService();
+		int listCount = cusResListService.getCusResListCount();
+		System.out.println(listCount+"ddddddddd");
+		cusResList = cusResListService.getCusResList(page, limit);
+		System.out.println(cusResList);
 		int maxPage = (int) ((double) listCount / limit + 0.9);
 		int startPage = (((int) ((double) page / 5 + 0.8)) - 1) * 5 + 1;
 		int endPage = startPage + 5 - 1;
@@ -41,9 +41,10 @@ public class NoticeListAction implements Action{
 		pageInfo.setPage(page);
 		pageInfo.setStartPage(startPage);
 		request.setAttribute("pageInfo", pageInfo);
-		request.setAttribute("noticeList", noticeList);
+		request.setAttribute("cusResList", cusResList);
 		ActionForward forward = new ActionForward();
-		forward.setPath("/Notice_List.jsp");
+		forward.setPath("/Customer_reservation.jsp");
 		return forward;
 	}
 }
+
