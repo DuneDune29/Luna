@@ -6,31 +6,29 @@ import static db.JdbcUtil.getConnection;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import dao.CustomerDAO;
 import dao.QnADAO;
-import vo.ClassBean;
-import vo.User;
+import vo.FNQ_bean;
 import vo.QNA_bean;
 
-public class QnAListService {
-	public int getQnAListCount() throws Exception {
+public class FnQShowService {
+	public int getFnQListCount() throws Exception {
 		int listCount = 0;
 		Connection con = getConnection();
 		QnADAO qnaDAO = QnADAO.getInstance();
 		qnaDAO.setConnection(con);
-		listCount = qnaDAO.selectQnAListCount();
+		listCount = qnaDAO.selectFNQListCount();
 		close(con);
 		return listCount;
 
 	}
 
-	public ArrayList<QNA_bean> getQnAList(int page, int limit) throws Exception {
+	public ArrayList<FNQ_bean> getFnQList(int page, int limit) throws Exception {
 
-		ArrayList<QNA_bean> qnaList = null;
+		ArrayList<FNQ_bean> qnaList = null;
 		Connection con = getConnection();
 		QnADAO qnaDAO = QnADAO.getInstance();
 		qnaDAO.setConnection(con);
-		qnaList = qnaDAO.selectQnAList(page, limit);
+		qnaList = qnaDAO.selectFnQList(page, limit);
 		close(con);
 		return qnaList;
 	}

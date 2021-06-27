@@ -10,42 +10,38 @@ import dao.CustomerDAO;
 import vo.ClassBean;
 import vo.User;
 
-public class MyClassListService {
-
-
+public class CustomerParticipateListService {
 	
-
-	public int getClassListCount(User authUser) throws Exception {
+	public int getParticipateListCount(String cus_id) throws Exception {
 		int listCount = 0;
 		Connection con = getConnection();
 		CustomerDAO customerDAO = CustomerDAO.getInstance();
 		customerDAO.setConnection(con);
-		listCount = customerDAO.selectClassListCount(authUser);
+		listCount = customerDAO.selectParticipateListCount(cus_id);
 		close(con);
 		return listCount;
 
 	}
 
-	public ArrayList<ClassBean> getClassList(User authUser, int page, int limit) throws Exception {
+	public ArrayList<ClassBean> getParticipateList(String cus_id, int page, int limit) throws Exception {
 
 		ArrayList<ClassBean> articleList = null;
 		Connection con = getConnection();
 		CustomerDAO customerDAO = CustomerDAO.getInstance();
 		customerDAO.setConnection(con);
-		articleList = customerDAO.selectMyClassList(authUser, page, limit);
-
+		articleList = customerDAO.selectMyParticipateList(cus_id, page, limit);
 		close(con);
 		return articleList;
 
 	}
-
-	public ArrayList<Integer> getHeadCount(User authUser, int page, int limit) throws Exception{
+	
+public ArrayList<Integer> getHeadCount(String cus_id, int page, int limit) throws Exception{
 		
 		ArrayList<ClassBean> articleList = null;
 		Connection con = getConnection();
 		CustomerDAO customerDAO = CustomerDAO.getInstance();
 		customerDAO.setConnection(con);
-		articleList = customerDAO.selectMyClassList(authUser, page, limit);
+		articleList = customerDAO.selectMyParticipateList(cus_id, page, limit);
 		ArrayList<Integer> headCounts = new ArrayList<Integer>();
 			
 		

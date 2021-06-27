@@ -14,32 +14,32 @@ import db.JdbcUtil;
 import vo.Customer_bean;
 import vo.User;
 
-public class MagQnAInsertService {
+public class FnQInsertService {
 
    private QnADAO qnaDao = QnADAO.getInstance();
   
    
-   public boolean insertQnA(String mag_content, int qa_id) {
+   public boolean insertFnQ(String fnq_title, String qna_content) {
       try (Connection conn = JdbcUtil.getConnection()) {
     	  qnaDao.setConnection(conn);
-    	  qnaDao.insertMagQnAList(mag_content, qa_id);
+    	  
     	  System.out.println("되나??");
-    	  boolean isModifySuccess = false;
+    	  boolean isInsertSuccess = false;
   	
   		
   	
-  		int updateCount = qnaDao.insertMagQnAList(mag_content, qa_id);;
+  		int insertCount = qnaDao.insertFnQList(fnq_title, qna_content);
   		
-  		if(updateCount > 0){
+  		if(insertCount > 0){
   			commit(conn);
-  			isModifySuccess=true;
+  			isInsertSuccess=true;
   		}
   		else{
   			rollback(conn);
   		}
   		
   		close(conn);
-  		return isModifySuccess;
+  		return isInsertSuccess;
   		
   	
       } catch (SQLException e) {

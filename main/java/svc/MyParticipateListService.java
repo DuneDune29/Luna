@@ -33,5 +33,25 @@ public class MyParticipateListService {
 		return articleList;
 
 	}
+	
+public ArrayList<Integer> getHeadCount(User authUser, int page, int limit) throws Exception{
+		
+		ArrayList<ClassBean> articleList = null;
+		Connection con = getConnection();
+		CustomerDAO customerDAO = CustomerDAO.getInstance();
+		customerDAO.setConnection(con);
+		articleList = customerDAO.selectMyParticipateList(authUser, page, limit);
+		ArrayList<Integer> headCounts = new ArrayList<Integer>();
+			
+		
+		for (int i = 0; i < articleList.size(); i++) {
+			headCounts.add(i,customerDAO.headCount(articleList.get(i).getCL_ID()));
+		
+		}
+		close(con);
+		
+		
+		return headCounts;
+	}
 
 }
