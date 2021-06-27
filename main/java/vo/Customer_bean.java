@@ -9,9 +9,20 @@ public class Customer_bean {
 	private String CUS_ADDR;
 	private String CUS_TEL;
 	private Date CUS_REGDATE;
+	private String CUS_PROFILE_PATH;
 	
 	
-	
+	public String getCUS_PROFILE_PATH() {
+		return CUS_PROFILE_PATH;
+	}
+
+	public void setCUS_PROFILE_PATH(String cUS_PROFILE_PATH) {
+		CUS_PROFILE_PATH = cUS_PROFILE_PATH;
+	}
+
+	public Customer_bean() {
+		
+	}
 	
 	public Customer_bean(String cUS_ID, String cUS_PWD, String cUS_NAME, String cUS_ADDR, String cUS_TEL,
 			Date cUS_REGDATE) {
@@ -21,14 +32,6 @@ public class Customer_bean {
 		CUS_ADDR = cUS_ADDR;
 		CUS_TEL = cUS_TEL;
 		CUS_REGDATE = cUS_REGDATE;
-	}
-	public Customer_bean(String cUS_ID, String cUS_PWD, String cUS_NAME, String cUS_ADDR, String cUS_TEL
-			) {
-		CUS_ID = cUS_ID;
-		CUS_PWD = cUS_PWD;
-		CUS_NAME = cUS_NAME;
-		CUS_ADDR = cUS_ADDR;
-		CUS_TEL = cUS_TEL;
 	}
 	
 	
@@ -70,10 +73,13 @@ public class Customer_bean {
 	}
 	
 	public boolean matchPassword(String pwd) {
+		
 		return CUS_PWD.equals(pwd);
 		
 	}
-	
+	public void changePassword(String newPwd) {
+		this.CUS_PWD = newPwd;
+	}
 	
 	
 }

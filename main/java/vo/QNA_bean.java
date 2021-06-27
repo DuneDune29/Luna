@@ -10,8 +10,15 @@ public class QNA_bean {
 	private Date QA_REGDATE;
 	private String QA_MAG_CONTENT;
 	private Boolean QA_ANSWER;
+	private Date QA_MAG_REGDATE;
 	
 	
+	public Date getQA_MAG_REGDATE() {
+		return QA_MAG_REGDATE;
+	}
+	public void setQA_MAG_REGDATE(Date qA_MAG_REGDATE) {
+		QA_MAG_REGDATE = qA_MAG_REGDATE;
+	}
 	public int getQA_ID() {
 		return QA_ID;
 	}

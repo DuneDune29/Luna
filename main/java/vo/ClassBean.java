@@ -6,6 +6,7 @@ public class ClassBean {
 	private int CL_ID;
 	private String CL_NAME;
 	private String CL_WRITER_ID;
+	private String CL_CATEGORY;
 	private String CL_CONTENT;
 	private Date CL_START_DATE;
 	private Date CL_END_DATE;
@@ -13,6 +14,14 @@ public class ClassBean {
 	private int CL_CAPACITY;
 	private String CL_IMG_PATH;
 	private int CL_VIEW;
+	
+	public String getCL_CATEGORY() {
+		return CL_CATEGORY;
+	}
+	
+	public void setCL_CATEGORY(String cL_CATEGORY) {
+		CL_CATEGORY = cL_CATEGORY;
+	}
 
 	public int getCL_ID() {
 		return CL_ID;
