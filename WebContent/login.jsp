@@ -14,6 +14,19 @@
 	
 	<link rel="stylesheet" href="login/css/style.css">
 	 <link rel="stylesheet" href="css/style.css">
+	  
+	 
+	    
+    
+   
+  
+    
+
+    
+
+    
+
+  
 
 	</head>
 	<body class="img js-fullheight" style="background-image: url(login/images/hero_1.jpg);">
@@ -21,7 +34,7 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section">Luna Class</h2>
+					 <h1 class="mb-0 site-logo"><a href="index.do" class="text-black h2 mb-0" style="font-weight: bold;">LunaClass<span style="color: #32DBC6;">.</span> </a></h1>
 				</div>
 			</div>
 			<div class="row justify-content-center">
@@ -37,21 +50,28 @@
 	              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
 	            </div>
 	            <div class="form-group">
+	           
 	            	<button type="submit" class="form-control btn btn-primary submit px-3" >LogIn</button>
+	            	
+	            	
 	            </div>
 	            <div class="form-group d-md-flex">
 	            	<div class="w-50">
 		            	<a href="#" style="color: #fff">Forgot ID</a>
 								</div>
-								<div class="w-50 text-md-right">
+								<div class="w-100 text-md-center">
 									<a href="#" style="color: #fff">Forgot Password</a>
+								</div>
+								<div class="w-50 text-md-right">
+									<a href="Join.do" style="color: #fff">회원가입</a>
 								</div>
 	            </div>
 	          </form>
 	          <p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
 	          <div class="social d-flex text-center">
+	         
 	          
-	          
+<!--           
 <div class="col-lg-12;">	          
  <p id="GgCustomLogin" class="col-lg-12;">
   <a href="javascript:void(0)" class="px-2 py-2 mr-md-1 rounded">
@@ -69,7 +89,7 @@
    </p>
       </div>
 
-<!-- 카카오 스크립트 -->
+
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
 Kakao.init('9f103bed4cb96f9f79465e272affdad7'); //발급받은 키 중 javascript키를 사용해준다.
@@ -155,7 +175,8 @@ function onSignInFailure(t){
 				</div>
 			</div>
 		</div>
-	</section>
+	</section> 
+	-->	
 
 	<script src="login/js/jquery.min.js"></script>
   <script src="login/js/popper.js"></script>

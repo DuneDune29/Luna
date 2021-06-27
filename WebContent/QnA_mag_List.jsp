@@ -14,20 +14,19 @@
 <head>
 	 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 <meta charset="UTF-8">
-<jsp:include page="header.jsp" />
-<title>LunaClass : QnA</title>
+<jsp:include page="header2.jsp" />
+<title>Insert title here</title>
 
-<%
+<% 
 
 	ArrayList<QNA_bean> qnalist= new ArrayList<>();
 	PageInfo pageinfo = new PageInfo();
 	qnalist=(ArrayList<QNA_bean>)request.getAttribute("qnaList");
 	pageinfo=(PageInfo)request.getAttribute("pageinfo");
 	
-	
 
 	
-	
+
 		int listCount=pageinfo.getListCount();
 		int nowPage=pageinfo.getPage();
 		int maxPage=pageinfo.getMaxPage();
@@ -47,38 +46,55 @@
 		<div class="row">
 			<div class="d-flex flex-column flex-shrink-0 p-3 bg-light"
 				style="width: 280px;">
-				<br> <br> <a href="/"
+				<br> <br> <a href="CC_notice.jsp"
 					class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
 					<svg class="bi me-2" width="40" height="32">
-						<use xlink:href="CC_notice.jsp"></use></svg> <span class="fs-4">고객센터</span>
+						<use xlink:href="CC_notice.jsp"></use></svg> <span class="fs-4">관리 홈</span>
 				</a>
 				<hr>
 				<ul class="nav nav-pills flex-column mb-auto">
-					<li class="nav-item"><a href="#" class="nav-link link-dark"
+					<li class="nav-item">
+					<a href="Customer_List.do" class="nav-link link-dark"
 						aria-current="page"> <svg class="bi me-2" width="16"
 								height="16">
-								<use xlink:href="#home"></use></svg> 이용가이드
+								<use xlink:href="Customer_List.do"></use></svg> 회원 관리
 					</a></li>
-					<li><a href="MagNoticeList.do" class="nav-link link-dark"> <svg
+					<li><a href="classList.do" class="nav-link link-dark"> <svg
 								class="bi me-2" width="16" height="16">
-								<use xlink:href="#speedometer2"></use></svg> 공지사항
+								<use xlink:href="classList.do"></use></svg> 재능 나눔 게시글 관리
 					</a></li>
-					<li><a href="#" class="nav-link link-dark"> <svg
+					<li><a href="" class="nav-link link-dark"> <svg
 								class="bi me-2" width="16" height="16">
-								<use xlink:href="#table"></use></svg> 자주묻는질문
+								<use xlink:href=""></use></svg> 댓글 관리
 					</a></li>
 					<li><a href="MagQnAlist.do" class="nav-link active"> <svg
 								class="bi me-2" width="16" height="16">
-								<use xlink:href="CC_QnA.jsp"></use></svg> QnA
+								<use xlink:href="MagQnAlist.do"></use></svg> QnA 관리
 					</a></li>
+					<li><a href="MagNoticeList.do" class="nav-link link-dark"> <svg
+								class="bi me-2" width="16" height="16">
+								<use xlink:href="MagNoticeList.do"></use></svg> 공지 관리
+					</a></li>
+					<li><a href="FnQList.do" class="nav-link link-dark"> <svg
+								class="bi me-2" width="16" height="16">
+								<use xlink:href="FnQList.do"></use></svg> 자주 묻는 질문 관리
+					</a></li>
+					<li><a href="" class="nav-link link-dark"> <svg
+								class="bi me-2" width="16" height="16">
+								<use xlink:href=""></use></svg> 이용 가이드 관리
+					</a></li>
+					<li><a href="cusRes_List.do" class="nav-link link-dark"> <svg
+								class="bi me-2" width="16" height="16">
+								<use xlink:href=""></use></svg> 신청 현황 관리
+					</a></li>
+					
+					
+					
 				</ul>
 				<hr>
-				
-				
 
 			</div>
-
-			<main class="col-md-6 ms-sm-auto col-lg-8 px-md-4"> <br>
+			<main class="col-md-6  col-lg-8 px-md-4"> <br>
 			<br>
 			<br>
 			<h4>QnA</h4>
@@ -134,13 +150,13 @@ if(qnalist != null && listCount > 0){
 			<div class="row">
       <span class="col-md-1"><%="글 번호"%></span>
       <span class="col-md-1"></span>
-      <span class="col-md-5" style="text-align:center"><%="제 목" %></span>
+      <span class="col-md-6" style="text-align:center"><%="내      용" %></span>
        <div class="col">
       <div class="row">
-   	<span class="col-md-3"></span>
+   	<span class="col-md-1"></span>
    	<span class="col-md-3" style="text-align:left"><%="작성자"%></span>
       <span class="col-md-3" style="text-align:center" ><%="작성일" %></span>
-      <span class="col-md-3" style="text-align:right"><%="처리상태" %></span>
+      <span class="col-md-4" style="text-align:right"><%="처리상태" %></span>
   </div>
   </div>
   </div>
@@ -171,7 +187,7 @@ if(qnalist != null && listCount > 0){
 	String answer;
 	String mag_content;
 	String today = sdf.format(date);
-		
+	Date reg_date;	
 		
 	if(today.equals(qnalist.get(i).getQA_REGDATE().toString())){
 		n = "N";
@@ -195,45 +211,82 @@ if(qnalist != null && listCount > 0){
 	}else{
 		mag_content=qnalist.get(i).getQA_MAG_CONTENT();
 	}
+	
+	
 
 	%>
      </span>
           
       <div class="col">
       <div class="row">
-   	  <span class="col-md-3"></span>
-   	  <span class="col-md-2" style="text-align:center"><%=qnalist.get(i).getQA_WRITER_ID()%></span>
+   	  <span class="col-md-2"></span>
+   	  <span class="col-md-3" style="text-align:center"><%=qnalist.get(i).getQA_WRITER_ID()%></span>
       <span class="col-md-4" style="text-align:right"><%=qnalist.get(i).getQA_REGDATE() %></span>
       <span class="col-md-3" style="text-align:right"><%=answer %></span>
   </div>
   </div>
   </div>
-  <div id="content<%=i %>" class="collapse col-md-6">
-  <div>
-  <%=qnalist.get(i).getQA_CONTENT()%></div>
-  <div>
+
   
   
-  <form action="mag_QA_Insert.do?page<%=nowPage %>" class="signin-form" method="post">
+  
+  
+ <div class="col">
+ <div class="row">
+
+  <div id="content<%=i %>" class="collapse col-md-12">
+ <br>
+ 
+ <div class="col">
+ <div class="row">
+ <div class="col-md-2"></div>
+ <div class="col-md-10">
+  <%=qnalist.get(i).getQA_CONTENT()%></div></div></div>
+
+  <hr>
+   <div class="col">
+ <div class="row">
+ <div class="col-md-2"><br><br>관리자 답변</div>
+  <div class="col-md-8">
+ <form action="mag_QA_Insert.do?page<%=nowPage %>" class="signin-form" method="post">
                   <div class="form-group">
                   <input type="hidden" class="form-control" placeholder="QA_ID" name="qa_id" value=<%=qnalist.get(i).getQA_ID()%> />
                   <input type = "hidden" name = "page" value = "<%=nowPage %>"/>
                 
-                     <input type="text" class="form-control" placeholder="답글을 입력하세요" value="<%=mag_content %>" name="mag_content" required>
+                     <textarea cols="40" rows="5" class="form-control" placeholder="답글을 입력하세요"  name="mag_content" required><%=mag_content %></textarea>
                     
                   </div>
 
-                    <div class="form-group">
-                  <button type="submit" class="form-control btn btn-primary submit px-3" >답변 등록하기</button>
+                    <div class="form-group" class="col">
+                    <div class="row">
+                    
+                    <% if(!qnalist.get(i).getQA_ANSWER()){%>
+                    	 <button type="submit" class="form-control btn btn-primary submit px-3 col-md-3" >답변 등록하기</button>
+                    	  <button type="button" class="form-control btn btn-primary submit px-3 col-md-3" onClick="location.href='m_QA_delete.do?page=<%=nowPage %>&qa_id=<%=qnalist.get(i).getQA_ID()%>'">질문 삭제하기</button>
+	<% }else{%>
+		<button type="submit" class="form-control btn btn-primary submit px-3 col-md-3">수정하기</button>
+		<button type="button" class="form-control btn btn-primary submit px-3 col-md-3" onClick="location.href='mag_QA_delete.do?page=<%=nowPage %>&qa_id=<%=qnalist.get(i).getQA_ID()%>'">삭제하기</button>
+		 <button type="button" class="form-control btn btn-primary submit px-3 col-md-3" onClick="location.href='m_QA_delete.do?page=<%=nowPage %>&qa_id=<%=qnalist.get(i).getQA_ID()%>'" >질문 삭제하기</button>
+	<% }%>
+                 
                   
-               </div>
+               </div></div>
                
                
-             </form>
+             </form></div>
+             <% if(qnalist.get(i).getQA_MAG_REGDATE()!=null){%>
+            	 <div class="col-md-2"><br><br><t><%= qnalist.get(i).getQA_MAG_REGDATE()%></div>
+	<%}%>
+           
+             
+             
+             </div></div>
+ 
+
 
   </div>
   </div>
-  
+  </div>
   </div>
   </div>
   </a>
@@ -243,7 +296,6 @@ if(qnalist != null && listCount > 0){
 		
 		</div>
 	<br>
-	</section>
 	
 	<section id="pageList" style="text-align : center">
 		<%if(nowPage<=1){ %>

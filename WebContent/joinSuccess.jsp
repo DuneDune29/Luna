@@ -35,9 +35,9 @@
                   <button type="submit" href="index.do" class="form-control btn btn-primary submit px-3" >홈</button>
                </div>
                    </form>
-               <form action="Login.jsp" class="signin-form" method="post">
+               <form action="login.jsp" class="signin-form" method="post">
                <div class="form-group">
-                  <button type="submit" href="Login.jsp" class="form-control btn btn-primary submit px-3" >로그인</button>
+                  <button type="submit" href="login.jsp" class="form-control btn btn-primary submit px-3" >로그인</button>
                </div>
              </form>
         </div>

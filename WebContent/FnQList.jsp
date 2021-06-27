@@ -1,5 +1,7 @@
+
+
 <%@page import="vo.PageInfo"%>
-<%@page import="vo.Notice_bean"%>
+<%@page import="vo.FNQ_bean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Date" %>
 <%@page import="java.text.SimpleDateFormat" %>
@@ -12,21 +14,17 @@
 	 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 <meta charset="UTF-8">
 <jsp:include page="header.jsp" />
-<title>LunaClass : 공지사항</title>
+<title>Insert title here</title>
 
 <%
 
-	ArrayList<Notice_bean> noticelist= new ArrayList<>();
+	ArrayList<FNQ_bean> fnqlist= new ArrayList<>();
 	PageInfo pageinfo = new PageInfo();
-	noticelist=(ArrayList<Notice_bean>)request.getAttribute("noticeList");
+	fnqlist=(ArrayList<FNQ_bean>)request.getAttribute("fnqList");
 	pageinfo=(PageInfo)request.getAttribute("pageInfo");
 	
-	for(int i=0;i<noticelist.size();i++){
-	noticelist.get(i);
+	System.out.println(pageinfo.getPage());
 	
-	 
-	
-	}
 		int listCount=pageinfo.getListCount();
 		int nowPage=pageinfo.getPage();
 		int maxPage=pageinfo.getMaxPage();
@@ -46,10 +44,10 @@
 		<div class="row">
 			<div class="d-flex flex-column flex-shrink-0 p-3 bg-light"
 				style="width: 280px;">
-				<br> <br> <a href="Notice_List.do"
+				<br> <br> <a href="CC_notice.jsp"
 					class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
 					<svg class="bi me-2" width="40" height="32">
-						<use xlink:href="CC_notice.jsp"></use></svg> <span class="fs-4">고객센터</span>
+						<use xlink:href="CC_notice.jsp"></use></svg> <span class="fs-4">관리 홈</span>
 				</a>
 				<hr>
 				<ul class="nav nav-pills flex-column mb-auto">
@@ -58,130 +56,117 @@
 								height="16">
 								<use xlink:href="#home"></use></svg> 이용가이드
 					</a></li>
-					<li><a href="Notice_List.do" class="nav-link active"> <svg
+					<li><a href="Notice_List.do" class="nav-link link-dark"> <svg
 								class="bi me-2" width="16" height="16">
 								<use xlink:href="Notice_List.do"></use></svg> 공지사항
 					</a></li>
-					<li><a href="FnQShow.do" class="nav-link link-dark"> <svg
+					<li><a href="FnQShow.do" class="nav-link active"> <svg
 								class="bi me-2" width="16" height="16">
 								<use xlink:href="FnQShow.do"></use></svg> 자주묻는질문
 					</a></li>
 					<li><a href="QnAlist.do" class="nav-link link-dark"> <svg
 								class="bi me-2" width="16" height="16">
-								<use xlink:href="CC_QnA.jsp"></use></svg> QnA
+								<use xlink:href="QnAlist.do"></use></svg> 질문하기
 					</a></li>
 				</ul>
-				<hr>
-				
 				
 
 			</div>
 
-			<main class="col-md-6 col-lg-8 px-md-4"> <br>
+			<main class="col-md-6 col-lg-8"> <br>
 			<br>
 			<br>
-			<h4>공지사항</h4>
+			<h4>FnQ</h4>
 			<hr>
 			<br>
+			
+			
+			
+			
 			<br>
 			
 			<div class="container">
 			<div class="row">
 
 			<%
-if(noticelist != null && listCount > 0){
-%>
+if(fnqlist != null && listCount > 0){
 			
-				<a  class="list-group-item list-group-item-action">
+%>
+
+			
+				<a class="list-group-item list-group-item-action">
 			<div class="row">
 			<div class="col">
 			<div class="row">
-      <span class="col-md-1"><%="글 번호"%></span>
-      <span class="col-md-2"></span>
-      <span class="col-md-5" style="text-align:center"><%="제 목" %></span>
-       <div class="col">
-      <div class="row">
-   	<span class="col-md-8"></span>
-      <span class="col-md-4" style="text-align:center" ><%="작성일" %></span>
-  </div>
-  </div>
+      <span class="col-md-2" style="text-align: center"><%="글 번호"%></span>
+      <span class="col-md-1"></span>
+      <span class="col-md-5" style="text-align:center"><%="내      용" %></span>
+      
   </div>
   </div>
   </div>
   </a>
 		<%
 			
-		for(int i=0;i<noticelist.size();i++){
+		for(int i=0;i<fnqlist.size();i++){
 			String n = null;
 	%>
 			
-				<a class="list-group-item list-group-item-action" href="Notice_List.do?notice_id=<%=noticelist.get(i).getNOTICE_ID()%>&page=<%=nowPage%>">
-			<div class="row">
-			<div class="col">
-			<div class="row" >
-      <span class="col-md-1" style="text-align:center"><%=(pageinfo.getPage()-1)*5+(i+1) %></span>
-      <span class="col-md-1"></span>
-       <span class="col-md-5 "><%=noticelist.get(i).getNOTICE_TITLE() %> 
-      <% 
-	
-	
-	
-	Date date = new Date(); 
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	String today = sdf.format(date);
-		System.out.println(today);
-		System.out.println(noticelist.get(i).getNOTICE_REGDATE());
-		
-	if(today.equals(noticelist.get(i).getNOTICE_REGDATE().toString())){
-		n = "N";
-		
-		
-		System.out.println("여기꺼ㅏ지");
-		System.out.println(n);%>
-		 <span style="background-color: #FF5A37; font-size:13px; color : white; font-weight: bold; padding:1px 4px; border-radius: 50%">N</span>
-		
-	<%} else {
-		n=null;
-		System.out.println(n);%>
-		 <span></span><%
-	}
-	
-	%>
-     </span>
-          
+				<a  class="list-group-item list-group-item-action">
+				<div class="col">
+      <div class="row">
+			<div class="row" class="btn btn-info" data-toggle="collapse"
+                     data-target="#content<%=i%>">
+                     
+      <span class="col-md-2" style="text-align: center"><%=(pageinfo.getPage()-1)*5+(i+1) %></span>
+     &nbsp; &nbsp; &nbsp;
+       <span class="col-md-5 "><%=fnqlist.get(i).getFNQ_TITLE() %>  </span>
+      
+    </div>
+ 
+         
       <div class="col">
       <div class="row">
-   	  <span class="col-md-9"></span>
-      <span class="col-md-3" style="text-align:center"><%=noticelist.get(i).getNOTICE_REGDATE() %></span>
-  </div>
-  </div>
-  </div>
-  <div id="content<%=i %>" class="collapse col-md-6">
-  <div>
-  <%=noticelist.get(i).getNOTICE_CONTENT()%></div>
-  </div>
+
+  <div id="content<%=i %>" class="collapse col-md-12">
+<br>
+<div class="col">
+ <div class="row">
+ 
+ <div class="col-md-2"></div>
+  <div class="col-md-8">
   
+   <%=fnqlist.get(i).getFNQ_CONTENT()%>
+ </div></div></div>
+
   </div>
-  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
   </a>
+  
+  
 
 			
 			<%} %>
-		
+		</div>
 		</div>
 	<br>
+			
 	<section id="pageList" style="text-align : center">
 		<%if(nowPage<=1){ %>
 		<span style="color : darkgray; padding:8px 14px 6px; border-radius: 10px 10px 10px 10px">[이전]</span>&nbsp;
 		<%}else{ %>
-		<a href="Notice_List.do?page=<%=nowPage-1 %>" style="color : darkgray; padding:8px 14px 6px; border-radius: 10px 10px 10px 10px">[이전]</a>&nbsp;
+		<a href="FnQList.do?page=<%=nowPage-1 %>" style="color : darkgray; padding:8px 14px 6px; border-radius: 10px 10px 10px 10px">[이전]</a>&nbsp;
 		<%} %>
 
 		<%for(int a=startPage;a<=endPage;a++){
 				if(a==nowPage){%>
 		<span style="background-color: #32DBC6; color : white; font-weight: bold; padding:8px 14px 6px; border-radius: 10px 10px 10px 10px"><%=a %></span>&nbsp;
 		<%}else{ %>
-		<a href="Notice_List.do?page=<%=a %>" style="color : darkgray; padding:8px 14px 6px; border-radius: 10px 10px 10px 10px"><%=a %>
+		<a href="FnQList.do?page=<%=a %>" style="color : darkgray; padding:8px 14px 6px; border-radius: 10px 10px 10px 10px"><%=a %>
 		</a>&nbsp;
 		<%} %>
 		<%} %>
@@ -189,7 +174,7 @@ if(noticelist != null && listCount > 0){
 		<%if(nowPage>=maxPage){ %>
 		<span style="color : darkgray; padding:8px 14px 6px; border-radius: 10px 10px 10px 10px">[다음]</span>
 		<%}else{ %>
-		<a href="Notice_List.do?page=<%=nowPage+1 %>" style="color : darkgray; padding:8px 14px 6px; border-radius: 10px 10px 10px 10px">[다음]</a>
+		<a href="FnQList.do?page=<%=nowPage+1 %>" style="color : darkgray; padding:8px 14px 6px; border-radius: 10px 10px 10px 10px">[다음]</a>
 		<%} %>
 	</section>
 	<%
@@ -201,6 +186,7 @@ if(noticelist != null && listCount > 0){
 	<%
 	}
 %>
+
 		</div>
 			</main>
 		

@@ -16,11 +16,11 @@
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
-
+ 
     <link rel="stylesheet" href="css/jquery.fancybox.min.css">
 
     <link rel="stylesheet" href="css/bootstrap-datepicker.css">
- 
+
     <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
 
     <link rel="stylesheet" href="css/aos.css">
@@ -62,7 +62,6 @@
               <li><a href="MagQnAlist.do" style= "font-weight : bold;"><span>${authUser.name}님</span></a></li>
               <li><span>  </span></li>
               <li><a href="logout.do" style= "font-weight : bold;"><span>Logout</span></a></li>
-             
               </c:if>
                  </c:if>
               
@@ -71,54 +70,16 @@
         </div>
       </div> 
     </div>
-   
+    
     <header class="site-navbar py-4 bg-white js-sticky-header site-navbar-target" role="banner">
-
-      <div class="container">
-        <div class="row align-items-center">
-          
-          <div class="col-11 col-xl-2">
-          <c:if test="${authUser.id=='admin'}">
-             <h1 class="mb-0 site-logo"><a href="MagQnAlist.do" class="text-black h2 mb-0">LunaClass<span class="text-primary">.</span> </a></h1>
-             
-              </c:if>
-              
-               <c:if test="${authUser.id!='admin'}">
-             <h1 class="mb-0 site-logo"><a href="index.do" class="text-black h2 mb-0">LunaClass<span class="text-primary">.</span> </a></h1>
-             
-              </c:if>
-            
+    
+    <div class="col-11 col-xl-2">
+            <h1 class="mb-0 site-logo"><a href="index.do" class="text-black h2 mb-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LunaClass<span class="text-primary">.</span> </a></h1>
           </div>
-          <div class="col-12 col-md-10 d-none d-xl-block">
-            <nav class="site-navigation position-relative text-right" role="navigation">
-
-              <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li><a href="index.do" class="nav-link">Home</a></li>
-                <li><a href="myClassList.do" class="nav-link">재능기부</a></li>
-               
-                <li class="has-children">
-                  <a href="classList.do" class="nav-link">재능찾기</a>
-                  <ul class="dropdown">
-                    <li><a href="#about-section">예술</a></li>
-                    <li><a href="#team-section">문화,생활</a></li>
-                    <li><a href="#team-section">건강,미용</a></li>
-                    <li><a href="#team-section">IT/개발</a></li>
-                    <li><a href="#team-section">심리</a></li>
-                    <li><a href="#team-section">기타</a></li>
-  
-                  </ul>
-                  
-                <li class="has-children">
-                  <a href="QnAlist.do" class="nav-link">고객센터</a>
-                  <ul class="dropdown">
-                    <li><a href="CC_guide.jsp">이용 가이드</a></li>
-                    <li><a href="Notice_List.do">공지사항</a></li>
-                    <li><a href="FnQShow.do">자주 묻는 질문</a></li>
-                    <li><a href="QnAlist.do">질문하기</a></li>
-                  </ul>
-              </ul>
-            </nav>
-          </div>
+    
+    </header>
+   
+    
 
 
           <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black">
@@ -127,7 +88,7 @@
     
           <span class="icon-menu h3"></span></a></div>
 
-        </div>
-      </div>
+        
       
-    </header>
+      
+   
