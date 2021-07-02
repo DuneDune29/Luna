@@ -34,6 +34,17 @@ public class Customer_bean {
 		CUS_REGDATE = cUS_REGDATE;
 	}
 	
+	public Customer_bean(String cUS_ID, String cUS_PWD, String cUS_NAME, String cUS_PROFILE_PATH, String cUS_ADDR, String cUS_TEL,
+			Date cUS_REGDATE) {
+		CUS_ID = cUS_ID;
+		CUS_PWD = cUS_PWD;
+		CUS_NAME = cUS_NAME;
+		CUS_ADDR = cUS_ADDR;
+		CUS_TEL = cUS_TEL;
+		CUS_REGDATE = cUS_REGDATE;
+		CUS_PROFILE_PATH = cUS_PROFILE_PATH;
+	}
+	
 	
 	public String getCUS_ID() {
 		return CUS_ID;

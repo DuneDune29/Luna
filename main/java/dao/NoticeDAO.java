@@ -153,7 +153,96 @@ public class NoticeDAO {
 			}
 			return insertCount;
 		}
+	
+	public int deleteMagNoticeList(int notice_id) {
+		
+		PreparedStatement pstmt = null;
+		int deleteCount=0;
+		
+		try {
+			String sql = "delete from notice where notice_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, notice_id);
+			deleteCount=pstmt.executeUpdate();
+			
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return deleteCount;
 	}
+	
+	public int updateMagNoticeList(String notice_title, String notice_content, int notice_id) {
+		
+		PreparedStatement pstmt = null;
+		int updateCount=0;
+		
+		String sql = "update notice set notice_title = ?, notice_content = ? where notice_id = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, notice_title);
+			pstmt.setString(2, notice_content);
+			pstmt.setInt(3, notice_id);
+			updateCount=pstmt.executeUpdate();
+			
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return updateCount;
+	}
+	
+	
+	
+	public ArrayList<Notice_bean> selectNoticeList() {
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from NOTICE order by NOTICE_regdate desc, NOTICE_id desc limit 0,3";
+		ArrayList<Notice_bean> noticeList = new ArrayList<Notice_bean>();
+		Notice_bean notice = null;
+
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				notice = new Notice_bean();
+				notice.setNOTICE_ID(rs.getInt("Notice_ID"));
+				notice.setNOTICE_TITLE(rs.getString("Notice_TITLE"));
+				notice.setNOTICE_CONTENT(rs.getString("Notice_CONTENT"));
+				notice.setNOTICE_REGDATE(rs.getDate("Notice_REGDATE"));
+				notice.setNOTICE_VIEWCOUNT(rs.getInt("Notice_VIEWCOUNT"));
+				noticeList.add(notice);
+			}
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return noticeList;
+
+	}
+	
+	
+	
+	
+	}
+
+
+
+
+
+
+
 
 //	public int insertMagQnAList(String mag_content, int notice_id) {
 //

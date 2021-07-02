@@ -60,6 +60,10 @@ public class SearchCustomerDAO {
 						"SELECT count(*) FROM CUSTOMER where cus_tel like ?");
 				pstmt.setString(1, "%" + content + "%");
 				rs = pstmt.executeQuery();
+			}else {
+				pstmt = con.prepareStatement(
+						"SELECT count(*) FROM CUSTOMER");
+				rs = pstmt.executeQuery();
 			}
 			
 			if(rs.next()){

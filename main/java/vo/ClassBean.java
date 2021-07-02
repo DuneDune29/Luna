@@ -8,17 +8,44 @@ public class ClassBean {
 	private String CL_WRITER_ID;
 	private String CL_CATEGORY;
 	private String CL_CONTENT;
+	private String CL_INTRODUCTION;
 	private Date CL_START_DATE;
 	private Date CL_END_DATE;
 	private String CL_LOCATION;
 	private int CL_CAPACITY;
 	private String CL_IMG_PATH;
 	private int CL_VIEW;
+	private Date CL_REGDATE;
+	private Date CL_MODIFYDATE;
+
+	public Date getCL_MODIFYDATE() {
+		return CL_MODIFYDATE;
+	}
+
+	public void setCL_MODIFYDATE(Date cL_MODIFYDATE) {
+		CL_MODIFYDATE = cL_MODIFYDATE;
+	}
+
+	public Date getCL_REGDATE() {
+		return CL_REGDATE;
+	}
+
+	public void setCL_REGDATE(Date cL_REGDATE) {
+		CL_REGDATE = cL_REGDATE;
+	}
+
+	public String getCL_INTRODUCTION() {
+		return CL_INTRODUCTION;
+	}
+	
+	public void setCL_INTRODUCTION(String cL_INTRODUCTION) {
+		CL_INTRODUCTION = cL_INTRODUCTION;
+	}
 	
 	public String getCL_CATEGORY() {
 		return CL_CATEGORY;
 	}
-	
+
 	public void setCL_CATEGORY(String cL_CATEGORY) {
 		CL_CATEGORY = cL_CATEGORY;
 	}

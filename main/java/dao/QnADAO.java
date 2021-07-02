@@ -116,10 +116,10 @@ public class QnADAO {
 		} finally {
 		
 			close(pstmt);
-			return updateCount;
+			
 		}
 
-
+		return updateCount;
 	}
 	
 	public int deleteMagAList(int qa_id) {
@@ -142,9 +142,9 @@ public class QnADAO {
 		} finally {
 		
 			close(pstmt);
-			return deleteCount;
+			
 		}
-
+		return deleteCount;
 
 	}
 	
@@ -168,10 +168,10 @@ public class QnADAO {
 		} finally {
 		
 			close(pstmt);
-			return deleteCount;
+			
 		}
 
-
+		return deleteCount;
 	}
 	
 	public int insertQnAList(String qna_writer_id, String qna_title, String qna_content) {
@@ -192,10 +192,10 @@ public class QnADAO {
 		} finally {
 		
 			close(pstmt);
-			return insertCount;
+			
 		}
 
-
+		return insertCount;
 	}
 	
 	public int selectFNQListCount() {
@@ -275,9 +275,9 @@ public class QnADAO {
 		} finally {
 		
 			close(pstmt);
-			return insertCount;
+			
 		}
-
+		return insertCount;
 
 	}
 	
@@ -301,9 +301,9 @@ public class QnADAO {
 		} finally {
 		
 			close(pstmt);
-			return updateCount;
+			
 		}
-
+		return updateCount;
 
 	}
 	
@@ -327,10 +327,10 @@ public class QnADAO {
 		} finally {
 		
 			close(pstmt);
-			return deleteCount;
+			
 		}
 
-
+		return deleteCount;
 	}
 	
 	

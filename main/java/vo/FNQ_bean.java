@@ -1,7 +1,5 @@
 package vo;
 
-import java.util.Date;
-
 public class FNQ_bean {
 	private int FNQ_ID;
 	private String FNQ_TITLE;
@@ -33,8 +31,4 @@ public class FNQ_bean {
 	
 	
 	
-}
-
-
-
-
+}	

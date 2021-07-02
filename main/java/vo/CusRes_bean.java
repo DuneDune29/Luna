@@ -11,7 +11,17 @@ public class CusRes_bean {
 	private Date CUSRES_DATE2;
 	private String CUSRES_CLID;
 	private Date CUSRES_REGDATE;
+	private int CUSRES_CL_ID;
 	
+	
+	
+	
+	public int getCUSRES_CL_ID() {
+		return CUSRES_CL_ID;
+	}
+	public void setCUSRES_CL_ID(int cUSRES_CL_ID) {
+		CUSRES_CL_ID = cUSRES_CL_ID;
+	}
 	public String getCUSRES_ID() {
 		return CUSRES_ID;
 	}
