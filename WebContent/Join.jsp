@@ -3,7 +3,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-     <title>LunaClass : 회원가입</title>
+     <title>회원가입 : LunaClass</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name ="google-signin-client_id" content="415182734149-jp3iu7cs3274anh0cqd2qln272ppuslv.apps.googleusercontent.com">
@@ -26,11 +26,77 @@
 
    <link rel="stylesheet" href="login/css/style.css">
     <link rel="stylesheet" href="css/style.css">
-    
-    <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <%String path=(String)request.getAttribute("path"); %>
+    <style>
+    @media only screen and (min-width: 576px) {
+    .check {
+    margin: auto;
+    width: 30px;
+    }
+    .padding {
+    padding-bottom: 5em;
+    padding-top: 5em
+    }
+    }
+    @media only screen and (max-width: 576px) {
+    .padding {
+    margin-bottom: 20px
+    }
+    .addr{
+    margin-top: 15px
+    }
+    .check {
+    margin: auto;
+    width: 89px;
+    }
+    }
+    .addr {
+    text-align: right
+    }
+    
+    .idText {
+    margin-right: -97px;
+    }
+    
+    .mint {
+    color : #32DBC6
+    }
+    
+    
+    
+    
+    </style>
    </head>
+   <script type="text/javascript">
+   function checkValue(){
+	   var form = document.userInfo;
+	   
+	   if(!form.id.value){
+		   alert("아이디를 입력하세요.");
+		   return false;
+	   }
+	   
+	   if(form.idDuplication.value != "idCheck"){
+		   alert("아이디 중복체크를 해주세요.");
+		   return false;
+	   }
+   }
+   
+   
+   function openIdChk(){
+		
+		window.name = "parentForm";
+		window.open("IdCheck.jsp",
+				"chkForm", "width=450, height=550");	
+	}
+   
+	   
+	   function inputIdChk() {
+		   document.userInfo.idDuplication.value = "idUncheck";
+	   }
+   </script>
    <script>
         function check_pw(){
  
@@ -63,24 +129,28 @@
             }
         }
     </script>
-   <body class="img js-fullheight" style="background-image: url(login/images/hero_1.jpg);">
-   <section class="ftco-section" style="padding-bottom: 5em">
+   <body class="img js-fullheight" style="background-image: url(images/index.gif);">
+   <section class="padding">
       <div class="container">
          <div class="row justify-content-center">
             <div class="col-md-6 text-center mb-5">
-            <h1 class="mb-0 site-logo"><a href="index.do" class="text-black h2 mb-0" font="Quicksand">LunaClass<span class="text-primary">.</span> </a></h1>
+            <h1 class="mb-0 site-logo"><a href="index.do" class="text-white h2 mb-0" font="Quicksand">LunaClass<span class="mint">.</span> </a></h1>
             </div>
          </div>
          <div class="row justify-content-center">
             <div class="col-md-6 col-lg-4">
                <div class="login-wrap p-0">
                
-               <form action="Join.do" class="signin-form" method="post">
-                  <div class="form-group">
-                     <input type="text" class="form-control" placeholder="아이디" name="id" required>
+               <form action="Join.do" class="signin-form" method="post" name="userInfo" onsubmit="return checkValue()">
+               <div class="col">
+                  <div class="row form-group">
+                     <input type="text" class="form-control col-md-12 idText" placeholder="아이디" name="id" onkeydown="inputIdChk()">
+                     <input class="btn btn-primary col-md-3 check" type="button" value="중복확인" name="openId" onclick="openIdChk();" tabindex="1">
+                     <input type="hidden" name="idDuplication" value="idUncheck">
                   </div>
-                   <input type="hidden" class="form-control" placeholder="QA_ID" name="path" value=<%=path%> />
+                  </div>
                   
+                   <input type="hidden" class="form-control" placeholder="QA_ID" name="path" value=<%=path%> />
                   
                <div class="form-group">
                  <input id="pw" type="password" class="form-control" placeholder="비밀번호" name="password" required onchange="check_pw()">
@@ -104,7 +174,7 @@
 						<div class="col">
 							<div class="row form-group">
 								<input type="text" id="sample4_postcode" class="form-control col-md-6" placeholder="우편번호" name="addr5">
-								<div style="text-align: right" class="col-md-6">
+								<div class="col-md-6 addr">
 									<span class="form-group"><button class="form-control btn btn-primary submit px-3" type="button" onclick="sample4_execDaumPostcode()"
 										value="우편번호 찾기">우편번호 찾기</button></span>
 								</div>
@@ -193,13 +263,14 @@
              </div>
              </section>
              
-             
-
-   <script src="login/js/jquery.min.js"></script>
+             <script src="login/js/jquery.min.js"></script>
   <script src="login/js/popper.js"></script>
   <script src="login/js/bootstrap.min.js"></script>
   <script src="login/js/main.js"></script>
-<jsp:include page="footer2.jsp"/>
+             
+
+   
+<%-- <jsp:include page="footer2.jsp"/> --%>
                       
 
    </body>

@@ -14,10 +14,11 @@
 margin-top: 200px;
 text-align: center;
 }
-
+h4{
+margin-top: 38px;
+}
 #nav-list {
 
-	margin-top: 38px;
 }
 
 @media only screen and (max-width: 576px) {
@@ -30,7 +31,6 @@ margin-bottom: 100px;
 }
 #nav-list {
 
-	margin-top: 100px;
 }
 }
 
@@ -74,6 +74,9 @@ padding:8px 14px 6px;
 border-radius: 10px
 }
 
+textarea {
+	resize: none;
+}
 </style>
 
 <%
@@ -81,48 +84,48 @@ border-radius: 10px
 %>
 
 <%
-	if (URI.equals("/lunapath/view/manager/Mag_Class_Detail.jsp") || URI.equals("/lunapath/view/manager/Mag_ClassList.jsp") || URI.equals("/lunapath/view/manager/Mag_Comment.jsp")
-			|| URI.equals("/lunapath/view/manager/Mag_Customer_reservation.jsp") || URI.equals("/lunapath/view/manager/Mag_CustomerDetail.jsp") || URI.equals("/lunapath/view/manager/Mag_CustomerList.jsp") 
-		|| URI.equals("/lunapath/view/manager/Mag_FnQ.jsp") || URI.equals("/lunapath/view/manager/Mag_FnQForm.jsp") || URI.equals("/lunapath/view/manager/Mag_Notice_Content.jsp") 
-|| URI.equals("/lunapath/view/manager/Mag_Notice_List.jsp") || URI.equals("/lunapath/view/manager/Mag_Notice_Writer.jsp") || URI.equals("/lunapath/view/manager/Mag_QnA_List.jsp")
-||URI.equals("/lunapath/view/manager/Mag_cusClassList.jsp") ||URI.equals("/lunapath/view/manager/Mag_cusReservationList.jsp")) {
+	if (URI.equals("/luna/view/manager/Mag_Class_Detail.jsp") || URI.equals("/luna/view/manager/Mag_ClassList.jsp") || URI.equals("/luna/view/manager/Mag_Comment.jsp")
+			|| URI.equals("/luna/view/manager/Mag_Customer_reservation.jsp") || URI.equals("/luna/view/manager/Mag_CustomerDetail.jsp") || URI.equals("/luna/view/manager/Mag_CustomerList.jsp") 
+		|| URI.equals("/luna/view/manager/Mag_FnQ.jsp") || URI.equals("/luna/view/manager/Mag_FnQForm.jsp") || URI.equals("/luna/view/manager/Mag_Notice_Content.jsp") 
+|| URI.equals("/luna/view/manager/Mag_Notice_List.jsp") || URI.equals("/luna/view/manager/Mag_Notice_Writer.jsp") || URI.equals("/luna/view/manager/Mag_QnA_List.jsp")
+||URI.equals("/luna/view/manager/Mag_cusClassList.jsp") ||URI.equals("/luna/view/manager/Mag_cusReservationList.jsp")) {
 %>
 <div id="nav-list"
 	class="col-12 col-sm-12 col-md-auth col-lg-auto d-flex flex-column p-1 bg-light"
 	style="width: 280px;"><br>
-	<a href="MagNoticeList.do"
+	<a href="Customer_List.do"
 		class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
 		<span class="fs-4 sideNav" >관리 홈</span>
 	
 	</a>
 	<ul class="nav nav-pills flex-column sideNav">
 		<li class="nav-item"><a href="Customer_List.do"
-			<%if (URI.equals("/lunapath/view/manager/Mag_CustomerList.jsp")||URI.equals("/lunapath/view/manager/Mag_CustomerDetail.jsp") 
-					||URI.equals("/lunapath/view/manager/Mag_cusClassList.jsp") ||URI.equals("/lunapath/view/manager/Mag_cusReservationList.jsp")){%> class="nav-link active bi"
+			<%if (URI.equals("/luna/view/manager/Mag_CustomerList.jsp")||URI.equals("/luna/view/manager/Mag_CustomerDetail.jsp") 
+					||URI.equals("/luna/view/manager/Mag_cusClassList.jsp") ||URI.equals("/luna/view/manager/Mag_cusReservationList.jsp")){%> class="nav-link active bi"
 			aria-current="page" <%} else {%> class="nav-link link-dark" <%}%>>회원 관리</a></li>
 		<li class="nav-item"><a href="mag_classList.do"
-			<%if (URI.equals("/lunapath/view/manager/Mag_ClassList.jsp")||URI.equals("/lunapath/view/manager/Mag_ClassList.jsp")) {%> class="nav-link active bi"
+			<%if (URI.equals("/luna/view/manager/Mag_ClassList.jsp")||URI.equals("/luna/view/manager/Mag_ClassList.jsp")||URI.equals("/luna/view/manager/Mag_Class_Detail.jsp")) {%> class="nav-link active bi"
 			aria-current="page" <%} else {%> class="nav-link link-dark" <%}%>>재능 나눔 게시글 관리</a></li>
 		<li class="nav-item"><a href="commentList.do"
-			<%if (URI.equals("/lunapath/view/manager/Mag_Comment.jsp")) {%>
+			<%if (URI.equals("/luna/view/manager/Mag_Comment.jsp")) {%>
 			class="nav-link active bi" aria-current="page" <%} else {%>
 			class="nav-link link-dark" <%}%>>댓글 관리 </a></li>
-		<li class="nav-item"><a href="MagQnAlist.do"
-			<%if (URI.equals("/lunapath/view/manager/Mag_QnA_List.jsp")) {%>
+		<li><a href="mag_cusRes_List.do"
+			<%if (URI.equals("/luna/view/manager/Mag_Customer_reservation.jsp")) {%>
 			class="nav-link active bi" aria-current="page" <%} else {%>
-			class="nav-link link-dark" <%}%>>QnA 관리</a></li>
+			class="nav-link link-dark" <%}%>>신청 현황 관리 </a></li>
 		<li><a href="MagNoticeList.do"
-			<%if (URI.equals("/lunapath/view/manager/Mag_Notice_List.jsp")||URI.equals("/lunapath_4/view/manager/Mag_Notice_Content.jsp")||URI.equals("/lunapath_4/view/manager/Mag_Notice_Writer.jsp"))   {%>
+			<%if (URI.equals("/luna/view/manager/Mag_Notice_List.jsp")||URI.equals("/luna/view/manager/Mag_Notice_Content.jsp")||URI.equals("/luna/view/manager/Mag_Notice_Writer.jsp"))   {%>
 			class="nav-link active bi" aria-current="page" <%} else {%>
 			class="nav-link link-dark" <%}%>>공지 관리 </a></li>
 		<li><a href="FnQList.do"
-			<%if (URI.equals("/lunapath/view/manager/Mag_FnQ.jsp") ||URI.equals("/lunapath_4/view/manager/Mag_FnQForm.jsp")) {%>
+			<%if (URI.equals("/luna/view/manager/Mag_FnQ.jsp") ||URI.equals("/luna/view/manager/Mag_FnQForm.jsp")) {%>
 			class="nav-link active bi" aria-current="page" <%} else {%>
 			class="nav-link link-dark" <%}%>>자주 묻는 질문 관리 </a></li>
-		<li><a href="mag_cusRes_List.do"
-			<%if (URI.equals("/lunapath/view/manager/Mag_Customer_reservation.jsp")) {%>
+		<li class="nav-item"><a href="MagQnAlist.do"
+			<%if (URI.equals("/luna/view/manager/Mag_QnA_List.jsp")) {%>
 			class="nav-link active bi" aria-current="page" <%} else {%>
-			class="nav-link link-dark" <%}%>>신청 현황 관리 </a></li>
+			class="nav-link link-dark" <%}%>>QnA 관리</a></li>
 	</ul>
 </div>
 <%

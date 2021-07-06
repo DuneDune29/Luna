@@ -85,8 +85,8 @@ main#mainContainer svg#exclamation{
 %>
 
 <%
-	if (URI.equals("/lunapath/view/customer/myPage/myPage.jsp") || URI.equals("/lunapath/view/customer/myPage/jJIM.jsp") || URI.equals("/lunapath/view/customer/myPage/recentlyViewed.jsp")
-			|| URI.equals("/lunapath/view/customer/myPage/myParticipateList.jsp") || URI.equals("/lunapath/view/customer/myPage/myParticipateListEnd.jsp")||URI.equals("/lunapath/view/customer/myPage/deleteUserForm.jsp")) {
+	if (URI.equals("/luna/view/customer/myPage/myPage.jsp") || URI.equals("/luna/view/customer/myPage/jJIM.jsp") || URI.equals("/luna/view/customer/myPage/recentlyViewed.jsp")
+			|| URI.equals("/luna/view/customer/myPage/myParticipateList.jsp") || URI.equals("/luna/view/customer/myPage/myParticipateListEnd.jsp")||URI.equals("/luna/view/customer/myPage/deleteUserForm.jsp")) {
 %>
 <div id="nav-list"
 	class="col-12 col-sm-12 col-md-auth col-lg-auto d-flex flex-column p-3 bg-light"
@@ -97,15 +97,15 @@ main#mainContainer svg#exclamation{
 	</a>
 	<ul class="nav nav-pills flex-column sideNav">
 		<li class="nav-item"><a href="myPage.do"
-			<%if (URI.equals("/lunapath/view/customer/myPage/myPage.jsp")||URI.equals("/lunapath/view/customer/myPage/deleteUserForm.jsp")) {%> class="nav-link active bi"
+			<%if (URI.equals("/luna/view/customer/myPage/myPage.jsp")||URI.equals("/luna/view/customer/myPage/deleteUserForm.jsp")) {%> class="nav-link active bi"
 			aria-current="page" <%} else {%> class="nav-link link-dark" <%}%>>내
 				정보 </a></li>
 		<li class="nav-item"><a href="JJIMList.do"
-			<%if (URI.equals("/lunapath/view/customer/myPage/jJIM.jsp")) {%> class="nav-link active bi"
+			<%if (URI.equals("/luna/view/customer/myPage/jJIM.jsp")) {%> class="nav-link active bi"
 			aria-current="page" <%} else {%> class="nav-link link-dark" <%}%>>찜
 		</a></li>
 		<li class="nav-item"><a href="recentlyViewed.do"
-			<%if (URI.equals("/lunapath/view/customer/myPage/recentlyViewed.jsp")) {%>
+			<%if (URI.equals("/luna/view/customer/myPage/recentlyViewed.jsp")) {%>
 			class="nav-link active bi" aria-current="page" <%} else {%>
 			class="nav-link link-dark" <%}%>>최근 본 내역 </a></li>
 	</ul>
@@ -115,11 +115,11 @@ main#mainContainer svg#exclamation{
 	</a>
 	<ul class="nav nav-pills flex-column sideNav" >
 		<li><a href="myParticipateList.do"
-			<%if (URI.equals("/lunapath/view/customer/myPage/myParticipateList.jsp")) {%>
+			<%if (URI.equals("/luna/view/customer/myPage/myParticipateList.jsp")) {%>
 			class="nav-link active bi" aria-current="page" <%} else {%>
 			class="nav-link link-dark" <%}%>>진행중인 나눔 </a></li>
 		<li><a href="myParticipateListEnd.do"
-			<%if (URI.equals("/lunapath/view/customer/myPage/myParticipateListEnd.jsp")) {%>
+			<%if (URI.equals("/luna/view/customer/myPage/myParticipateListEnd.jsp")) {%>
 			class="nav-link active bi" aria-current="page" <%} else {%>
 			class="nav-link link-dark" <%}%>>끝난 나눔 </a></li>
 	</ul>
@@ -129,11 +129,11 @@ main#mainContainer svg#exclamation{
 	</a>
 	<ul class="nav nav-pills flex-column sideNav" >
       <li class="nav-item"><a href="myClassListING.do"
-         <%if (URI.equals("/lunapath/view/customer/myClass/myClassListING.jsp")) {%>
+         <%if (URI.equals("/luna/view/customer/myClass/myClassListING.jsp")) {%>
          class="nav-link active bi" aria-current="page" <%} else {%>
          class="nav-link link-dark" <%}%>>진행중인 나눔 </a></li>
       <li class="nav-item"><a href="myClassListEnd.do"
-         <%if (URI.equals("/lunapath/view/customer/myClass/myClassListEnd.jsp")) {%>
+         <%if (URI.equals("/luna/view/customer/myClass/myClassListEnd.jsp")) {%>
          class="nav-link active bi" aria-current="page" <%} else {%>
          class="nav-link link-dark" <%}%>>끝난 나눔 </a></li>
 </div>
@@ -142,8 +142,8 @@ main#mainContainer svg#exclamation{
 %>
 
 <%
-	if (URI.equals("/lunapath/view/customer/myClass/myClassList.jsp") || URI.equals("/lunapath/view/customer/myClass/myClassListEnd.jsp")
-			|| URI.equals("/lunapath/view/customer/myClass/myClassListING.jsp")) {
+	if (URI.equals("/luna/view/customer/myClass/myClassList.jsp") || URI.equals("/luna/view/customer/myClass/myClassListEnd.jsp")
+			|| URI.equals("/luna/view/customer/myClass/myClassListING.jsp")) {
 %>
 <div id="nav-list"
 	class="col-12 col-sm-12 col-md-auth col-lg-auto d-flex flex-column p-3 bg-light"
@@ -154,15 +154,15 @@ main#mainContainer svg#exclamation{
 	</a>
    <ul class="nav nav-pills flex-column sideNav" >
       <li class="nav-item"><a href="myClassList.do"
-         <%if (URI.equals("/lunapath/view/customer/myClass/myClassList.jsp")) {%>
+         <%if (URI.equals("/luna/view/customer/myClass/myClassList.jsp")) {%>
          class="nav-link active bi" aria-current="page" <%} else {%>
          class="nav-link link-dark" <%}%>>재능 나눔 </a></li>
       <li class="nav-item"><a href="myClassListING.do"
-         <%if (URI.equals("/lunapath/view/customer/myClass/myClassListING.jsp")) {%>
+         <%if (URI.equals("/luna/view/customer/myClass/myClassListING.jsp")) {%>
          class="nav-link active bi pl-4" aria-current="page" <%} else {%>
          class="nav-link link-dark pl-4" <%}%>>진행중인 나눔 </a></li>
       <li class="nav-item"><a href="myClassListEnd.do"
-         <%if (URI.equals("/lunapath/view/customer/myClass/myClassListEnd.jsp")) {%>
+         <%if (URI.equals("/luna/view/customer/myClass/myClassListEnd.jsp")) {%>
          class="nav-link active bi pl-4" aria-current="page" <%} else {%>
          class="nav-link link-dark pl-4" <%}%>>끝난 나눔 </a></li>
    </ul>

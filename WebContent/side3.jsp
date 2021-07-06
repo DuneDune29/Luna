@@ -84,32 +84,37 @@ border-radius: 10px
 %>
 
 <%
-	if (URI.equals("/lunapath/view/customer/cusService/Cus_FnQList.jsp") || URI.equals("/lunapath/view/customer/cusService/Cus_Guide.jsp") || URI.equals("/lunapath/view/customer/cusService/Cus_Notice_Content.jsp")
-			|| URI.equals("/lunapath/view/customer/cusService/Cus_Notice_List.jsp") || URI.equals("/lunapath/view/customer/cusService/Cus_QnA.jsp") || URI.equals("/lunapath/view/customer/cusService/Cus_QnAForm.jsp")) {
+	if (URI.equals("/luna/view/customer/cusService/Cus_FnQList.jsp") || URI.equals("/luna/view/customer/cusService/Cus_Guide.jsp") || URI.equals("/luna/view/customer/cusService/Cus_Notice_Content.jsp")
+			|| URI.equals("/luna/view/customer/cusService/Cus_Notice_List.jsp") || URI.equals("/luna/view/customer/cusService/Cus_QnA.jsp") || URI.equals("/luna/view/customer/cusService/Cus_QnAForm.jsp")
+			|| URI.equals("/luna/view/customer/cusService/Cus_Map.jsp")) {
 %>
 <div id="nav-list"
 	class="col-12 col-sm-12 col-md-auth col-lg-auto d-flex flex-column p-1 bg-light"
 	style="width: 280px;"><br>
-	<a href="Notice_List.do"
+	<a href="Cus_Guide.do"
 		class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
 		<span class="fs-4 sideNav" >고객센터</span>
 	
 	</a>
 	<ul class="nav nav-pills flex-column sideNav">
 		<li class="nav-item"><a href="Cus_Guide.do"
-			<%if (URI.equals("/lunapath/view/customer/cusService/Cus_Guide.jsp")) {%> class="nav-link active bi"
+			<%if (URI.equals("/luna/view/customer/cusService/Cus_Guide.jsp")) {%> class="nav-link active bi"
 			aria-current="page" <%} else {%> class="nav-link link-dark" <%}%>>이용가이드</a></li>
 		<li class="nav-item"><a href="Notice_List.do"
-			<%if (URI.equals("/lunapath/view/customer/cusService/Cus_Notice_List.jsp")||URI.equals("/lunapath/view/customer/cusService/Cus_Notice_Content.jsp")) {%> class="nav-link active bi"
+			<%if (URI.equals("/luna/view/customer/cusService/Cus_Notice_List.jsp")||URI.equals("/luna/view/customer/cusService/Cus_Notice_Content.jsp")) {%> class="nav-link active bi"
 			aria-current="page" <%} else {%> class="nav-link link-dark" <%}%>>공지사항</a></li>
 		<li class="nav-item"><a href="FnQShow.do"
-			<%if (URI.equals("/lunapath/view/customer/cusService/Cus_FnQList.jsp")) {%>
+			<%if (URI.equals("/luna/view/customer/cusService/Cus_FnQList.jsp")) {%>
 			class="nav-link active bi" aria-current="page" <%} else {%>
 			class="nav-link link-dark" <%}%>>자주묻는질문 </a></li>
 		<li class="nav-item"><a href="QnAlist.do"
-			<%if (URI.equals("/lunapath/view/customer/cusService/Cus_QnA.jsp")||URI.equals("/lunapath/view/customer/cusService/Cus_QnAForm.jsp")) {%>
+			<%if (URI.equals("/luna/view/customer/cusService/Cus_QnA.jsp")||URI.equals("/luna/view/customer/cusService/Cus_QnAForm.jsp")) {%>
 			class="nav-link active bi" aria-current="page" <%} else {%>
 			class="nav-link link-dark" <%}%>>QnA</a></li>
+		<li class="nav-item"><a href="Cus_Location.do"
+			<%if (URI.equals("/luna/view/customer/cusService/Cus_Map.jsp")) {%>
+			class="nav-link active bi" aria-current="page" <%} else {%>
+			class="nav-link link-dark" <%}%>>나눔센터위치</a></li>
 	</ul>
 </div>
 <%

@@ -72,7 +72,7 @@
 									value="${authUser.pic}" /> <c:choose>
 									<c:when test="${empty picRoot}">
 										<a href="myPage.do" style="font-weight: bold;"> <img
-											id="navProfile" class="mr-1" src="images/class_default.png" /> <span>${authUser.name}님</span>
+											id="navProfile" class="mr-1" src="images/profile.png" /> <span>${authUser.name}님</span>
 										</a>
 									</c:when>
 									<c:otherwise>
@@ -86,7 +86,7 @@
 							<li><a href="logout.do"><span>로그아웃</span></a></li>
 						</c:if>
 						<c:if test="${authUser.id=='admin'}">
-							<li><a href="MagQnAlist.do" style="font-weight: bold;"><span>${authUser.name}님</span></a></li>
+							<li><a href="Customer_List.do" style="font-weight: bold;"><span>${authUser.name}님</span></a></li>
 							<li><span> </span></li>
 							<li><a href="logout.do" style="font-weight: bold;"><span>Logout</span></a></li>
 
@@ -126,7 +126,7 @@
 
 					<ul
 						class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-						<li><a href="index.do" class="nav-link">홈</a></li>
+						<li><a href="index.do" class="nav-link" onclick="javascript:window.location='index.do'">홈</a></li>
 						 <% 
    		  
    		String path="myClassList.do";
@@ -139,25 +139,26 @@
 			request.getSession().setAttribute("path1", path1);
    		  
    		   %>
-						<li><a href="myClassList.do" class="nav-link">재능나눔</a></li>
+						<li><a href="myClassList.do" class="nav-link" onclick="javascript:window.location='myClassList.do'">재능나눔</a></li>
 
 						<li class="has-children"><a href="classList.do"
-							class="nav-link">재능찾기</a>
+							class="nav-link" onclick="javascript:window.location='classList.do'">재능찾기</a>
 							<ul class="dropdown">
-								<li><a href="artClassList.do">예술</a></li>
-								<li><a href="lifeClassList.do">문화, 생활</a></li>
-								<li><a href="healthClassList.do">건강, 미용</a></li>
-								<li><a href="developmentClassList.do">IT/개발</a></li>
-								<li><a href="therapyClassList.do">심리</a></li>
-								<li><a href="etcClassList.do">기타</a></li>
+								<li><a href="classList.do?CL_CATEGORY=art" onclick="javascript:window.location='classList.do?CL_CATEGORY=art'">예술</a></li>
+								<li><a href="classList.do?CL_CATEGORY=life" onclick="javascript:window.location='classList.do?CL_CATEGORY=life'">문화, 생활</a></li>
+								<li><a href="classList.do?CL_CATEGORY=health" onclick="javascript:window.location='classList.do?CL_CATEGORY=health'">건강, 미용</a></li>
+								<li><a href="classList.do?CL_CATEGORY=development" onclick="javascript:window.location='classList.do?CL_CATEGORY=development'">IT/개발</a></li>
+								<li><a href="classList.do?CL_CATEGORY=therapy" onclick="javascript:window.location='classList.do?CL_CATEGORY=therapy'">심리</a></li>
+								<li><a href="classList.do?CL_CATEGORY=etc" onclick="javascript:window.location='classList.do?CL_CATEGORY=etc'">기타</a></li>
 							</ul>
-						<li class="has-children"><a href="QnAlist.do"
-							class="nav-link">고객센터</a>
+						<li class="has-children"><a href="Cus_Guide.do"
+							class="nav-link" onclick="javascript:window.location='QnAlist.do'">고객센터</a>
 							<ul class="dropdown">
-								<li><a href="Cus_Guide.do">이용 가이드</a></li>
-								<li><a href="Notice_List.do">공지사항</a></li>
-								<li><a href="FnQShow.do">자주 묻는 질문</a></li>
-								<li><a href="QnAlist.do">질문하기</a></li>
+								<li><a href="Cus_Guide.do" onclick="javascript:window.location='Cus_Guide.do'">이용 가이드</a></li>
+								<li><a href="Notice_List.do" onclick="javascript:window.location='Notice_List.do'">공지사항</a></li>
+								<li><a href="FnQShow.do" onclick="javascript:window.location='FnQShow.do'">자주 묻는 질문</a></li>
+								<li><a href="QnAlist.do" onclick="javascript:window.location='QnAlist.do'">질문하기</a></li>
+								<li><a href="Cus_Location.do" onclick="javascript:window.location='Cus_Location.do'">나눔 센터 위치</a></li>
 							</ul>
 					</ul>
 				</nav>

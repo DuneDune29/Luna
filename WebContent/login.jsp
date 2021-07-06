@@ -4,7 +4,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Login 10</title>
+  	<title>로그인 : LunaCLass</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name ="google-signin-client_id" content="415182734149-jp3iu7cs3274anh0cqd2qln272ppuslv.apps.googleusercontent.com">
@@ -12,7 +12,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	
+	<link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
 	<link rel="stylesheet" href="login/css/style.css">
 	 <link rel="stylesheet" href="css/style.css">
 	  
@@ -44,12 +44,12 @@
   
 
 	</head>
-	<body class="img js-fullheight" style="background-image: url(login/images/hero_1.jpg);">
+	<body class="img js-fullheight" style="background-image: url(images/index.gif);">
 	<section class="site-section center">
 		<div class="container ">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
-					 <h1 class="mb-0 site-logo"><a href="index.do" class="text-black h2 mb-0">LunaClass<span style="color: #32DBC6;">.</span> </a></h1>
+					 <h1 class="mb-0 site-logo"><a href="index.do" class="text-white h2 mb-0">LunaClass<span style="color: #32DBC6;">.</span> </a></h1>
 				</div>
 			</div>
 			<div class="row justify-content-center">
@@ -68,7 +68,7 @@
 	            				<button type="submit" class="form-control btn btn-primary submit px-3" >로그인</button>
 	            			</div>
 	            			<div >
-	            				<p style="text-align:center">계정이 없으신가요?<a href="Join.do">&nbsp;&nbsp;회원가입</a></p>
+	            					            				<p style="text-align:center">계정이 없으신가요?<a href="Join.do?path=<%=path %>">&nbsp;&nbsp;회원가입</a></p>
 	            			</div>
 	          			</form>
 	          			<br>

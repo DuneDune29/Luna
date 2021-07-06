@@ -8,7 +8,7 @@
             <div class="row">
  
               <div class="col-md-4">
-                <h2 class="footer-heading mb-2">About Us</h2>
+                <h2 class="footer-heading mb-2">About Us</h2><br>
                 <p>함께 나누는 즐거움을 통해 세상을 바라보는 시선을 바꾸고자 하는 팀 Luna입니다.<br/>
                 누구나 자신의 재능을 베풀 수 있고 누구나 배움을 받을 수 있는 사회를 지향합니다.
                 </p>

@@ -15,6 +15,8 @@
  <% 
 ArrayList<Notice_bean> noticeList = (ArrayList<Notice_bean>)request.getAttribute("noticeList"); 
 ArrayList<ClassBean> classList = (ArrayList<ClassBean>)request.getAttribute("classList"); 
+
+
 int classN =(Integer) request.getAttribute("classN");
 int customerN =(Integer) request.getAttribute("customerN");
 int classINGN =(Integer) request.getAttribute("classINGN");
@@ -41,7 +43,7 @@ int classINGN =(Integer) request.getAttribute("classINGN");
    		  
    		   %><!-- header밑에 있어야함 -->
     
-    <div class="site-blocks-cover overlay" style="background-image: url(images/hero_1.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
+    <div class="site-blocks-cover overlay" style="background-image: url(images/13.png);" data-aos="fade" data-stellar-background-ratio="0.5">
       <div class="container">
         <div class="row align-items-center justify-content-center text-center">
        
@@ -52,7 +54,7 @@ int classINGN =(Integer) request.getAttribute("classINGN");
                 <h1>당신의 재능나눔   <br>
                   <span class="typed-words" style="font-size: 50px;"></span></h1>
                 <p class="lead mb-5">Team <a href="#" target="_blank">Luna</a></p>
-                <div><a data-fancybox data-ratio="2" href="video.mp4" class="btn btn-primary btn-md">Watch Video</a></div>
+                
               </div>
             </div>
           </div>
@@ -165,66 +167,41 @@ int classINGN =(Integer) request.getAttribute("classINGN");
       
       <div class="container-fluid">
         <div class="row">
+        
+    <% for(int i=0;i<classList.size();i++) {%>
+    <%if(classList.get(i).getCL_NAME().length() != 0){ %>
           <div class="col-md-6 col-lg-4">
-            <a href="classDetail.do?CL_ID=<%=classList.get(0).getCL_ID()%>" class="media-1">
-              <img src="<%=request.getContextPath()%>/upload/<%= classList.get(0).getCL_IMG_PATH()%>" alt="Image" class="img-fluid">
+            <a href="classDetail.do?CL_ID=<%=classList.get(i).getCL_ID()%>" class="media-1">
+              <img src="<%if(classList.get(i).getCL_IMG_PATH()!=null){ %><%=request.getContextPath()%>/upload/<%=classList.get(i).getCL_IMG_PATH()%><%}else{%>images/class_default.png<%}%>" alt="인기 나눔 대표사진 " title="인기 나눔 대표사진" class="img-fluid" style="width: 645.183px; height: 480px; ">
               <div class="media-1-content">
-                <span class="category">예술</span>
-                <h2><%=classList.get(0).getCL_NAME() %></h2>
-                <span class="category"><%=classList.get(0).getCL_INTRODUCTION() %></span>
+                <span class="category"> <%
+                        if (classList.get(i).getCL_CATEGORY().equals("art")) {
+                        %>예술
+                        <%
+                        } else if (classList.get(i).getCL_CATEGORY().equals("life")) {
+                        %>문화, 생활
+                        <%
+                        } else if (classList.get(i).getCL_CATEGORY().equals("health")) {
+                        %>건강 , 미용
+                        <%
+                        } else if (classList.get(i).getCL_CATEGORY().equals("development")) {
+                        %>IT/개발
+                        <%
+                        } else if (classList.get(i).getCL_CATEGORY().equals("therapy")) {
+                        %>심리
+                        <%
+                        } else if (classList.get(i).getCL_CATEGORY().equals("etc")) {
+                        %>기타
+                        <%
+                        }
+                        %></span>
+                <h2><%=classList.get(i).getCL_NAME() %></h2>
+                <span class="category"><%=classList.get(i).getCL_INTRODUCTION() %></span>
               </div>
             </a>
           </div>
-          <div class="col-md-6 col-lg-4">
-       <a href="classDetail.do?CL_ID=<%=classList.get(1).getCL_ID()%>" class="media-1">
-              <img src="<%=request.getContextPath()%>/upload/<%= classList.get(1).getCL_IMG_PATH()%>" alt="Image" class="img-fluid">
-              <div class="media-1-content">
-                <span class="category">문화, 생활</span>
-                <h2><%= classList.get(1).getCL_NAME() %></h2>
-                <span class="category"><%=classList.get(1).getCL_INTRODUCTION() %></span>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-6 col-lg-4">
-       <a href="classDetail.do?CL_ID=<%=classList.get(2).getCL_ID()%>" class="media-1">
-              <img src="<%=request.getContextPath()%>/upload/<%= classList.get(2).getCL_IMG_PATH()%>" alt="Image" class="img-fluid">
-              <div class="media-1-content">
-                <<span class="category">건강, 미용</span>
-                <h2><%= classList.get(2).getCL_NAME() %></h2>
-                <span class="category"><%=classList.get(2).getCL_INTRODUCTION() %></span>
-              </div>
-            </a>
-          </div>
-
-          <div class="col-md-6 col-lg-4">
-       <a href="classDetail.do?CL_ID=<%=classList.get(3).getCL_ID()%>" class="media-1">
-              <img src="<%=request.getContextPath()%>/upload/<%= classList.get(3).getCL_IMG_PATH()%>" alt="Image" class="img-fluid">
-              <div class="media-1-content">
-                <span class="category">IT/개발</span>
-                <h2><%= classList.get(3).getCL_NAME() %></h2>
-                <span class="category"><%=classList.get(3).getCL_INTRODUCTION() %></span>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-6 col-lg-4">
-       <a href="classDetail.do?CL_ID=<%=classList.get(4).getCL_ID()%>" class="media-1">
-              <img src="<%=request.getContextPath()%>/upload/<%= classList.get(4).getCL_IMG_PATH()%>" alt="Image" class="img-fluid">
-              <div class="media-1-content">
-                <span class="category">심리</span>
-                <h2><%= classList.get(4).getCL_NAME() %></h2>
-                <span class="category"><%=classList.get(4).getCL_INTRODUCTION() %></span>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-6 col-lg-4">
-       <a href="classDetail.do?CL_ID=<%=classList.get(5).getCL_ID()%>" class="media-1">
-              <img src="<%=request.getContextPath()%>/upload/<%= classList.get(5).getCL_IMG_PATH()%>" alt="Image" class="img-fluid">
-              <div class="media-1-content">
-                 <span class="category">기타 </span>
-                <h2><%= classList.get(5).getCL_NAME() %></h2>
-                <span class="category"><%=classList.get(5).getCL_INTRODUCTION() %></span>
-              </div>
-            </a>
+         <%} }%>
+           
           </div>
 
          

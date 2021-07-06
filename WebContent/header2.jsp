@@ -39,10 +39,12 @@
     </div>
    
     <div class="border-bottom top-bar py-2 bg-dark" id="home-section">
+    
       <div class="container">
+      
         <div class="row">
           <div class="col-md-6">
-            
+            <span id="lunaclass" style= "font-weight : bold ;color: white;font-size: 20px">LunaClass.</span>
           </div>
           <div class="col-md-6">
             <ul class="social-media">
@@ -55,13 +57,13 @@
               <c:if test="${authUser.id!='admin'}">
               <li><a href="#" style= "font-weight : bold;"><span>${authUser.name}님</span></a></li>
               <li><span>  </span></li>
-              <li><a href="logout.do" style= "font-weight : bold;"><span>Logout</span></a></li>
+              <li><a href="logout.do" style= "font-weight : bold;"><span>로그아웃</span></a></li>
               </c:if>
               
               <c:if test="${authUser.id=='admin'}">
-              <li><a href="MagQnAlist.do" style= "font-weight : bold;"><span>${authUser.name}님</span></a></li>
+              <li><a href="Customer_List.do" style= "font-weight : bold;">관리자</span></a></li>
               <li><span>  </span></li>
-              <li><a href="logout.do" style= "font-weight : bold;"><span>Logout</span></a></li>
+              <li><a href="logout.do" style= "font-weight : bold;"><span>로그아웃</span></a></li>
               </c:if>
                  </c:if>
               
@@ -71,22 +73,12 @@
       </div> 
     </div>
     
-    <header class="site-navbar py-4 bg-white js-sticky-header site-navbar-target" role="banner">
     
-    <div class="col-11 col-xl-2">
-            <h1 class="mb-0 site-logo"><a href="index.do" class="text-black h2 mb-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LunaClass<span class="text-primary">.</span> </a></h1>
-          </div>
-    
-    </header>
    
     
 
 
-          <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black">
-          
-        
-    
-          <span class="icon-menu h3"></span></a></div>
+       
 
         
       
