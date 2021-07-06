@@ -17,12 +17,11 @@
 <jsp:include page="/header2.jsp" />
 <title>QnA 관리 : LunaClass</title>
 <style type="text/css">
-
 @media only screen and (min-width: 576px) {
 
-	.left {
-	text-align:left;
-	}
+.left {
+text-align:left;
+}
 }
 
 .btn{
@@ -30,7 +29,7 @@ margin-top: 5px;
 
 }
 textarea {
-	resize: none;
+resize: none;
 }
 
 .TextCenter {
@@ -39,6 +38,9 @@ textarea {
 
 .group{
 background: #f9f9f9
+}
+textarea {
+	resize: none;
 }
 </style>
 <%
@@ -64,17 +66,14 @@ background: #f9f9f9
 
 </head>
 <body>
-	<br>
-	<br>
 	<div class="container-fluid">
 		<div class="row">
 		<jsp:include page="/side2.jsp" />
-			<main class="col-md-6  col-lg-8 px-md-4 " id="mainContainer"> <br>
-			<br>
-			<br>
+			<main class="col-md-6  col-lg-8 px-md-4 " id="mainContainer"> 
 			<h4>QnA 목록</h4>
 			<hr>
 			<br>
+			
 			
 			<div class="container">
 			<div class="row">
@@ -90,9 +89,9 @@ if(qnalist != null && listCount > 0){
 			<div class="col">
 			<div class="row TextCenter">
       <span class="col-md-1"><%="글 번호"%></span>
-      <span class="col-md-4" ><%="내      용" %></span>
-   	<span class="col-md-2"><%="작성자"%></span>
-      <span class="col-md-3"><%="작성일" %></span>
+      <span class="col-md-4"><%="내      용" %></span>
+      <span class="col-md-2"><%="작성자"%></span>
+      <span class="col-md-3" ><%="작성일" %></span>
       <span class="col-md-2"><%="처리상태" %></span>
   </div>
   </div>
@@ -105,14 +104,17 @@ if(qnalist != null && listCount > 0){
 			
 	%>
 			
-				<a class="list-group-item list-group-item-action">
+			<a class="list-group-item list-group-item-action">
 			<div class="row">
 			<div class="col">
-			<div class="row TextCenter" data-toggle="collapse" data-target="#content<%=i%>">
+			<div class="row TextCenter" data-toggle="collapse"
+                     data-target="#content<%=i%>">
       <span class="col-md-1"><%=(pageinfo.getPage()-1)*5+(i+1) %></span>
-       <span class="col-md-4 left"><%=qnalist.get(i).getQA_TITLE() %> 
-     
+       <span class="col-md-4 left "><%=qnalist.get(i).getQA_TITLE() %> 
       <% 
+	
+	
+	
 	Date date = new Date(); 
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	String answer;
@@ -123,13 +125,13 @@ if(qnalist != null && listCount > 0){
 	if(today.equals(qnalist.get(i).getQA_REGDATE().toString())){
 		n = "N";
 		%>
-		
 		 <span style="background-color: #FF5A37; font-size:13px; color : white; font-weight: bold; padding:1px 4px; border-radius: 50%">N</span>
 		
 	<%} else {
 		n=null;%>
 		 <span></span><%
 	}
+	
 	
 	if(!qnalist.get(i).getQA_ANSWER()){
 		answer="답변 대기";
@@ -142,14 +144,16 @@ if(qnalist != null && listCount > 0){
 	}else{
 		mag_content=qnalist.get(i).getQA_MAG_CONTENT();
 	}
+	
+	
+
 	%>
      </span>
-          
-   	  <span class="col-md-2" ><%=qnalist.get(i).getQA_WRITER_ID()%></span>
-      <span class="col-md-3" ><%=qnalist.get(i).getQA_REGDATE() %></span>
-      <span class="col-md-2" ><%=answer %></span>
+     
+      <span class="col-md-2"><%=qnalist.get(i).getQA_WRITER_ID()%></span>
+      <span class="col-md-3"><%=qnalist.get(i).getQA_REGDATE() %></span>
+      <span class="col-md-2"><%=answer %></span>
   </div>
-
   
   
   
@@ -189,7 +193,7 @@ if(qnalist != null && listCount > 0){
 	<% }else{%>
 		<button type="submit" class="form-control btn btn-primary submit px-3 col-4">수정하기</button>
 		<button type="button" class="form-control btn btn-primary submit px-3 col-4" onClick="location.href='mag_QA_delete.do?page=<%=nowPage %>&qa_id=<%=qnalist.get(i).getQA_ID()%>'">삭제하기</button>
-		 <button type="button" class="form-control btn btn-primary submit px-3 col-4" onClick="location.href='m_QA_delete.do?page=<%=nowPage %>&qa_id=<%=qnalist.get(i).getQA_ID()%>'" >질문 삭제하기</button>
+		 <button type="button" class="form-control btn btn-primary submit px-3 col-4" onClick="location.href='m_QA_delete.do?qa_id=<%=qnalist.get(i).getQA_ID()%>'" >질문 삭제하기</button>
 	<% }%>
                  
                   
@@ -225,18 +229,22 @@ if(qnalist != null && listCount > 0){
    <section id="pageList" style="text-align : center">
 
                      <%if(nowPage<=1){ %>
-                     <span id="paging"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                     <span id="paging"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
 </svg>이전</span>
                      <%
                      } else if (startPage <= 5) {
                      %>
-                     <a href="MagQnAlist.do?page=<%=startPage%>" id="paging">&lt;이전</a>
+                     <a href="MagQnAlist.do?page=<%=startPage%>" id="paging"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
+</svg>이전</a>
                      
                      <%
                         } else {
                      %>
-                     <a href="MagQnAlist.do?page=<%=startPage - 1%>" id="paging">&lt;이전</a>
+                     <a href="MagQnAlist.do?page=<%=startPage - 1%>" id="paging"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
+</svg>이전</a>
                      <%
                         }
                      %>
@@ -259,17 +267,21 @@ if(qnalist != null && listCount > 0){
                      <%
                         if (nowPage >= maxPage) {
                      %>
-                           <span id="paging">다음<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+                           <span id="paging">다음<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
 </svg></span>
                      <%
                         } else if (endPage == maxPage) {
                      %>
-                     <a href="MagQnAlist.do?page=<%=nowPage+1 %>" id="paging">다음&gt;</a>
+                     <a href="MagQnAlist.do?page=<%=endPage %>" id="paging">다음<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
+</svg></a>
                      <%
                         } else {
                      %>
-                     <a href="MagQnAlist.do?page=<%=endPage+1%>" id="paging">다음&gt;</a>
+                     <a href="MagQnAlist.do?page=<%=endPage+1%>" id="paging">다음<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
+</svg></a>
                      <%
                         }
                      %>

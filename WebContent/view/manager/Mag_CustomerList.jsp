@@ -11,7 +11,6 @@
 <head>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <jsp:include page="/header2.jsp" />
 <title>회원 관리 : LunaClass</title>
 
@@ -31,7 +30,7 @@
 		int startPage=pageinfo.getStartPage();
 		int endPage=pageinfo.getEndPage();
 	%>
-		
+
 <style>
 
 .TextCenter {
@@ -43,19 +42,16 @@ background: #f9f9f9;
 }
 
 </style>
-
+		
 </head>
 <body>
-<br>
-	<br>
-	<div class="container-fluid" style="width:100%; bakcground-color:cyan;">
+
+	<div class="container-fluid"  style="width:100%; bakcground-color:cyan;">
 		<div class="row">
 			<jsp:include page="/side2.jsp" />
 			
 			<main class="col-md-6 col-lg-8 px-md-4" id="mainContainer"> 
-			<br>
-			<br>
-			<br>
+
 			<h4>회원 목록</h4>
 			<hr>
 			<br>
@@ -139,7 +135,7 @@ background: #f9f9f9;
       
   <div class="col-md-3"></div>
 </div><br>
-			<div class="container" >
+			<div class="container">
 			<div class="row TextCenter">
 			
 			<% if(customerlist != null && listCount > 0){ %>
@@ -148,9 +144,9 @@ background: #f9f9f9;
 				<div class="row">
 					<div class="col">
 						<div class="row">
-						<span class="col-md-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= "번호" %></span>
-						<span class="col-md-2">&nbsp;&nbsp;&nbsp;&nbsp;<%= "아이디" %></span>
-						<span class="col-md-2">&nbsp;<%= "이름" %></span>
+						<span class="col-md-1"><%= "번호" %></span>
+						<span class="col-md-2"><%= "아이디" %></span>
+						<span class="col-md-2"><%= "이름" %></span>
 						<span class="col-md-4"><%= "전화번호" %></span>
 						<span class="col-md-3"><%= "가입일자" %></span>
 						</div>
@@ -162,12 +158,11 @@ background: #f9f9f9;
 					String n = null;%>
 					
 				<a class="list-group-item list-group-item-action" href="Customer_Detail.do?customer_id=<%=customerlist.get(i).getCUS_ID()%>&page=<%=nowPage%>">
-					
-					<div class="col" >
+					<div class="col">
 						<div class="row" >
-						<span class="col-md-1"><%=(pageinfo.getPage()-1)*5+(i+1) %></span>
+						<span class="col-md-1" style="margin-left: -11px"><%=(pageinfo.getPage()-1)*5+(i+1) %></span>
    					   	<span class="col-md-2"><%=customerlist.get(i).getCUS_ID()%></span>
-    					<span class="col-md-2"><%=customerlist.get(i).getCUS_NAME() %>
+    						<span class="col-md-2" style="margin-left: 7px"><%=customerlist.get(i).getCUS_NAME() %>
 				 
 	
 					<% 
@@ -188,8 +183,8 @@ background: #f9f9f9;
 		
 		
 						</span>
-				   	  			<span class="col-md-4"><%=customerlist.get(i).getCUS_TEL() %></span>
-				     		 	<span class="col-md-3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=customerlist.get(i).getCUS_REGDATE() %></span>
+						<span class="col-md-4" style="margin-left: 8px"><%=customerlist.get(i).getCUS_TEL() %></span>
+				   	  	<span class="col-md-3" style="padding-right: inherit; margin-right: -4px"><%=customerlist.get(i).getCUS_REGDATE() %></span>
 						</div>
 						
 					</div>
@@ -209,16 +204,22 @@ background: #f9f9f9;
    <section id="pageList" style="text-align : center">
 
                      <%if(nowPage<=1){ %>
-                     <span id="paging">&lt;이전</span>
+                     <span id="paging"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
+</svg>이전</span>
                      <%
                      } else if (startPage <= 5) {
                      %>
-                     <a href="Customer_List.do?page=<%=startPage%>" id="paging">&lt;이전</a>
+                     <a href="Customer_List.do?page=<%=startPage%>" id="paging"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
+</svg>이전</a>
                      
                      <%
                         } else {
                      %>
-                     <a href="Customer_List.do?page=<%=startPage - 1%>" id="paging">&lt;이전</a>
+                     <a href="Customer_List.do?page=<%=startPage - 1%>" id="paging"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
+</svg>이전</a>
                      <%
                         }
                      %>
@@ -241,15 +242,21 @@ background: #f9f9f9;
                      <%
                         if (nowPage >= maxPage) {
                      %>
-                           <span id="paging">다음&gt;</span>
+                           <span id="paging">다음<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
+</svg></span>
                      <%
                         } else if (endPage == maxPage) {
                      %>
-                     <a href="Customer_List.do?page=<%=nowPage+1 %>" id="paging">다음&gt;</a>
+                     <a href="Customer_List.do?page=<%=endPage %>" id="paging">다음<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
+</svg></a>
                      <%
                         } else {
                      %>
-                     <a href="Customer_List.do?page=<%=endPage+1%>" id="paging">다음&gt;</a>
+                     <a href="Customer_List.do?page=<%=endPage+1%>" id="paging">다음<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
+</svg></a>
                      <%
                         }
                      %>
@@ -262,9 +269,9 @@ background: #f9f9f9;
 
        <section id="pageList" style="text-align : center">
 		<% if(nowPage<=1){ %>
-		<span style="color : darkgray; padding:8px 14px 6px; border-radius: 10px 10px 10px 10px">&lt;이전</span>&nbsp;
+		<span style="color : darkgray; padding:8px 14px 6px; border-radius: 10px 10px 10px 10px">[이전]</span>&nbsp;
 		<% }else{ %>
-		<a href="Customer_List.do?page=<%= nowPage-1 %>&search=<%=search%>&content=<%=content %>" style="color : darkgray; padding:8px 14px 6px; border-radius: 10px 10px 10px 10px">&lt;이전</a>&nbsp;
+		<a href="Customer_List.do?page=<%= nowPage-1 %>&search=<%=search%>&content=<%=content %>" style="color : darkgray; padding:8px 14px 6px; border-radius: 10px 10px 10px 10px">[이전]</a>&nbsp;
 		<% } %>
 
 		<% for(int a=startPage;a<=endPage;a++){
@@ -277,9 +284,9 @@ background: #f9f9f9;
 		<% } %>
 
 		<% if(nowPage>=maxPage){ %>
-		<span style="color : darkgray; padding:8px 14px 6px; border-radius: 10px 10px 10px 10px">다음&gt;</span>
+		<span style="color : darkgray; padding:8px 14px 6px; border-radius: 10px 10px 10px 10px">[다음]</span>
 		<% }else{ %>
-		<a href="Customer_List.do?page=<%= nowPage+1 %>&search=<%=search%>&content=<%=content %>" style="color : darkgray; padding:8px 14px 6px; border-radius: 10px 10px 10px 10px">다음&gt;</a>
+		<a href="Customer_List.do?page=<%= nowPage+1 %>&search=<%=search%>&content=<%=content %>" style="color : darkgray; padding:8px 14px 6px; border-radius: 10px 10px 10px 10px">[다음]</a>
 		<% } %>
 		</section>
      

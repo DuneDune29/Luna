@@ -361,8 +361,7 @@ table {
 <jsp:include page="/header2.jsp" />
 </head>
 <body>
-   <br>
-   <br>
+  
    
    <div class="container-fluid">
    
@@ -370,9 +369,8 @@ table {
          <jsp:include page="/side2.jsp" />
          
 
-         <main class="col-md-6 col-lg-8 px-md-4 mainpage" id="mainContainer"> <br>
-         <br>
-         <br>
+         <main class="col-md-6 col-lg-8 px-md-4 mainpage" id="mainContainer"> 
+
 
          <h4>댓글 목록</h4>
 			<hr>
@@ -418,7 +416,9 @@ table {
 	           	 		</div>
 			            <div class="reCmtCnt-content recomment-content${status1.index}">${fn:replace(recomment.recomment_content,crcn,br)}
 			            	<div class="recomment-button">
+			            		<c:if test="${not empty recomment.recomment_date}">
 			            		<a href="mag_deleterecomment.do?recomment_num=${recomment.recomment_num}&comment_board=${comment.comment_board}" class="deleteComment${status1.index }">[삭제]</a>
+			            	</c:if>
 			            	</div>
 			            </div>
 	        		</div>
@@ -439,16 +439,22 @@ table {
    <section id="pageList" style="text-align : center">
 
                      <%if(nowPage<=1){ %>
-                     <span id="paging">&lt;이전</span>
+                     <span id="paging"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
+</svg>이전</span>
                      <%
                      } else if (startPage <= 5) {
                      %>
-                     <a href="commentList.do?page=<%=startPage%>" id="paging">&lt;이전</a>
+                     <a href="commentList.do?page=<%=startPage%>" id="paging"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
+</svg>이전</a>
                      
                      <%
                         } else {
                      %>
-                     <a href="commentList.do?page=<%=startPage - 1%>" id="paging">&lt;이전</a>
+                     <a href="commentList.do?page=<%=startPage - 1%>" id="paging"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
+</svg>이전</a>
                      <%
                         }
                      %>
@@ -471,15 +477,21 @@ table {
                      <%
                         if (nowPage >= maxPage) {
                      %>
-                           <span id="paging">다음&gt;</span>
+                           <span id="paging">다음<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
+</svg></span>
                      <%
                         } else if (endPage == maxPage) {
                      %>
-                     <a href="commentList.do?page=<%=nowPage+1 %>" id="paging">다음&gt;</a>
+                     <a href="commentList.do?page=<%=endPage %>" id="paging">다음<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
+</svg></a>
                      <%
                         } else {
                      %>
-                     <a href="commentList.do?page=<%=endPage+1%>" id="paging">다음&gt;</a>
+                     <a href="commentList.do?page=<%=endPage+1%>" id="paging">다음<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
+</svg></a>
                      <%
                         }
                      %>

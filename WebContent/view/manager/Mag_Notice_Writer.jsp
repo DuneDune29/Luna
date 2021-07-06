@@ -9,24 +9,26 @@
    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
+<style type="text/css">
+ textarea {
+	resize: none;
+}
+</style>
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 <meta charset="UTF-8">
-<jsp:include page="/header.jsp" />
+<jsp:include page="/header2.jsp" />
 <title>공지사항 등록 : LunaClass</title>
 
 
 </head>
 <body>
-   <br>
-   <br>
    <div class="container-fluid">
       <div class="row">
          <jsp:include page="/side2.jsp" />
 
-         <main class="col-md-6 col-lg-8 px-md-4" id="mainContainer"> <br>
-         <br>
-         <br>
+         <main class="col-md-6 col-lg-8 px-md-4" id="mainContainer">
          <h4>공지사항 등록</h4>
          <hr>
          <br>
@@ -55,7 +57,7 @@
                   <input type="text" class="form-control" placeholder="제목을 입력하세요." name="notice_title"/>
                   
                  <br>
-                     <textarea cols="40" rows="5" class="form-control" placeholder="공지내용을 입력하세요."  name="notice_content" required></textarea>
+                     <textarea cols="40" rows="5" class="form-control" placeholder="공지내용을 입력하세요."  name="notice_content"  required></textarea>
                     
                   </div>
 

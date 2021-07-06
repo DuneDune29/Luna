@@ -13,24 +13,11 @@
 <meta charset="UTF-8">
 <jsp:include page="/header2.jsp" />
 <style type="text/css">
-@media only screen and (min-width: 576px) {
-
-	.left {
-	text-align:left;
-	}
-}
-
 .btn{
 margin-bottom: 7px;
 
 }
-.TextCenter {
- text-align:center
-}
 
-.group{
-background: #f9f9f9
-}
 </style>
 <title>공지사항 관리 : LunaClass</title>
 
@@ -58,16 +45,14 @@ background: #f9f9f9
 
 </head>
 <body>
-	<br>
-	<br>
+	
 	<div class="container-fluid">
 		<div class="row">
 			<jsp:include page="/side2.jsp" />
-			<main class="col-md-6 col-lg-8 px-md-4" id="mainContainer"> <br>
-			<br>
-			<br>
+			<main class="col-md-6 col-lg-8 px-md-4" id="mainContainer"> 
 			<h4>공지사항 목록</h4>
 			<hr>
+			<br>
 			<br>
 			
 			<div class="container">
@@ -77,13 +62,19 @@ background: #f9f9f9
 if(noticelist != null && listCount > 0){
 %>
 
-				<a  class="list-group-item list-group-item-action group">
+				<a  class="list-group-item list-group-item-action">
 			<div class="row">
 			<div class="col">
-			<div class="row TextCenter" >
-      <span class="col-md-1" ><%="글 번호"%></span>
-      <span class="col-md-8"><%="제 목" %></span>
-      <span class="col-md-3"><%="작성일" %></span>
+			<div class="row">
+      <span class="col-md-1"><%="글 번호"%></span>
+      <span class="col-md-2"></span>
+      <span class="col-md-5" style="text-align:center"><%="제 목" %></span>
+       <div class="col">
+      <div class="row">
+   	<span class="col-md-7"></span>
+      <span class="col-md-5" style="text-align:center" ><%="작성일" %></span>
+  </div>
+  </div>
   </div>
   </div>
   </div>
@@ -99,9 +90,10 @@ if(noticelist != null && listCount > 0){
 						
 			<div class="row">
 			<div class="col">
-			<div class="row TextCenter" >
+			<div class="row" class="btn btn-info">
       <span class="col-md-1" style="text-align:center"><%=(pageinfo.getPage()-1)*5+(i+1) %></span>
-       <span class="col-md-8 left"><%=noticelist.get(i).getNOTICE_TITLE() %> 
+      <span class="col-md-1"></span>
+       <span class="col-md-5 "><%=noticelist.get(i).getNOTICE_TITLE() %> 
       <% 
 	
 	
@@ -125,7 +117,12 @@ if(noticelist != null && listCount > 0){
 	%>
      </span>
           
-      <span class="col-md-3" style="text-align:center"><%=noticelist.get(i).getNOTICE_REGDATE() %></span>
+      <div class="col">
+      <div class="row">
+   	  <span class="col-md-8"></span>
+      <span class="col-md-4" style="text-align:center"><%=noticelist.get(i).getNOTICE_REGDATE() %></span>
+  </div>
+  </div>
   </div>
   
   
@@ -133,27 +130,32 @@ if(noticelist != null && listCount > 0){
   </div>
   </a>
 			<%} %>
-		</div>
+		
 		</div>
 	<br>
 	<div>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<button type="button"  class="form-control btn btn-primary submit px-3 col-md-2" onClick="location.href='Mag_Notice_Writer.do'" >공지글 등록</button>
 	<ul>
    <li>
    <section id="pageList" style="text-align : center">
 
                      <%if(nowPage<=1){ %>
-                     <span id="paging">&lt;이전</span>
+                     <span id="paging"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
+</svg>이전</span>
                      <%
                      } else if (startPage <= 5) {
                      %>
-                     <a href="MagNoticeList.do?page=<%=startPage%>" id="paging">&lt;이전</a>
+                     <a href="MagNoticeList.do?page=<%=startPage%>" id="paging"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
+</svg>이전</a>
                      
                      <%
                         } else {
                      %>
-                     <a href="MagNoticeList.do?page=<%=startPage - 1%>" id="paging">&lt;이전</a>
+                     <a href="MagNoticeList.do?page=<%=startPage - 1%>" id="paging"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
+</svg>이전</a>
                      <%
                         }
                      %>
@@ -176,15 +178,21 @@ if(noticelist != null && listCount > 0){
                      <%
                         if (nowPage >= maxPage) {
                      %>
-                           <span id="paging">다음&gt;</span>
+                           <span id="paging">다음<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
+</svg></span>
                      <%
                         } else if (endPage == maxPage) {
                      %>
-                     <a href="MagNoticeList.do?page=<%=nowPage+1 %>" id="paging">다음&gt;</a>
+                     <a href="MagNoticeList.do?page=<%=endPage %>" id="paging">다음<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
+</svg></a>
                      <%
                         } else {
                      %>
-                     <a href="MagNoticeList.do?page=<%=endPage+1%>" id="paging">다음&gt;</a>
+                     <a href="MagNoticeList.do?page=<%=endPage+1%>" id="paging">다음<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
+</svg></a>
                      <%
                         }
                      %>

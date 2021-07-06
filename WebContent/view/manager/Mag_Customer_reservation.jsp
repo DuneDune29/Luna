@@ -31,18 +31,16 @@
 	
 </head>
 <body>
-<br>
-	<br>
+
 	<div class="container-fluid">
 		<div class="row">
 			<jsp:include page="/side2.jsp" />
 			
 			<main class="col-md-6 col-lg-8 px-md-4" id="mainContainer"> 
-			<br>
-			<br>
-			<br>
+
 			<h4>신청현황 목록</h4>
 			<hr>
+			<br>
 			<br>
 	
 	<%-- <div class="row">
@@ -99,10 +97,10 @@
 				     		<span class="col-md-3" style="text-align:center"><%=cusResList.get(i).getCUSRES_DATE() %> ~ <%=cusResList.get(i).getCUSRES_DATE2() %></span>
 				   	  <div class="col">
 				   	  <div class="row">
-				   	  		<span class="col-md-3" style="text-align:center"><%=cusResList.get(i).getCUSRES_LOC() %></span>
-				     		<span class="col-md-3" style="cursor:pointer;font-weight:bold; text-align:center" onclick="location.href='Customer_Detail.do?customer_id=<%=cusResList.get(i).getCUSRES_CLID()%>'"><%=cusResList.get(i).getCUSRES_CLID()%></span>
-				     		<span class="col-md-4" style="text-align:center"><%=cusResList.get(i).getCUSRES_REGDATE() %></span>
-				     		<button type="button" class=" btn btn-primary submit col-md-2" style="padding:1px 2px" onClick="location.href='mag_CusResDelete.do?cusres_id=<%=cusResList.get(i).getCUSRES_ID()%>&cusres_num=<%=cusResList.get(i).getCUSRES_CL_ID() %>&page=<%=nowPage %>'" >삭제</button>
+				   	  		<span class="col-md-4" style="text-align:center; padding-right: 28px; margin-right: -10px;"><%=cusResList.get(i).getCUSRES_LOC() %></span>
+				     		<span class="col-md-2" style="cursor:pointer;font-weight:bold; text-align:center; padding-left: inherit;" onclick="location.href='Customer_Detail.do?customer_id=<%=cusResList.get(i).getCUSRES_CLID()%>'"><%=cusResList.get(i).getCUSRES_CLID()%></span>
+				     		<span class="col-md-4" style="text-align:center; padding-right: inherit;"><%=cusResList.get(i).getCUSRES_REGDATE() %></span>
+				     		<button type="button" class=" btn btn-primary submit col-md-2" style="padding:1px 2px; margin-left: auto;" onClick="location.href='mag_CusResDelete.do?cusres_id=<%=cusResList.get(i).getCUSRES_ID()%>&cusres_num=<%=cusResList.get(i).getCUSRES_CL_ID() %>'" >삭제</button>
 				  		</div>
 				  		</div>
 				  		</div>
@@ -120,16 +118,22 @@
    <section id="pageList" style="text-align : center">
 
                      <%if(nowPage<=1){ %>
-                     <span id="paging">&lt;이전</span>
+                     <span id="paging"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
+</svg>이전</span>
                      <%
                      } else if (startPage <= 5) {
                      %>
-                     <a href="mag_cusRes_List.do?page=<%=startPage%>" id="paging">&lt;이전</a>
+                     <a href="mag_cusRes_List.do?page=<%=startPage%>" id="paging"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
+</svg>이전</a>
                      
                      <%
                         } else {
                      %>
-                     <a href="mag_cusRes_List.do?page=<%=startPage - 1%>" id="paging">&lt;이전</a>
+                     <a href="mag_cusRes_List.do?page=<%=startPage - 1%>" id="paging"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
+</svg>이전</a>
                      <%
                         }
                      %>
@@ -152,15 +156,21 @@
                      <%
                         if (nowPage >= maxPage) {
                      %>
-                           <span id="paging">다음&gt;</span>
+                           <span id="paging">다음<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
+</svg></span>
                      <%
                         } else if (endPage == maxPage) {
                      %>
-                     <a href="mag_cusRes_List.do?page=<%=nowPage+1 %>" id="paging">다음&gt;</a>
+                     <a href="mag_cusRes_List.do?page=<%=endPage %>" id="paging">다음<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
+</svg></a>
                      <%
                         } else {
                      %>
-                     <a href="mag_cusRes_List.do?page=<%=endPage+1%>" id="paging">다음&gt;</a>
+                     <a href="mag_cusRes_List.do?page=<%=endPage+1%>" id="paging">다음<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
+</svg></a>
                      <%
                         }
                      %>

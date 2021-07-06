@@ -19,6 +19,17 @@ int partcipateEndCount=(Integer)request.getAttribute("partcipateEndCount");
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style type="text/css">
+
+.mine {
+    margin-left: -1px !important;
+    max-width: 1100px;
+    margin-bottom: 60px;
+    margin-top: 0px;
+}
+}
+
+
+
 main {
 	width: 840px;
 	background-color: white;
@@ -104,17 +115,17 @@ padding-top: 1px;
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-	<br>
-	<br>
-	<div class="container-fluid">
+
+	<div class="container-fluid" style="width:100%; bakcground-color:cyan">
 		<div class="row">
 			<jsp:include page="/side2.jsp" />
-			<main class="col-md-6 ms-sm-auto col-lg-8 px-md-4" id="formBody">
+			<main class="col-md-6 mine col-lg-8 px-md-4" id="mainContainer">
 			<h4>회원 정보</h4>
-			<div id="myPageForm" class="container">
-				<div id="profile-group" class="item-group">
+			<hr>
+			<br>
+				<div id="profile-group">
 					<img id="profile_image_preview" class="rounded-circle"
-						src="<%if (myInfo.getCUS_PROFILE_PATH() != null) {%><%=request.getContextPath()%>/upload/profile/<%=myInfo.getCUS_PROFILE_PATH()%><%} else {%>images/class_default.png<%}%>"
+						src="<%if (myInfo.getCUS_PROFILE_PATH() != null) {%><%=request.getContextPath()%>/upload/profile/<%=myInfo.getCUS_PROFILE_PATH()%><%} else {%>images/profile.png<%}%>"
 						alt="프로필 사진 추가하기" title="프로필 사진 추가하기" />
 					<div>프로필 사진</div>
 					<div>
@@ -321,15 +332,11 @@ padding-top: 1px;
                   <div class="item-name col-md-2">등록한 재능 나눔</div>
                   <div class="col-md-1">
                      <div><%=myClass+" 건"%></div>
-                  </div>
-                     <button  type="button" class="btn btn-info btn-toggle switch col-md-2" onclick="javascript:window.location='Mag_cusClassList.do?cusid=<%=myInfo.getCUS_ID()%>'">현재 나눔 중인 재능</button>
-                  <div class="col-md-1"></div>
+                  </div><div class="col-md-3"><button  type="button" class="btn btn-info btn-toggle switch" onclick="javascript:window.location='Mag_cusClassList.do?cusid=<%=myInfo.getCUS_ID()%>'">현재 나눔 중인 재능</button></div>
                   <div class="item-name col-md-2">참여한 재능 나눔</div>
                   <div class="col-md-1">
                      <div><%=partcipateCount+partcipateEndCount+" 건"%></div>
-                  </div>
-                     <button  type="button" class="btn btn-info btn-toggle switch col-md-2" onclick="javascript:window.location='Mag_cusReservationList.do?cusid=<%=myInfo.getCUS_ID()%>'">현재 참여 중인 재능</button>
-               </div>
+                  </div><div class="col-md-3"><button  type="button" class="btn btn-info btn-toggle switch" onclick="javascript:window.location='Mag_cusReservationList.do?cusid=<%=myInfo.getCUS_ID()%>'">현재 참여 중인 재능</button></div></div>
                <hr/>
                
                 
@@ -343,7 +350,7 @@ padding-top: 1px;
                
                
                <div>
-                     <button id="deleteUserBtn" type="button" class="btn btn-info float-right" onclick="javascript:window.location='getout.do?cusid=<%=myInfo.getCUS_ID()%>'">회원탈퇴</button>
+                     <button id="deleteUserBtn" type="button" class="btn btn-info float-right" >회원탈퇴</button>
                </div>
 			</div>
 			</main>
@@ -392,10 +399,20 @@ padding-top: 1px;
     	         
     	         
     	   })
-    
   
       
-      
+      				$('#deleteUserBtn').click(function() {
+      				
+      					if (confirm("정말 탈퇴 하시겠습니까??") == true){   
+      						window.location='getout.do?cusid=${requestScope.cusInfo.CUS_ID}';
+      			  	  }else{   
+      						 event.preventDefault();
+      			           event.stopPropagation();
+
+      			  	  };
+      					
+      					
+      				});
       
                      $('#profileSetBtn').click(function() {
                         $('#CL_PROFILE_PATH').trigger('click');

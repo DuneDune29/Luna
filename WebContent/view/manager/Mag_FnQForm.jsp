@@ -13,11 +13,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-textarea {
-	resize: none;
-}
-</style>
 	 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 <meta charset="UTF-8">
 <jsp:include page="/header2.jsp" />
@@ -27,15 +22,11 @@ textarea {
 
 </head>
 <body>
-	<br>
-	<br>
 	<div class="container-fluid">
 		<div class="row">
 			<jsp:include page="/side2.jsp" />
 
-			<main class="col-md-6 col-lg-8 px-md-4" id="mainContainer"> <br>
-			<br>
-			<br>
+			<main class="col-md-6 col-lg-8 px-md-4" id="mainContainer"> 
 			<h4>자주묻는질문 등록</h4>
 			<hr>
 			<br>

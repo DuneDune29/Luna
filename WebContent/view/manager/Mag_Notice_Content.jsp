@@ -12,7 +12,7 @@
 <head>
 	 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 <meta charset="UTF-8">
-<jsp:include page="/header.jsp" />
+<jsp:include page="/header2.jsp" />
 <style type="text/css">
 .btn{
 margin-bottom: 7px;
@@ -31,15 +31,11 @@ String nowPage = (String)request.getAttribute("page");
 
 </head>
 <body>
-	<br>
-	<br>
 	<div class="container-fluid">
 		<div class="row">
 			<jsp:include page="/side2.jsp" />
 
-			<main class="col-md-6 col-lg-8 px-md-4" id="mainContainer"> <br>
-			<br>
-		
+			<main class="col-md-6 col-lg-8 px-md-4" id="mainContainer">
 			<h4>공지사항 정보</h4>
 			<hr>
 		<div class="container">
