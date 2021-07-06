@@ -7,7 +7,7 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"%>
 <%@page import="dao.ReservationDAO" %>
 <%@ page import="java.util.*"%>
-
+<%@ page import="java.util.Date" %>
 
 
 <%@ page import="java.util.ArrayList" %>
@@ -15,6 +15,7 @@
 <%@ page import="vo.recomment_bean" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%
 int board_num = Integer.parseInt(request.getParameter("CL_ID"));
@@ -27,16 +28,6 @@ pageContext.setAttribute("crcn", "\n");
 pageContext.setAttribute("br", "<br/>");
 
 %>
-
-
-
-
-
-
-
-
-
-
 
 
 <%
@@ -56,7 +47,7 @@ ArrayList<Customer_bean> customerList = (ArrayList<Customer_bean>) request.getAt
 String userId = (String)request.getAttribute("userId");
 String nowPage = (String)request.getAttribute("page");
 Date date = new Date();
-
+String writer = (String)request.getAttribute("writer");
 
 Date currentDate = new Date(date.getTime());
 
@@ -64,21 +55,57 @@ Date currentDate = new Date(date.getTime());
 long startDate = article.getCL_START_DATE().getTime();
 %>
 
-<script src="https://kit.fontawesome.com/848d8f1fa9.js" crossorigin="anonymous"></script>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-
+ <link rel="stylesheet" href="css/Comment_css.css">
 <style type="text/css">
+
+#reservBtn, #endResv{
+display: none;
+}
+
+@media only screen and (max-width: 576px) {
+.reservBtnX{
+display: none;
+}
+#endResv{
+display: inline;
+text-align: center;
+color: red;
+font-size: 20px;
+}
+#reservBtn{
+		position:fixed;
+         width:80px !important;
+         height:80px;
+         bottom:20px;
+         right:5%;
+         border-radius:100% !important;
+         text-align:center;
+         box-shadow: rgb(99 99 99 / 60%) 0px 5px 20px 4px;
+         z-index: 999;
+         display: inline;
+
+}
+
+}
+
 img {
    width: 150px;
    height: 150px;
    object-fit: cover;
    object-position: 50% 100%;
    border-radius: 10px;
+   border: none;
 }
+#img_profile {
 
+    border: none;
+    
+}
 .btbt{
 /* width: 250px; */
 font-family: THE외계인설명서;
@@ -88,356 +115,70 @@ border-radius: 8px;
 .people{
 background-color: white;
 }
-
-.comment {
-	 border-top: 1px solid black;
-	position:relative;
-	display:flex;
-	flex-wrap: wrap;
-	margin-bottom:20px;
+h1{
+font-size: 40pt
 }
 
-table {
-	width:100%;
-	
+#cap{
+
+font-size: 17pt;
+align: right;
 }
 
-.id_date {
-	position:relative;
-	
+#datelocation{
+font-size: 15pt
 }
 
-.left-id {
-	position:absolute
+#contentN{
+font-size: 25pt;
 }
-.left-button {
-	position:absolute;
-	top:0;
+#contentC{
+font-size: 18pt;
 }
-.left-date {
-	position:absolute;
-	right:0;
-	padding: 0 7px 0 0;
+#topmarin{
+margin-top: 80px;
 }
-.left-button,.left-content {
-	display:inline-block;
-	padding: 0px 0px 10px 0px;
-}
-.left-content {
-	float:left;
-}
-.left-button {
-	
-	position:absolute;
-	right:0;
-	top:0;
-	margin:0;
-	padding: 0 0 0 10px;
-}
-.left-section {
-	 border-bottom: 1px solid black;
-}
-.left-info {
-	padding:0 0 0 8px;
-	
-}
-.left-info{
-	position:relative;
-	display:block;
-	width:100%;
-	margin: 7px 0 5px 0;
-}
-.comment-content {
-	position:relative;
-	display:block;
-	width:100%;
-	padding: 0 0 10px 15px;
-}
-.comment-count{
-    margin: 0;
-    border-bottom: 1px solid black;
-    float: left;
-    margin-bottom: 1rem;
-}
-.comment-count h4{
-    margin: 0;
-}
-
-.comment-txt {
-	padding: 0 0 0 20px;
-}
-.commnet-container table tbody .left-info-Id_date{
-    display: block;
-    font-weight: bold;
-    color: cornflowerblue;
-    margin-right: 8px;
-}
-.comment-txt textarea{
-    resize: none;
-    padding: 1rem 1rem 1.5rem;
-    outline: none;
-    border: 1px solid rgb(233, 236, 239);
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
-    width: 100%;
-    border-radius: 4px;
-    min-height: 6.125rem;
-    font-size: 1rem;
-    color: rgb(33, 37, 41);
-    line-height: 1.75;
-    max-width: 840px;
-}
-.comment-button{
-    position:relative;
-	display:block;
-	width:50%;
-	padding: 0 0 0 6px;
-	min-width: 100px;
-}
-.comment-button button {
-    font-weight: bold;
-    cursor: pointer;
-    outline: none;
-    border: none;
-    background: #8bd6f1;
-    color: white;
-    border-radius: 4px;
-    
-    height: 2rem;
-    font-size: 1rem;
-  	width:100%;
-}
-
-
-
-.content-count{
-    float: left;
-    width: 50px;
-    display: block;
-}
-.content-count p{
-    text-align: center;
-}
-.fix-comment-txt textarea{
-    resize: none;
-    padding: 1rem 1rem 1.5rem;
-    outline: none;
-    border: 1px solid rgb(233, 236, 239);
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
-    width: 100%;
-    border-radius: 4px;
-    min-height: 6.125rem;
-    font-size: 1rem;
-    color: rgb(33, 37, 41);
-    line-height: 1.75;
-}
-.fix-comment {
-	width:100%;
-	margin-bottom:25px;
-}
-
-.fix-comment-button{
-	display: block;
-    padding: 0px 5px;
-    margin-bottom:10px; 
-    position:absolute;
-    right:0;
-}
-/* fixcomment */
-.fix-comment-button input{
-    font-weight: bold;
-    cursor: pointer;
-    outline: none;
-    border: none;
-    background: #8bd6f1;
-    color: white;
-    border-radius: 4px;
-    padding: 0px 1.25rem;
-    height: 2rem;
-    font-size: 1rem;
-}
-
-.reComment-txt textarea{
-    resize: none;
-    padding: 1rem 1rem 1.5rem;
-    outline: none;
-    border: 1px solid rgb(233, 236, 239);
-    border-radius: 4px;
-    min-height: 6.125rem;
-    font-size: 1rem;
-    color: rgb(33, 37, 41);
-    line-height: 1.75;
-    width: 100%;
-}
-.reComment-txt{
-    width: 90%;
-}
-.reComment-button button{
-    font-weight: bold;
-    
-    outline: none;
-    border: none;
-    background: #8bd6f1;
-    color: white;
-    border-radius: 4px;
-    height: 2rem;
-    font-size: 1rem;
-    margin-left: 0px;
-    position: relative;
-    bottom:5px;
-
-}.reCmtCnt{
-    margin: 15px 45px 20px 45px;
-    padding: 0 0 0 8px;
-    display: block;
-    border: 1px solid gray;
-    background-color: rgb(248, 249, 250);
-    position: relative;
-}
-.reCmtCnt-content{
-    display: block;
-    position:relative;
-    padding: 0 0 0 10px;
-    margin: 0 0 7px 0;
-}
-.recomment-button {
-	position:absolute;
-	right:0;
-	top:0;
-	padding: 0 7px 0 0;
-}
-.reComment-fixTxt{
-    width: 90%;
-}
-.reComment-button{
-	padding: 0 0 0 5px;
-	position:relative;
-	font-size: 15px;
-	
-}
-.hiddenReCmtFix{
-	padding:0;
-	margin: 15px 0px 20px 45px;
-    display:inline-block;
-    width:90%;
-}
-.reComment-fixTxt textarea{
-    resize: none;
-    padding: 1rem 1rem 1.5rem;
-    outline: none;
-    border: 1px solid rgb(233, 236, 239);
-    border-radius: 4px;
-    min-height: 6.125rem;
-    font-size: 1rem;
-    color: rgb(33, 37, 41);
-    line-height: 1.75;
-    width: 100%;
-}
-.reComment-fixButton {
-	padding: 0 0 0 5px;
-	position:relative;
-	font-size: 15px;
-}
-.reComment-fixButton button{
-    font-weight: bold;
-    cursor: pointer;
-    outline: none;
-    border: none;
-    background: #8bd6f1;
-    color: white;
-    border-radius: 4px;
-    height: 2rem;
-    font-size: 1rem;
-    margin-bottom: 5px;
-    min-width:78px;
-}
-
-.reCmtCnt-Id_Date{
-	position:relative;
-	display:block;
-	width:100%;
-	margin: 7px 0 0 0;
-}
-.recomment-confirm {
-	padding:0;
-	position:relative;
-	margin: 15px 0px 20px 45px;
-}
-.recomment-candle {
-	position:relative;
-	top:0;
-	right: 0;
-	padding-bottom:10px;
-	width:100px;
-}
-.totalcomment {
-	text-align:center;
-	width:100%;
-}
-.totalcomment button{
-	margin-top:10px;
-	font-weight: bold;
-    outline: none;
-    border: none;
-    background: #8bd6f1;
-    color: white;
-    border-radius: 4px;
-    height: 2rem;
-    font-size: 1rem;
-}
-
-#img_profile {
-	 width: 30px;
-    height: 30px;
-    border-radius: 150px; /* 레이어 반크기만큼 반경을 잡기*/    
-    vertical-align: middle;
-    object-fit: cover;
-}
-#mainpage, #pagemain {
-	padding:3px;
-}
-.profile_id {
-	display:inline-block;
-}
-.profile_id span {
-	padding: 0 0 0 5px;
-	margin: 5px 0 0 0;	
-}
-
 
 </style>
-<title>Insert title here</title>
+<title>상세 페이지 : LunaCLass</title>
 <jsp:include page="/header.jsp" />
 </head>
 <body>
-   
+   <script src="https://kit.fontawesome.com/848d8f1fa9.js" crossorigin="anonymous"></script>
    <div class="container-fluid">
    
       <div class="row">
          <div
-            class="col-12 col-sm-12 col-md-auth col-lg-auto flex-column flex-shrink-0 p-3 bg-light "
+            class="col-2 col-lg-2   flex-column flex-shrink-0 p-3 bg-light "
             style="width: 280px;"></div>
 
-         <main class="col-12 col-md-12 ms-sm-auto col-lg-8 px-md-4">
-<br><br><br><br><br><br><br><br><br>
-         <div class="row g-5">
+         <main class="col-12  ms-sm-auto col-lg-8 px-md-4">
+         <div class="row g-5" id="topmarin">
 
             <div class="col-md-8">
                <div class="container">
                   <div class="row">
-                     <div class="col-3 ">
-                        <img src="<%=request.getContextPath()%>/upload/<%=article.getCL_IMG_PATH()%>">
+                     <div class="col-md-4 ">
+                        <img alt="나눔 대표 사진" title="나눔 대표 사진" src="<%if(article.getCL_IMG_PATH() != null)
+                        { %><%=request.getContextPath()%>/upload/<%=article.getCL_IMG_PATH()%><%}else{%>images/class_default.png<%}%>">
+                      
                      </div>
-                     <div class="col-9">
+                     <div class="col-8">
                         <div class="row">
                            <div class="col">
-                              <h1 style="font-size: 40pt; font-family: THE외계인설명서;"><%=article.getCL_NAME()%></h1>
+                              <h1 ><%=article.getCL_NAME()%></h1>
                            </div>
                         </div>
                         <div class="row">
                            <div class="col">
-                              <h3 style="font-size: 30pt; font-family: THE외계인설명서;"><%
+                              <h3>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                           fill="currentColor" class="bi bi-tag" viewBox="0 0 16 16">
+                       <path
+                              d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z" />
+                       <path
+                              d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z" />
+                     </svg> <%
 										if (article.getCL_CATEGORY().equals("art")) {
 									%>예술
 									<%
@@ -468,7 +209,7 @@ table {
                            <div class="col-10">
                            
                              
-<span style="font-size: 17pt; font-family: THE외계인설명서; align: right;">
+<span id="cap">
   <button class="btn btn-primary people" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
     <i class="far fa-user"></i>
 
@@ -509,9 +250,7 @@ table {
                            
                            <div class="col-2">
                            
-                           
-                           
-                           
+                      
                            
                            <%
                                      	if (startDate <= date.getTime() || reservationList.size() >= article.getCL_CAPACITY()) {
@@ -550,117 +289,159 @@ table {
                   </div>
                   <hr>
                   <div class="row">
-                     <div class="col-6" style="font-size: 13pt; font-family: THE외계인설명서;">
+                  <div id="endResv" class="col"><%
+                                     	if (startDate <= date.getTime() || reservationList.size() >= article.getCL_CAPACITY()) {
+                                     		%>
+                  <p >모집이 마감되었습니다.</p><%} %></div>
+                  <div class="col-md-6" id="datelocation">
+                <%if(article.getCL_MODIFYCHECK() == 0){ %>작성일 &nbsp; &nbsp;: &nbsp; &nbsp;<%= article.getCL_REGDATE()%>
+                <%}else{ %>수정된 날짜 &nbsp; &nbsp;: &nbsp; &nbsp;<%=article.getCL_MODIFYDATE()%><%} %>
+              
+                   
+                   </div>
+                    <div class="col-md-6" id="datelocation">강사명 : <%= writer %></div>
+                  
+                  
+                     <div class="col-md-6" id="datelocation">
                         <br>
                         <i class="far fa-calendar-alt"></i>
                         &nbsp;&nbsp;<%=article.getCL_START_DATE()%> ~ <%=article.getCL_END_DATE()%>
                      </div>
-                     <div class="col-6" style="font-size: 13pt; font-family: THE외계인설명서;">
+                     <div class="col-md-6" id="datelocation">
                         <br>
                         <i class="fas fa-map-marker-alt"></i>
                         &nbsp;&nbsp;<%=article.getCL_LOCATION()%>&nbsp;&nbsp;나눔센터
                      </div>
-                  </div><br><br><br><br>
-                  <div style="font-size: 25pt; font-family: THE외계인설명서;">재능 상세설명
-                     <div class="form-group" style="font-size: 18pt; font-family: THE외계인설명서;"><br>
-                        <label for="CL_CONTENT" class="form-label"></label>
-                        
-                        <%=article.getCL_CONTENT()%>
-                        
+                  </div><br><br>
+                  <div id="contentN">나눔 상세설명
+                     <div class="form-group" id="contentC"><br>
+                        <label for="CL_CONTENT" class="form-label">${fn:replace(article.CL_CONTENT,crcn,br)}</label>
+                        <br><br>
+                        <div class="row" style="font-size: 12pt;">
+                        <div class="col" style="text-align: center;">
+                        <div style="font-weight: bold;">신청 시 유의사항</div>
+                        <div>· 예약 시 재능 나눔인의 연락처를 문자로 보내드립니다.</div>
+                        <div>· 예약 확정 시 재능 나눔인이 출석체크를 진행합니다.</div>
+                        <div>· 예약 시간에 맞추어 늦지 않게 도착해 주시기 바랍니다.</div>
+                        <div>· 재능 나눔인의 일정 변동 혹은 장소 대여 문제로 일정 및 장소가 변경될 수 있습니다.</div>
+						</div>
+						</div>
+
+.
+                         <img src="covid.jpg" style="width: 100%; height: 100%;">
                      </div>
                   </div>
  
  
- 
- 
- 
- 
- 
- 
- 
  <div class="commnet-container">
   	 		 <div class="comment-count">
-     	  		 <h4>Comments <%=commentlist.size()%></h4>
+     	  		 <h4 style="">Comments <%=commentlist.size()%></h4>
    		 	</div>
     </div> 
                   
                   <table>
-            <c:if test="${sessionScope.authUser.id !=null}">
+            <c:choose>
+	         <c:when test="${sessionScope.authUser.id == null}">
             <tr>
-            
-            <form id="target" action="classDetail.do?CL_ID=${CL_ID}" method="post">
-          	 <input type="hidden" name="CL_ID" value="${CL_ID}">
-                <input type="hidden" name="comment_id" value="${sessionScope.authUser.id}">
-              
                 <td>
                     <div class="comment-txt">
-                        <textarea id ="comment_content" name="comment_content" rows="4" cols="70" ></textarea>
+                        <textarea id ="comment_content" name="comment_content" placeholder="로그인 후 이용 가능합니다"rows="4" cols="70" disabled="disabled" ></textarea>
                     </div>
                 </td>
                 <!-- 댓글 등록 버튼 -->
                 <td>
                     <div class="comment-button">
-                        <button type="submit" id="submit">댓글달기</button>
+                       <button type="button" onclick="location.href='login.do'">댓글달기</button>
                     </div>
                 </td>
-            </form>
             </tr>
-            </c:if>
+           	 </c:when>
+           	 <c:otherwise>
+           	 	<tr>
+		             <form id="target" action="Cus_comment.do?CL_ID=${CL_ID}" method="post">
+		          	   <input type="hidden" name="CL_ID" value="${CL_ID}">
+		               <input type="hidden" name="comment_id" value="${sessionScope.authUser.id}">
+              
+                		<td>
+		                    <div class="comment-txt">
+		                        <textarea id ="comment_content" name="comment_content" placeholder="여러분의 소중한 댓글을 입력해주세요"rows="4" cols="70" ></textarea>
+		                    </div>
+		                </td>
+		                <!-- 댓글 등록 버튼 -->
+		                <td>
+		                    <div class="comment-button">
+		                        <button type="submit" id="submit">댓글달기</button>
+		                    </div>
+		                </td>
+           	 		</form>
+            	</tr>	
+           	 </c:otherwise>
+          </c:choose>
         </table>
-        
    	 <div class="comment">
-   	 	<div class="border-comment" ></div>
 	   <c:forEach items="${requestScope.commentList}" var="comment" varStatus="status">
-	    <table id="tableDisplay${status.index}" class="tableNone" style="display:none">
+	    <table id="tableDisplay${status.index}">
 	    	
 	        <tbody class="cmt-body cmt-content${status.index}">
 	            <tr class="left-section">
 	             	
 	                <td class="left-info">
-	                	<div class="id_date">
+	                <div class="id_date">
+	                
 	                	<c:choose>
-	                		<c:when test="${comment.comment_profile !=null}">
+	                		<c:when test="${comment.comment_profile != NULL && comment.comment_id != ''}">
 	                			<div class="profile_id">
-			                		<img id="img_profile" src="<c:url value='/upload/profile/${comment.comment_profile}'/>">
-			                		<span class=left-id>${comment.comment_id}</span>
+			                		<div class="id_profile"><img id="img_profile" src="<c:url value='/upload/profile/${comment.comment_profile}'/>"></div>
+			                		<div class="id_id"><span class="left-id"><c:if test="${comment.comment_id.equals(requestScope.article.CL_WRITER_ID) }">작성자)</c:if> ${comment.comment_id}</span></div>
 	                			</div>
-	                			<span class="left-date">${comment.comment_date}</span>
 	                		</c:when>
-	                		<c:when test="${comment.comment_profile ==null}">
-	                				 <img id="img_profile" src="<c:url value='/upload/profile/basic.png'/>">
-			                		<span class=left-id>${comment.comment_id}</span>
-	                				<span class="left-date">${comment.comment_date}</span>
+	                		<c:when test="${comment.comment_profile == NULL && comment.comment_id != ''}">
+	                			<div class="profile_id">
+			                		<div class="id_profile"><img id="img_profile" src="<c:url value='images/profile.png'/>"></div>
+			                		<div class="id_id"><span class="left-id"><c:if test="${comment.comment_id.equals(requestScope.article.CL_WRITER_ID) }">작성자)</c:if> ${comment.comment_id}</span></div>
+	                			</div>	
+	                		</c:when>
+	                		<c:when test="${comment.comment_id == ''}">
+	                			<div class="Nothing_comment">${comment.comment_content}</div>
 	                		</c:when>
 	                	</c:choose>
-	                	</div>
-	                
-	                 <td class="comment-content" width="100%">
+	                	<c:set var="Comment" value="${comment.comment_content}"/>
+	               	 	<c:set var="Checkcomment" value="삭제된 댓글입니다"/>
+	               	 	<c:set var="Checkcomment2" value="관리자가 삭제한 댓글입니다"/>
+	                 	<c:if test="${Comment != Checkcomment && Comment != Checkcomment2}">
+	                	
+						<fmt:formatDate var="create_content" value="${comment.comment_date}" pattern="yyyy-MM-dd"/>	
+									
+							<span class="left-date">${create_content}</span>
+							</c:if>
+	                </div>
+	               </td> 
+	                	<c:set var="Comment" value="${comment.comment_content}"/>
+	               	 	<c:set var="Checkcomment" value="삭제된 댓글입니다"/>
+	               	 	<c:set var="Checkcomment2" value="관리자가 삭제한 댓글입니다"/>
+	                 	<c:if test="${Comment != Checkcomment && Comment != Checkcomment2}">
 	                 	
-	                		 <div class="left-content">${fn:replace(comment.comment_content,crcn,br)}</div>
-	                		 <c:if test="${sessionScope.authUser.id !=null}">
-	                		<c:set var="Comment" value="${comment.comment_content}"/>
-	                		<c:set var="Checkcomment" value="삭제된 댓글입니다"/>
-	                		<c:if test="${Comment != Checkcomment}">
+	                 <td class="comment-content" width="100%">
 	                		
-	                 	 <div class="left-button button${status.index}" style="disply:none">
-	                 		 <c:if test="${comment.comment_id != sessionScope.authUser.id}">
-	                 	 	<a href ="javascript:void(0)" id="reCmt${status.index}" class="right-info">[댓글달기]</a>
-	                 	 	</c:if>
-	                 	 	<c:if test="${comment.comment_id == sessionScope.authUser.id}">
-			                <a href="javascript:void(0)" class="right-info tabActive${status.index}">[수정]</a>
-			                <a href="delte.do?comment_num=${comment.comment_num}&CL_ID=${CL_ID}" class="right-info deleteNotCommet${status.index }">[삭제]</a>
-			                </c:if>
-		                 </div>
-		                </c:if>
-		                </c:if>
-		                
-	                 </td>
-	               
+	                 		 
+	                		 <div class="left-content">${fn:replace(comment.comment_content,crcn,br)}</div>
+	                		
+	                		 <c:if test="${sessionScope.authUser.id !=null}">
+	                 	 		<div class="left-button button${status.index}" style="disply:none">
+	                 	 		<a href ="javascript:void(0)" id="reCmt${status.index}" class="right-info">[답변]</a>
+	                 	 	
+		                 	 	<c:if test="${comment.comment_id == sessionScope.authUser.id}">
+				                <a href="javascript:void(0)" class="right-info tabActive${status.index}">[수정]</a>
+				                <a href="delte.do?comment_num=${comment.comment_num}&CL_ID=${CL_ID}" class="right-info deleteNotCommet${status.index }">[삭제]</a>
+				                </c:if>
+		                  		</div>
+		            	    </c:if>
+		            	    </td>
+		               </c:if>
 	           </tr>
 	        </tbody>
-	        </div>
 			
-	        <tfoot>
+	        <tfoot class="left-section">
 	        
 	        <tr class="recomment-confirm reCmt-hidden${status.index} hiddenReCmt" style="display:none">
 	       		 <form id="recommentform${status.index}" action="recomment.do?CL_ID=${CL_ID}" method="post"> 
@@ -669,7 +450,7 @@ table {
 	                	 <input type="hidden" name="comment_id" value="${sessionScope.authUser.id}">
 	                	 <input type="hidden" name="recomment_comment_num" value="${comment.comment_num}">
 	           		 </td>
-		            <td class="reComment-button">
+		            <td class="recomment-inert_button">
 		            	<div class="recomment-candle tabActive${status.index}"><button type="button">취소하기</button></div>
 		                <div><button type="submit" id="resubmit">댓글달기</button></div>
 		            </td>
@@ -706,15 +487,17 @@ table {
 						  	<c:choose>
 	                		<c:when test="${recomment.recomment_profile !=null}">
 	                			<div class="profile_id">
-			                		<img id="img_profile" src="<c:url value='/upload/profile/${recomment.recomment_profile}'/>">
-			                		<span class=left-id>${recomment.recomment_id}</span>
+			                		└ <img id="img_profile" src="<c:url value='/upload/profile/${recomment.recomment_profile}'/>">
+			                		<span class=left-id><c:if test="${recomment.recomment_id.equals(requestScope.article.CL_WRITER_ID) }">작성자)</c:if> ${recomment.recomment_id}</span>
 	                			</div>
 	                			<span class="left-date">${recomment.recomment_date}</span>
 	                		</c:when>
-	                		<c:when test="${recomment.recomment_profile ==null}">
-	                				 <img id="img_profile" src="<c:url value='/upload/basic.png'/>">
-			                		<span class=left-id>${recomment.recomment_id}</span>
-	                				<span class="left-date">${recomment.recomment_date}</span>
+	                		<c:when test="${recomment.recomment_profile == null}">
+	                				└ <div class="profile_id">
+			                		<img id="img_profile" src="<c:url value='/images/profile.png'/>">
+			                		<span class=left-id><c:if test="${recomment.recomment_id.equals(requestScope.article.CL_WRITER_ID) }">작성자)</c:if> ${recomment.recomment_id}</span>
+	                			</div>
+	                			<span class="left-date">${recomment.recomment_date}</span>
 	                		</c:when>
 	                	</c:choose>
 				    	   </div>
@@ -752,12 +535,8 @@ table {
 	       		</c:forEach>	        
 	        </tfoot>
 	    </table>
-	   				 <c:if test="${status.last eq true}">
-	      				<div class="totalcomment"><button id="totalcomment" onclick="commentTotal()">댓글보기</button></div>
-	      			</c:if>
 </c:forEach>
-             
-        </div>
+             </div>
  
  
  
@@ -774,9 +553,9 @@ table {
                </div>
             </div>
             
-            <div class="col-md-4">
+            <div class="col-md-4 reservBtnX">
             
-      <div class="position-sticky" style="top: 2rem;">
+      <div class="position-sticky" style="top: 5rem;">
         <div class="p-4 mb-3 bg-light rounded">
           <h4 class="fst-italic" style="font-size: 20pt; font-family: THE외계인설명서;  text-align: left;">한줄 소개</h4>
           <p class="mb-0" style="font-size: 17pt; font-family: THE외계인설명서;  text-align: left;"><%=article.getCL_INTRODUCTION()%></p>
@@ -804,7 +583,7 @@ table {
                             	 
                             		   %>
                             		   
-                                	   <button style="font-size: 17pt; border-radius: 8px;" class="btn btn-primary text-white btbt" type="button" onclick="location.href='classUpdateForm.do?CL_ID=<%=article.getCL_ID()%>'">수정하기</button>
+                                	   <button style="font-size: 17pt; border-radius: 8px;" class="btn btn-primary text-white btbt" type="button" onclick="location.href='classUpdateForm.do?CL_ID=<%=article.getCL_ID()%>'" tabindex="1">수정하기</button>
                                 	  
                                    
                             	   <%
@@ -813,7 +592,7 @@ table {
                                else{ 	  
  	                         	 	  
  	                         	 	%>
-                                      <button style="font-size: 17pt; border-radius: 8px;" class="btn btn-primary text-white btbt" type="button" onclick="location.href='reservationCompleted.do?CL_ID=<%=article.getCL_ID()%>'">예약하기</button>	
+                                      <button style="font-size: 17pt; border-radius: 8px;" class="btn btn-primary text-white btbt" type="button" onclick="location.href='reservationCompleted.do?CL_ID=<%=article.getCL_ID()%>'" tabindex="1">예약하기</button>	
                                		<% 	}	
                                
                              %>
@@ -825,10 +604,33 @@ table {
 
 
       </div>
+      
     </div>
-
+<div> <%
+                                     	if (startDate <= date.getTime() || reservationList.size() >= article.getCL_CAPACITY()) {
+                                     		%>
+                                     		
+                               <%} else if(userId != null&&userId.equals(article.getCL_WRITER_ID())){
+                            	 
+                            		   %>
+                            		   
+                                	   <button style="font-size: 17pt; border-radius: 8px;" id="reservBtn" class="btn btn-primary text-white btbt" type="button" onclick="location.href='classUpdateForm.do?CL_ID=<%=article.getCL_ID()%>'">수정</button>
+                                	  
+                                   
+                            	   <%
+                            	   
+                               }
+                               else{ 	  
+ 	                         	 	  
+ 	                         	 	%>
+                                      <button style="font-size: 17pt; border-radius: 8px;" id="reservBtn" class="btn btn-primary text-white btbt" type="button" onclick="location.href='reservationCompleted.do?CL_ID=<%=article.getCL_ID()%>'">예약</button>	
+                               		<% 	}	
+                               
+                             %></div>
+                             
+                            
          </main>
-         <main class="col-md-3 ms-sm-auto col-lg-2 px-md-4 bg-light"></main>
+         <main class="col-12 col-lg-2 ms-sm-auto  px-md-4 bg-light"></main>
       </div>
 
 
@@ -906,9 +708,12 @@ table {
             $('.cmt-content<%=i%>').show();
         }
         if($(this).hasClass('recomment-candle')) {
-        	alert("취소되었습니다");
-			$('.reCmt-hidden<%=i%>').hide();
-		}
+            alert("취소되었습니다");
+            var recomment_content = document.getElementById("reCmtCnt<%=i%>").innerHTML.trim();
+               document.getElementById("reCmtCnt<%=i%>").value = recomment_content;
+          $('.reCmt-hidden<%=i%>').hide();
+          
+       }
     });
 	//댓글달기
 	$(document).ready(function() {

@@ -212,6 +212,13 @@ main#mainContainer .newClassContainer {
 #cancelBtn{
 margin-top: 7px; 
 }
+
+#CL_MOD{
+font-weight: bold;
+color: grey;
+}
+
+
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -242,7 +249,7 @@ margin-top: 7px;
 							<img id="thumbPic" alt="나눔 대표 사진" title="나눔 대표 사진" src="<%if(myParticipateList.get(i).getCL_IMG_PATH() != null){ %><%=request.getContextPath()%>/upload/<%=myParticipateList.get(i).getCL_IMG_PATH()%><%}else{%>images/class_default.png<%}%>"/>
 						</div>
 						<div class="col-md-5">
-							<h5 id="className"><%=myParticipateList.get(i).getCL_NAME()%></h5>
+							<h5 id="className"><%=myParticipateList.get(i).getCL_NAME()%><%if(myParticipateList.get(i).getCL_MODIFYCHECK() !=0) {%> <span id="CL_MOD">&nbsp;(수정됨)</span> <%} %></h5>
 							<div class="mb-1">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 									fill="currentColor" class="bi bi-tag" viewBox="0 0 16 16">
@@ -327,10 +334,10 @@ margin-top: 7px;
 							<mark class="greenBG">
 								<em class="green">●</em>신청 중
 							</mark>
-<a href="reservCancel.do?CL_ID=<%=myParticipateList.get(i).getCL_ID() %>"><button type="button" class="btn btn-info" id="cancelBtn">예약취소</button></a>
+
 							<%
 								}
-							%>
+							%><a href="reservCancel.do?CL_ID=<%=myParticipateList.get(i).getCL_ID() %>"><button type="button" class="btn btn-info" id="cancelBtn<%=i%>">예약취소</button></a>
 						</div>
 					</div>
 				</div>
@@ -343,16 +350,22 @@ margin-top: 7px;
 	<section id="pageList" style="text-align : center">
 
 							<%if(nowPage<=1){ %>
-							<span id="paging">[이전]</span>
+							<span id="paging"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
+</svg>이전</span>
 							<%
 							} else if (startPage <= 5) {
 							%>
-							<a href="myParticipateList.do?page=<%=startPage%>" id="paging">[이전]</a>
+							<a href="myParticipateList.do?page=<%=startPage%>" id="paging"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
+</svg>이전</a>
 							
 							<%
 								} else {
 							%>
-							<a href="myParticipateList.do?page=<%=startPage - 1%>" id="paging">[이전]</a>
+							<a href="myParticipateList.do?page=<%=startPage - 1%>" id="paging"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
+</svg>이전</a>
 							<%
 								}
 							%>
@@ -375,15 +388,21 @@ margin-top: 7px;
 							<%
 								if (nowPage >= maxPage) {
 							%>
-									<span id="paging">[다음]</span>
+									<span id="paging">다음<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
+</svg></span>
 							<%
 								} else if (endPage == maxPage) {
 							%>
-							<a href="myParticipateList.do?page=<%=nowPage+1 %>" id="paging">[다음]</a>
+							<a href="myParticipateList.do?page=<%=endPage %>" id="paging">다음<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
+</svg></a>
 							<%
 								} else {
 							%>
-							<a href="myParticipateList.do?page=<%=endPage+1%>" id="paging">[다음]</a>
+							<a href="myParticipateList.do?page=<%=endPage+1%>" id="paging">다음<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
+</svg></a>
 							<%
 								}
 							%>
@@ -422,7 +441,7 @@ margin-top: 7px;
 				location.href = 'classDetail.do?CL_ID=' + CL_ID;
 			});
 			
-			 $("#cancelBtn")
+			 $("#cancelBtn0")
              .click(
                    function() {
                 	   if (confirm("예약을 취소하시겠습니까?") == true){    //확인
@@ -435,7 +454,58 @@ margin-top: 7px;
 
                  		 }
                    });
-			
+			 $("#cancelBtn1")
+             .click(
+                   function() {
+                	   if (confirm("예약을 취소하시겠습니까?") == true){    //확인
+
+                 		     document.removefrm.submit();
+
+                 		 }else{   //취소
+                 			 event.preventDefault()
+              	             event.stopPropagation();
+
+                 		 }
+                   });
+			 $("#cancelBtn2")
+             .click(
+                   function() {
+                	   if (confirm("예약을 취소하시겠습니까?") == true){    //확인
+
+                 		     document.removefrm.submit();
+
+                 		 }else{   //취소
+                 			 event.preventDefault()
+              	             event.stopPropagation();
+
+                 		 }
+                   });
+			 $("#cancelBtn3")
+             .click(
+                   function() {
+                	   if (confirm("예약을 취소하시겠습니까?") == true){    //확인
+
+                 		     document.removefrm.submit();
+
+                 		 }else{   //취소
+                 			 event.preventDefault()
+              	             event.stopPropagation();
+
+                 		 }
+                   });
+			 $("#cancelBtn4")
+             .click(
+                   function() {
+                	   if (confirm("예약을 취소하시겠습니까?") == true){    //확인
+
+                 		     document.removefrm.submit();
+
+                 		 }else{   //취소
+                 			 event.preventDefault()
+              	             event.stopPropagation();
+
+                 		 }
+                   });
 		});
 	</script>
 	<script

@@ -42,7 +42,7 @@ String nowPage = (String)request.getAttribute("page");
 			<hr>
 			<div><%=notice.getNOTICE_REGDATE()  %>&nbsp/&nbsp View : <%=notice.getNOTICE_VIEWCOUNT()  %></div>
 			<br>
-			<div><%=notice.getNOTICE_CONTENT()  %></div>
+			<div><%=notice.getNOTICE_CONTENT().replace("\n","<br>")  %></div>
 			<br>
 			<br>
 			

@@ -38,7 +38,28 @@
 			request.getSession().setAttribute("path1", path1);
    		  
    		   %>
-	
+	<style type="text/css">
+@media only screen and (min-width: 576px) {
+
+.margin {
+margin-left: 83px }
+
+.left {
+text-align:left;
+}
+}
+
+.TextCenter {
+text-align:center
+}
+
+.group {
+background : #f9f9f9
+}
+
+
+
+</style>
 
 
 </head>
@@ -48,10 +69,11 @@
 	<div class="container-fluid">
 		<div class="row">
 		<jsp:include page="/side3.jsp" />
+		
 			<main class="col-md-6 col-lg-8 px-md-4" id="mainContainer"> <br>
 			<br>
 			<br>
-			<h4>FnQ</h4>
+			<h4>FAQ</h4>
 			<hr>
 			<br>
 			
@@ -69,13 +91,12 @@ if(fnqlist != null && listCount > 0){
 %>
 
 			
-				<a class="list-group-item list-group-item-action">
+				<a class="list-group-item list-group-item-action group">
 			<div class="row">
 			<div class="col">
-			<div class="row">
-      <span class="col-md-2" style="text-align: center"><%="글 번호"%></span>
-      <span class="col-md-1"></span>
-      <span class="col-md-5" style="text-align:center"><%="내      용" %></span>
+			<div class="row TextCenter">
+      <span class="col-md-1 "><%="글 번호"%></span>
+      <span class="col-md-11"><%="내용" %></span>
       
   </div>
   </div>
@@ -87,40 +108,22 @@ if(fnqlist != null && listCount > 0){
 			String n = null;
 	%>
 			
-				<a  class="list-group-item list-group-item-action">
-				<div class="col">
-      <div class="row">
-			<div class="row" class="btn btn-info" data-toggle="collapse"
-                     data-target="#content<%=i%>">
-                     
-      <span class="col-md-2" style="text-align: center"><%=(pageinfo.getPage()-1)*5+(i+1) %></span>
-     &nbsp; &nbsp; &nbsp;
-       <span class="col-md-5 "><%=fnqlist.get(i).getFNQ_TITLE() %>  </span>
-      
-    </div>
- 
-         
-      <div class="col">
-      <div class="row">
-
-  <div id="content<%=i %>" class="collapse col-md-12">
-<br>
-<div class="col">
- <div class="row">
- 
- <div class="col-md-2"></div>
-  <div class="col-md-8">
-  
-   <%=fnqlist.get(i).getFNQ_CONTENT()%>
- </div></div></div>
-
-  </div>
- </div>
- </div>
- </div>
- </div>
-
-  </a>
+				<a class="list-group-item list-group-item-action">
+				<div class="row">
+      				<div class="col">
+						<div class="row TextCenter" data-toggle="collapse" data-target="#content<%=i%>">
+      						<span class="col-md-1"><%=(pageinfo.getPage()-1)*5+(i+1) %></span>
+       						<span class="col-md-11 left "><%=fnqlist.get(i).getFNQ_TITLE() %></span>
+  							
+  							<div id="content<%=i %>" class="collapse"><hr>
+  								<div class="col-md-10 left margin">
+   								<%=fnqlist.get(i).getFNQ_CONTENT().replace("\n","<br>")%>
+ 								</div>
+ 							</div>
+ 						</div>
+ 					</div>
+ 				</div>
+  				</a>
   
   
 
@@ -135,16 +138,22 @@ if(fnqlist != null && listCount > 0){
    <section id="pageList" style="text-align : center">
 
                      <%if(nowPage<=1){ %>
-                     <span id="paging">[이전]</span>
+                     <span id="paging"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
+</svg>이전</span>
                      <%
                      } else if (startPage <= 5) {
                      %>
-                     <a href="FnQShow.do?page=<%=startPage%>" id="paging">[이전]</a>
+                     <a href="FnQShow.do?page=<%=startPage%>" id="paging"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
+</svg>이전</a>
                      
                      <%
                         } else {
                      %>
-                     <a href="FnQShow.do?page=<%=startPage - 1%>" id="paging">[이전]</a>
+                     <a href="FnQShow.do?page=<%=startPage - 1%>" id="paging"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
+</svg>이전</a>
                      <%
                         }
                      %>
@@ -167,15 +176,21 @@ if(fnqlist != null && listCount > 0){
                      <%
                         if (nowPage >= maxPage) {
                      %>
-                           <span id="paging">[다음]</span>
+                           <span id="paging">다음<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
+</svg></span>
                      <%
                         } else if (endPage == maxPage) {
                      %>
-                     <a href="FnQShow.do?page=<%=nowPage+1 %>" id="paging">[다음]</a>
+                     <a href="FnQShow.do?page=<%=endPage %>" id="paging">다음<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
+</svg></a>
                      <%
                         } else {
                      %>
-                     <a href="FnQShow.do?page=<%=endPage+1%>" id="paging">[다음]</a>
+                     <a href="FnQShow.do?page=<%=endPage+1%>" id="paging">다음<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
+</svg></a>
                      <%
                         }
                      %>

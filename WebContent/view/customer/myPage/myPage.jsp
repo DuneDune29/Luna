@@ -110,7 +110,7 @@ padding-top: 1px;
 			<div id="myPageForm" class="container">
 				<div id="profile-group" class="item-group">
 					<img id="profile_image_preview" class="rounded-circle"
-						src="<%if (myInfo.getCUS_PROFILE_PATH() != null) {%><%=request.getContextPath()%>/upload/profile/<%=myInfo.getCUS_PROFILE_PATH()%><%} else {%>images/class_default.png<%}%>"
+						src="<%if (myInfo.getCUS_PROFILE_PATH() != null) {%><%=request.getContextPath()%>/upload/profile/<%=myInfo.getCUS_PROFILE_PATH()%><%} else {%>images/profile.png<%}%>"
 						alt="프로필 사진 추가하기" title="프로필 사진 추가하기" />
 					<div>프로필 사진</div>
 					<div>
@@ -178,7 +178,7 @@ padding-top: 1px;
 											<div class="col-md-5"></div>
 											<div class=" col-md-7 invalid-feedback" id="newPassCompare">신규 비밀번호를
 												확인해 주세요.</div>
-										</div>
+										</div><input type="hidden" value="<%=myInfo.getCUS_PWD()%>" id="pass1">
 									</div>
 									<div class=" form-group">
 										<button type="submit" class="btn btn-subBtn" id="passSub" >확인</button>
@@ -388,7 +388,7 @@ padding-top: 1px;
                                     document
                                           .getElementById("CL_PROFILE_PATH").value = "";
                                     document
-                                          .getElementById("profile_image_preview").src = "images/class_default.png";
+                                          .getElementById("profile_image_preview").src = "images/profile.png";
                                  });
 
                      $(".switch").click(function() {
@@ -405,7 +405,7 @@ padding-top: 1px;
                      $(".profileNoChange").click(function(){
                                  document.getElementById("profile_image_preview").src="<%=request.getContextPath()%>/upload/profile/<%=myInfo.getCUS_PROFILE_PATH()%>";
                                  if(<%=myInfo.getCUS_PROFILE_PATH()%>==null){
-                                    document.getElementById("profile_image_preview").src="class_default.png";
+                                    document.getElementById("profile_image_preview").src="images/profile.png";
                                     
                                  }
                           });
@@ -444,10 +444,11 @@ padding-top: 1px;
                          var curPass = $("#curPass").val();
                          var newPass = $("#newPass").val();
                          var newPassC = $("#newPassC").val();
+                         var pass = $("#pass1").val();
                          
-                         if(curPass != <%=myInfo.getCUS_PWD()%> || newPass!=newPassC || newPass=="" ||newPassC==""){
-                          if (curPass != <%=myInfo.getCUS_PWD()%>){
-                        	  document.getElementById("passCompare").innerHTML = "현재 비밀번호가 일치하지 않습니다.";
+                         if(curPass!=pass || newPass!=newPassC || newPass=="" ||newPassC==""){
+                          if (curPass != pass){
+                             document.getElementById("passCompare").innerHTML = "현재 비밀번호가 일치하지 않습니다.";
                               $("#passCompare").css('display', 'inline');
                               $("#curPass").css("border-color", "red");
                              event.preventDefault()
@@ -456,30 +457,31 @@ padding-top: 1px;
                           $("#curPass").css("border-color", "rgba(0, 0, 0, 0.3)");}
                         
                           if(newPass!=newPassC || newPass=="" ||newPassC==""){
-                        	  document.getElementById("newPassCompare").innerHTML = "신규 비밀번호를 확인해 주세요";
-                        	  $("#newPassCompare").css('display', 'inline');
-                        	  $("#newPass").css("border-color", "red");
-                        	  $("#newPassC").css("border-color", "red");
-                        	  event.preventDefault()
+                             document.getElementById("newPassCompare").innerHTML = "신규 비밀번호를 확인해 주세요";
+                             $("#newPassCompare").css('display', 'inline');
+                             $("#newPass").css("border-color", "red");
+                             $("#newPassC").css("border-color", "red");
+                             event.preventDefault()
                               event.stopPropagation()
                           }else{$("#newPass").css("border-color", "rgba(0, 0, 0, 0.3)");
-                    	  $("#newPassC").css("border-color", "rgba(0, 0, 0, 0.3)");}}
+                         $("#newPassC").css("border-color", "rgba(0, 0, 0, 0.3)");}}
                          else{
-                        	 if (confirm("정말 수정하시겠습니까??") == true){    //확인
+                            if (confirm("정말 수정하시겠습니까??") == true){    //확인
 
-        	        		     document.removefrm.submit();
+                              document.removefrm.submit();
 
-        	        		 }else{   //취소
-        	        			 event.preventDefault()
-        	    	             event.stopPropagation();
+                          }else{   //취소
+                             event.preventDefault()
+                               event.stopPropagation();
 
-        	        		 }
-                        	 
+                          }
+                            
                          }
                          
 
 
                       });
+                     
                      
                      
                      

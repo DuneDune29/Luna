@@ -40,7 +40,28 @@
 		int endPage=pageinfo.getEndPage();
 	
 	%>
-	
+<style type="text/css">
+@media only screen and (min-width: 576px) {
+
+.left {
+text-align:left;
+}
+}
+
+.TextCenter {
+text-align:center
+}
+
+.group {
+background : #f9f9f9
+}
+
+.padding {
+padding : inherit 
+}
+
+
+</style>	
 	
 
 
@@ -67,19 +88,13 @@
 if(noticelist != null && listCount > 0){
 %>
 			
-				<a  class="list-group-item list-group-item-action">
+				<a  class="list-group-item list-group-item-action group">
 			<div class="row">
 			<div class="col">
-			<div class="row">
+			<div class="row TextCenter">
       <span class="col-md-1"><%="글 번호"%></span>
-      <span class="col-md-2"></span>
-      <span class="col-md-5" style="text-align:center"><%="제 목" %></span>
-       <div class="col">
-      <div class="row">
-   	<span class="col-md-8"></span>
-      <span class="col-md-4" style="text-align:center" ><%="작성일" %></span>
-  </div>
-  </div>
+      <span class="col-md-10"><%="제 목" %></span>
+      <span class="col-md-1"><%="작성일" %></span>
   </div>
   </div>
   </div>
@@ -93,10 +108,9 @@ if(noticelist != null && listCount > 0){
 				<a class="list-group-item list-group-item-action" href="Notice_Content.do?notice_id=<%=noticelist.get(i).getNOTICE_ID()%>&page=<%=nowPage%>">
 			<div class="row">
 			<div class="col">
-			<div class="row" >
-      <span class="col-md-1" style="text-align:center"><%=(pageinfo.getPage()-1)*5+(i+1) %></span>
-      <span class="col-md-1"></span>
-       <span class="col-md-5 "><%=noticelist.get(i).getNOTICE_TITLE() %> 
+			<div class="row TextCenter">
+      <span class="col-md-1"><%=(pageinfo.getPage()-1)*5+(i+1) %></span>
+       <span class="col-md-10 left"><%=noticelist.get(i).getNOTICE_TITLE() %> 
       <% 
 	
 	
@@ -124,18 +138,8 @@ if(noticelist != null && listCount > 0){
 	%>
      </span>
           
-      <div class="col">
-      <div class="row">
-   	  <span class="col-md-9"></span>
-      <span class="col-md-3" style="text-align:center"><%=noticelist.get(i).getNOTICE_REGDATE() %></span>
+      <span class="col-md-1 padding"><%=noticelist.get(i).getNOTICE_REGDATE() %></span>
   </div>
-  </div>
-  </div>
-  <div id="content<%=i %>" class="collapse col-md-6">
-  <div>
-  <%=noticelist.get(i).getNOTICE_CONTENT()%></div>
-  </div>
-  
   </div>
   </div>
   </a>
@@ -150,16 +154,22 @@ if(noticelist != null && listCount > 0){
    <section id="pageList" style="text-align : center">
 
                      <%if(nowPage<=1){ %>
-                     <span id="paging">[이전]</span>
+                     <span id="paging"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
+</svg>이전</span>
                      <%
                      } else if (startPage <= 5) {
                      %>
-                     <a href="Notice_List.do?page=<%=startPage%>" id="paging">[이전]</a>
+                     <a href="Notice_List.do?page=<%=startPage%>" id="paging"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
+</svg>이전</a>
                      
                      <%
                         } else {
                      %>
-                     <a href="Notice_List.do?page=<%=startPage - 1%>" id="paging">[이전]</a>
+                     <a href="Notice_List.do?page=<%=startPage - 1%>" id="paging"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
+</svg>이전</a>
                      <%
                         }
                      %>
@@ -182,15 +192,21 @@ if(noticelist != null && listCount > 0){
                      <%
                         if (nowPage >= maxPage) {
                      %>
-                           <span id="paging">[다음]</span>
+                           <span id="paging">다음<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
+</svg></span>
                      <%
                         } else if (endPage == maxPage) {
                      %>
-                     <a href="Notice_List.do?page=<%=nowPage+1 %>" id="paging">[다음]</a>
+                     <a href="Notice_List.do?page=<%=endPage %>" id="paging">다음<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
+</svg></a>
                      <%
                         } else {
                      %>
-                     <a href="Notice_List.do?page=<%=endPage+1%>" id="paging">[다음]</a>
+                     <a href="Notice_List.do?page=<%=endPage+1%>" id="paging">다음<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
+</svg></a>
                      <%
                         }
                      %>
