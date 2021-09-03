@@ -2,9 +2,15 @@
 
 KOSMO 84기 웹어플리케이션 개발 과정
 
-2차 프로젝트(jsp project)_Luna
+2차 프로젝트 Luna Class
 
-MVC패턴 jsp를 활용한 웹사이트 구현 프로젝트 완성(LunaClass)
+Team Luna :김수정, 정인호, 권형준, 박찬규, 유인길, 한다연
+
+YOUTUBE : https://www.youtube.com/watch?v=WQ4OUNdnhU4
+
+PPT : https://docs.google.com/presentation/d/1BzQk6lNmFLJq2m9LIlrIGdqJ-hylXQnxXTPds7V1dAY/edit?usp=sharin
+
+MVC패턴 jsp를 활용한 웹사이트 구현 프로젝트 완성
 
 주제 : 재능을 나누고 참여할 수 있는 웹페이지 구현
 
