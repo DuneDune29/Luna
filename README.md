@@ -6,7 +6,7 @@ KOSMO 84기 웹어플리케이션 개발 과정
 
 Team Luna :김수정, 정인호, 권형준, 박찬규, 유인길, 한다연
 
-YOUTUBE : https://www.youtube.com/watch?v=WQ4OUNdnhU4
+발표영상 : https://www.youtube.com/watch?v=WQ4OUNdnhU4
 
 PPT : https://docs.google.com/presentation/d/1BzQk6lNmFLJq2m9LIlrIGdqJ-hylXQnxXTPds7V1dAY/edit?usp=sharin
 
