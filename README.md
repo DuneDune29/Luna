@@ -15,8 +15,14 @@ MVC패턴 jsp를 활용한 웹사이트 구현 프로젝트 완성(LunaClass)
 사용자에게 재능 나눔 및 참여를 할 수 있는 정보 검색 기능과 예약 시스템을 제공하여 편의성을 높여주는 프로그램 제공합니다.
 수업 정보 검색, 예약현황 확인, 날짜 선택 후 수업 예약, 참여하는 수업 정보 조회 및 취소 등의 기능으로 수업 관리에 대한 편리성을 제공합니다.
 
-![image](https://user-images.githubusercontent.com/79892930/131851279-a3236736-ac73-4226-811c-268b8b617914.png)
+메인화면
+![1](https://user-images.githubusercontent.com/79892930/131964006-e6f85087-1fe8-4da4-831f-49fc2131e1d1.PNG)
 
+나눔리스트
+![2](https://user-images.githubusercontent.com/79892930/131964015-4154d178-ac59-4b82-869e-3447e17ed3ad.PNG)
+
+모바일최적화
+![image](https://user-images.githubusercontent.com/79892930/131851279-a3236736-ac73-4226-811c-268b8b617914.png)
 -------------------------------------------------------------------
 
 개발언어 : java jdk1.8,  html5, css3, javascript, jquery, ajax
