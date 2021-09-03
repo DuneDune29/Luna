@@ -2,7 +2,7 @@
 
 KOSMO 84기 웹어플리케이션 개발 과정
 
-2차 프로젝트 Luna Class
+2차 프로젝트(jsp project)_Luna Class
 
 Team Luna :김수정, 정인호, 권형준, 박찬규, 유인길, 한다연
 
